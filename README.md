@@ -1,1 +1,0 @@
-# java-web-brno-redirect

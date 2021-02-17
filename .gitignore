@@ -1,0 +1,9 @@
+/**/_site/
+/**/.idea/
+/**/.vscode/
+/**/Tomcat/
+/**/Tomcat - */
+*.iml
+.jekyll-metadata
+Gemfile.lock
+start-serve.bat
