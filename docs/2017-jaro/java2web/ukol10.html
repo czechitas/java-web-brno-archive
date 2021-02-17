@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="cs" lang="cs">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="Content-Language" content="cs">
+
+    <meta name="author" content="Kamil Ševeček, Hana Klimentová">
+    <meta name="robots" content="index,follow">
+    <meta name="googlebot" content="index,follow,snippet,archive">
+
+    <link rel="stylesheet" type="text/css" media="screen" href="../../css/styles.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="../../css/menu.css">
+    <script src="../../js/jquery.1.12.4.min.js"></script>
+    <title>Java | Czechitas</title>
+</head>
+
+<body>
+    <div id="page">
+        <div class="header">
+            <a href="https://www.czechitas.cz/"><img src="../../img/logo.png" alt="Logo Czechitas"></a>
+        </div>
+        <!-- #header -->
+
+        <div id="title"></div>
+        <script>
+            jQuery("#title").load("title.html");
+        </script>
+        <!-- #title -->
+
+        <!-- #menu -->
+        <div id="menu-wrap"></div>
+        <div class="content">
+            <span class="published-timestamp">Vloženo: 5. 5. 2017</span>
+
+            <h3>
+                Úkol z lekce 10
+            </h3>
+
+            <h4>
+                Zobrazení tabulky z databáze
+            </h4>
+
+
+            <p class="odsazeniTop">
+                Úkolem je vytvořit webovou aplikaci zobrazující tabulku z databáze.
+                Je to velmi podobný problém jako jsme řešili na hodině.
+            </p>
+
+
+            <h5>Část 1 - Prohlídka databáze</h5>
+
+            <p class="odsazeniTop">
+                V databázi DailyPlanet v našem databázovém serveru MySQL
+                jsou 2 tabulky. Tabulka <code>autor</code>,
+                se kterou jsme pracovali v hodině,
+                a tabulka <code>clanek</code>,
+                se kterou budete pracovat v tomto úkolu.
+            </p>
+
+            <p>
+                Nejprve zkontrolujte obsah tabulky <code>clanek</code>
+                pomocí IntelliJ IDEA.
+            </p>
+            <p>
+                Pro připomenutí: V pravém panelu je záložka Database.
+                Vyberte data source DailyPlanet
+                (na hodině se jmenoval <code>MariaDB - jdbc:mysql://localhost/DailyPlanet</code>).
+                Rozkliněte ho, uvidíte tabulky.
+                Vyberte tabulku <code>clanek</code>,
+                klikněte na ni pravým tlačítkem myši
+                a zvolte <code>Table Editor</code>.
+                Zkontrolujte, že má zhruba tuto strukturu:
+            </p>
+
+            <table class="db-table">
+                <tr>
+                    <th>Clanek_ID</th>
+                    <th>Nazev</th>
+                    <th>Autor_ID</th>
+                    <th>CisloRevize</th>
+                </tr>
+                <tr>
+                    <td>15514d7c-12ab-4540-ba6d-f8e155952bb9</td>
+                    <td>Řidič naboural do policejního auta</td>
+                    <td>c705ef4e-5de0-4409-b537-957605df610c</td>
+                    <td>5</td>
+                </tr>
+            </table>
+
+
+            <h5>Část 2 - Javový program</h5>
+
+            <p class="odsazeniTop">
+                Založte webovou aplikaci z předlohy <code>WebovaAplikaceSValidaci</code>.
+                Vytvořte třídu <code>Clanek</code>,
+                která bude mít privátní členské proměnné podle
+                tabulky <code>clanek</code>.
+            </p>
+
+            <pre class="java-source-code">
+import java.util.UUID;
+
+public class Clanek {
+
+    private UUID id;
+    private String nazev;
+    private UUID autorId;
+    private int cisloRevize;
+
+}
+</pre>
+            <p>
+                V této třídě dále vygenerujte několik constructorů a mírně je vylepšete:
+            </p>
+
+            <pre class="java-source-code">
+<span class="grey-out">
+public class Clanek {
+
+    // ... privatni clenske promenne ...
+</span>
+    @Deprecated
+    public Clanek() {
+    }
+
+    public Clanek(UUID id) {
+        if (id == null) {
+            id = UUID.randomUUID();
+        }
+        this.id = id;
+    }
+
+<span class="grey-out">}</span>
+</pre>
+
+            <p>
+                Dále vygenerujte get+set metody pro všechny členské proměnné.
+                Metodu <code>setId</code> označte <code>@Deprecated</code>.
+                Nakonec vygenerujte ještě metodu <code>toString()</code>.
+            </p>
+
+            <p>
+                Takto připravenou třídu můžete použít v controlleru.
+                Kód pro přístup do databáze použijte velice podobný tomu z přednášky.
+                Nezapomeňte změnit dotaz SQL tak, aby správně vybral všechny sloupečky.
+                Nezapomeňte, že sloupečky, které se jmenují jinak,
+                než <code>set</code> metody
+                ve vaší třídě <code>Clanek</code>,
+                je nutné v dotazu SQL přejmenovat
+                (klauzulí <code>as</code>).
+            </p>
+
+            <h5>Část 3 - Vylešená tabulka</h5>
+
+            <p>
+                Bylo by hezké, kdyby v tabulce na webu nebyl autor článku uveden
+                svým ID, ale svým jménem.
+                Program bude potřeba mírně vylepšit.
+                Nejprve v IntelliJ IDEA ověřte pomocí konzole SQL, že následující dotaz
+                vybere správná data.
+                Konzoli vyvoláte v záložce Database
+                kliknutím pravým tlačítkem myši
+                na data source <code>DailyPlanet</code> a zvolením <code>Open Console</code>.
+            </p>
+
+            <pre class="java-source-code">
+SELECT Clanek_ID as ID, Nazev, KrestniJmeno, Prijmeni
+FROM clanek JOIN autor
+    ON clanek.Autor_ID = autor.Autor_ID
+</pre>
+
+            <p>
+                Nyní opravte třídu <code>Clanek</code>,
+                aby odrážela tuto virtuální tabulku
+                vzniklou spojením dvou fyzických tabulek v databázi.
+            </p>
+
+            <p>
+                Následně zobrazte takto získaná data ve webové stránce.
+            </p>
+
+
+            <h4>Odevzdávání úkolu</h4>
+
+            <ol>
+                <li>
+                    Odladěnou webovou aplikaci publikujte do vašeho cloudu pod názvem <code>/ukol10</code>.
+                </li>
+                <li>
+                    Zdrojový projekt zabalte 7-Zipem
+                    a nahrejte také na váš cloud do složky <code>/ukoly</code>.
+                </li>
+                <li>
+                    Snímek obrazovky z prohlížeče vložte do galerie
+                    <code>Úkol z lekce 10 - Články z DB</code> na Facebooku.
+                    Pokud by galerie ještě neexistovala, založte ji prvním snímkem.
+                    Ke snímku do popisu napište adresu vaší webové aplikace.
+                </li>
+            </ol>
+
+
+        </div>
+        <!-- #menu -->
+
+        <script>
+            jQuery("#menu-wrap").load("menu.html");
+        </script>
+        <!-- #content -->
+    </div>
+    <!-- #page -->
+</body>
+</html>

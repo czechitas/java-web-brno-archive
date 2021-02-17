@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="cs" lang="cs">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="Content-Language" content="cs"/>
+
+    <meta name="robots" content="index,follow"/>
+    <meta name="googlebot" content="index,follow,snippet,archive"/>
+
+    <link rel="stylesheet" type="text/css" media="screen" href="../../css/styles.css"/>
+    <link rel="stylesheet" type="text/css" media="screen" href="../../css/menu.css"/>
+    <script src="../../js/jquery.1.12.4.min.js"></script>
+    <title>Java | Czechitas</title>
+</head>
+
+<body>
+    <div id="page">
+        <div class="header">
+            <a href="https://www.czechitas.cz/"><img src="../../img/logo.png" alt="Logo Czechitas"/></a>
+        </div>
+        <!-- #header -->
+
+        <div id="title"></div>
+        <script>
+            jQuery("#title").load("title.html");
+        </script>
+        <!-- #title -->
+
+        <!-- #menu -->
+        <div id="menu-wrap"></div>
+        <script>
+            jQuery("#menu-wrap").load("menu.html");
+        </script>
+        <!-- #menu -->
+
+        <!-- NOVÝ OBSAH AŽ ZA TOHLE -->
+
+
+        <div class="content">
+            <span class="published-timestamp">Vloženo: 22. 2. 2018</span>
+
+            <h3>
+                Instalační pokyny pro
+                macOS
+            </h3>
+
+            <p>
+                Tyto pokyny jsou <strong>výhradně pro Mac</strong>.
+                Instalaci pro Windows lze najít najdete
+                <a href="instalacni-pokyny-windows.html">ZDE</a>.
+                Linux není podporován.
+                Pokud máte Linux, prosím, ozvěte se lektorovi.
+            </p>
+
+            <p>
+                Na akci budete potřebovat Javu (JDK),
+                programátorský editor IntelliJ IDEA (Ultimate Edition),
+                nástroj pro překlad javových projektů Maven
+                a webový server Tomcat.
+            </p>
+
+            <p>
+                Pro jejich instalaci následujte postup níže.
+            </p>
+
+            <p>
+                Tyto instrukce následujte i pokud už máte nějaké programy v
+                DOMOVSKÁ_SLOŽKA/Java-Training
+                z minula.
+                Žádný strach, původní projekty si tím nepřepíšete.
+                Ty máte v
+                DOMOVSKÁ_SLOŽKA/Java-Training\Projects
+                a tato složka se nemaže.
+                Pokud chcete, můžete si složku
+                DOMOVSKÁ_SLOŽKA/Java-Training/Projects
+                před touto instalací zazálohovat do jiné složky (např. Dokumenty),
+                ale není to nutné.
+                Ostatní složky v DOMOVSKÁ_SLOŽKA/Java-Training buď zůstanou nedotčeny
+                nebo budou přepsány novější verzí programů, což je v pořádku.
+            </p>
+
+            <p>
+                Pokud by kterýkoliv program, který si stáhnete v archívu Java-Training.7z,
+                nabízel update, prosím odmítněte to.
+                Programy jsou přesně vybrané, aby spolu fungovaly.
+                Jsou také speciálně nastavené a navzájem se na sebe odkazují,
+                není proto možné ani nahradit, ani updatovat žádný z těchto programů.
+                Pokud by to byl zásadní problém, kontektujte prosím lektora.
+            </p>
+
+            <p>
+                Na některých obrázcích můžete ve složkách vidět méně nebo mírně jinak pojmenované soubory.
+                To by nemělo být na závadu.
+            </p>
+
+            <ol>
+                <li>
+                    Kompletní přednastavený archív si můžete stáhnout z tohoto odkazu:
+                    <a href="https://github.com/czechitas/java-install/releases/download/2018-jaro/ultimate/mac/Java-Training.zip">Java-Training.zip</a>
+                    <br/>
+                    Na odkaz klikněte, soubor se začne stahovat do složky Stahování (Downloads).
+                    Průběh lze sledovat například v horním tlačítku Stahování (Downloads).
+                </li>
+                <li>
+                    Až bude soubor stažený, automaticky se rozbalí.
+                    Podívejte se do složky Stahování (Downloads).
+                    Pokud byste ve složce Stahování (Downloads) viděli
+                    pouze archív <code>Java-Training.zip</code>,
+                    dvojím kliknutím jej rozbalte.
+                    <br/><br/>
+                    <img src="img/install-mac/01_unzip.png"/><br/><br/>
+                </li>
+                <li>
+                    Přesuňte <strong>složku</strong> <code>Java-Training</code>
+                    do své domovské složky.
+                    Domovská složka je <code>/Users/<i>VAŠE_UŽIVATELSKÉ_JMÉNO</i></code>.
+                    Tedy například <code>/Users/student</code>.
+                    Do domovské složky se lze dostat ve Finderu volbou z menu <code>Jdi -> Domov</code> (<code>Go -> Home</code>).
+                    <br/><br/>
+                    <img src="img/install-mac/02_go_home.png" />
+                    <br/><br/>
+                    Pokud budete přesouvat složku Java-Training a už v domovské složce Java-Training
+                    budete mít z minula, počítač se vás bude ptát,
+                    zda chcete přepsat původní složku Java-Training.
+                    Zvolte buď sloučit (pokud to váš program umožňuje)
+                    nebo z původní složky zazálohujte Projects a
+                    ostatní už můžete nechat nahradit novými soubory.
+                </li>
+                <li>
+                    Přesun ze Stahování (Downloads) do domovské složky.
+                    <br/><br/>
+                    <img src="img/install-mac/03_move.png" />
+                </li>
+                <li>
+                    Celý obsah tak bude ve složce
+                    <code>/Users/<i>VAŠE_UŽIVATELSKÉ_JMÉNO</i>/Java-Training</code> a bude vypadat takto:
+                    <br/><br/>
+                    <img src="img/install-mac/04_result.png" width="100%" height="100%" alt="Složka Downloads"/><br/><br/>
+                    Je nezbytně nutné mít vše právě v /Users/<i>VAŠE_UŽIVATELSKÉ_JMÉNO</i>/Java-Training.
+                    V jiné složce (například na ploše nebo ve vaší složce Dokumenty) aplikace nebudou fungovat.
+                    <br/><br/>
+                </li>
+                <li>
+                    Ve složce <code>Java-Training</code> uvnitř své domovské složky dvojitým kliknutím spusťte
+                    instalační soubor <code>ideaIU-2016.3.7.1.dmg</code> a přetažením nainstalujte IntelliJ IDEA do složky
+                    Aplikace (Applications).
+
+                    <br/><br/>
+                    <img src="img/install-mac/03_idea_install.png" width="100%" height="100%" alt ="Instalace IntelliJ IDEA"/>
+                    <br/><br/>
+                </li>
+            </ol>
+
+            <h4 id="konfigurace">Konfigurace IntelliJ IDEA</h4>
+
+            <ol>
+                <li>
+                    Ze složky Aplikace (Applications) poklepáním spusťte editor IntelliJ IDEA - Ultimate - Java-Training.
+                    <br/><br/>
+                    <img src="img/install-mac/04_idea_open.png" width=" 100%" height="100%" alt="Spuštění IntelliJ IDEA"/><br/><br/>
+                </li>
+                <li>
+                    Potvrďte, že si tuto aplikaci skutečně přejete spustit.
+
+                    <br/><br/>
+                    <img src="img/install-mac/05_idea_open.png" width="60%" height="60%" alt="Screenshot Instalace IntelliJ IDEA"/>
+                    <br/><br/>
+                </li>
+                <li>
+                    Všechna další okna a dialogy zavřete červeným tlačítkem v levém horním rohu.
+
+                    <br/><br/>
+                    <img src="img/install-mac/06_idea_close_import.png" width="60%" height="60%" alt="Zavřete konfiguraci (1)"/>
+                    <br/><br/>
+                    <img src="img/install-mac/07_idea_close_theme.png" width="80%" height="80%" alt="Zavřete konfiguraci (2)"/>
+                    <br/><br/>
+                    <img src="img/install-mac/08_idea_close.png" width="80%" height="80%" alt="Zavřete konfiguraci IntelliJ idea"/>
+                    <br/><br/>
+                </li>
+                <li>
+                    Ve složce Aplikace (Applications) <strong>pravým tlačítkem</strong> klikněte na IntelliJ IDEA - Ultimate - Java-Training a vyberte
+                    Zobrazit obsah (Show Package Contents).
+                    <br/>
+                    <span style="color: #A0A0A0;">Poznámka: IntelliJ IDEA bylo nutné nejprve spustit (a zase ukončit) a až potom zobrazit obsah,
+                    protože macOS při prvním spuštění zkontroluje digitální podpis aplikace.
+                    Při dalších spuštěních již ne, a proto nyní můžeme přistoupit ke změně nastavení (viz další kroky).</span>
+                    <br/><br/>
+                    <img src="img/install-mac/05_idea_show_package_contents.png" alt="Spuštění IntelliJ IDEA"/><br/><br/>
+                </li>
+                <li>
+                    Nyní se proklikejte do složky <code>Contents/bin</code>, klikněte pravým tlačítkem na soubor
+                    <code>idea.properties</code> a vyberte Otevřít pomocí (Open With). Otevřete ho pomocí textového editoru (TextEdit nebo TextMate).
+                    <br/><br/>
+                    <img src="img/install-mac/06_idea_folder_open.png" width="100%" alt="Spuštění IntelliJ IDEA"/><br/><br/>
+                </li>
+                <li>
+                    Zvolte aplikaci TextEdit nebo TextMate.
+                    <br/><br/>
+                    <img src="img/install-mac/08_idea_open_textmate.png" alt="Spuštění IntelliJ IDEA"/><br/><br/>
+                </li>
+                <li>
+                    Na konec souboru idea.properties přidejte následující řádky:
+                    <br/>
+                    <br/>
+                    <code>
+                    idea.config.path=~/Java-Training/User-Config/IntelliJ-Ultimate/config<br/>
+                    idea.plugins.path=~/Java-Training/User-Config/IntelliJ-Ultimate/config/plugins<br/>
+                    idea.system.path=~/Java-Training/User-Config/IntelliJ-Ultimate/system<br/>
+                    idea.log.path=~/Java-Training/User-Config/IntelliJ-Ultimate/system/log<br/>
+                    </code>
+                    <br/><br/>
+                    <img src="img/install-mac/10_idea_ultimate_config_change.png" width="100%" alt="Spuštění IntelliJ IDEA"/><br/><br/>
+                </li>
+                <li>
+                    Uložte změny v konfiguračním souboru.
+
+                    <br/><br/>
+                    <img src="img/install-mac/11_idea_config_save.png" alt="Spuštění IntelliJ IDEA"/><br/><br/>
+                </li>
+                <li>
+                    A to je vše.
+                </li>
+            </ol>
+
+            <h4>Ukázková aplikace</h4>
+
+            <p>
+                Zkuste si ještě pustit ukázkovou aplikaci, ať ověříte, že máte správně nainstalovanáno.
+            </p>
+
+            <ol>
+                <li>
+                    Ze složky Aplikace (Applications) poklepáním spusťte editor
+                    IntelliJ IDEA - Ultimate - Java-Training.
+                    Při prvním úplném spuštění po vás bude IntelliJ IDEA vyžadovat licenční kód.
+                    Ten získáte v eshopu JetBrains podle instrukcí v emailu od Czechitas.
+                    <br/><br/>
+                    <img src="img/install-mac/04_idea_open.png" width="80%" height="80%" alt="Spuštění IntelliJ IDEA"/><br/><br/>
+                </li>
+
+                <li>
+                    IntelliJ IDEA po vás bude chtít licenci.
+                    Tu je nutné si koupit na eshopu JetBrains
+                    (Individual Customers -> New Subscription -> IntelliJ IDEA Ultimate)
+                    <br/>
+                    <br/>
+                    <a href="https://www.jetbrains.com/idea/buy/#edition=personal">https://www.jetbrains.com/idea/buy/#edition=personal</a>
+                    <br/>
+                    <br/>
+                    V eshopu je nutné před odesláním objednávky zadat slevový kód
+                    (co jste dostaly v emailu),
+                    který sníží cenu na 0,- korun.
+                    Rozhodně neschvalujte žádnou platbu ani není třeba zadávat platební kartu.
+                </li>
+                <li>
+                    Po provedení nákupu si v eshopu vyzvedněte offline activation code.
+                    <br/>
+                    <br/>
+                    <img src="img/license.png" alt="Offline activation code"/><br/><br/>
+                </li>
+                <li>
+                    Použijte ho v IntelliJ IDEA.
+                    <br/>
+                    <br/>
+                    <img src="img/install-win/install-22A.png" alt="Activation IntelliJ IDEA"/><br/><br/>
+                </li>
+
+                <li>
+                    Zvolte Otevřít (Open)
+                    <br/><br/>
+                    <img src="img/install-mac/13_idea_open_project.png" alt="Otevření ukázkového projektu"/><br/><br/>
+                </li>
+                <li>
+                    Ukázkovou aplikaci najdete v domovské složce v podsložce <code>Java-Training/Projects/DemoApplication</code>.
+                    <br/>
+                    <strong>Pozor!</strong> v závislosti na nastavení vašeho systému může okno výběru složky vypadat jinak.
+                    <br/>
+                    Až najdete složku <code>DemoApplication</code>, potvrďte tlačítkem Otevřít (Open).
+                    <br/><br/>
+                    <img src="img/install-mac/14_idea_open_project_2.png" width="100%" height="100%" alt="Určení cesty k ukazkovému projektu"/><br/><br/>
+                </li>
+                <li>
+                    Otevřením prvního projektu začne IntelliJ IDEA indexovat celou Javu,
+                    která je součástí balíku Java-Training (složka JDK).
+                    Vydržte, dokud nezmizí ukazatel průběhu. Může to trvat i pár minut.
+                    Následně se obarví spouštecí šipka do zelena.
+                    <br/><br/>
+                    <img src="img/install-mac/15_idea_wait_for_indexing.png" width="100%" height="100%" alt="Spuštění ukazkového projektu"/><br/><br/>
+                </li>
+                <li>
+                    Zvolte vpravo nahoře zelenou šipku Run
+                    <br/><br/>
+                    <img src="img/install-mac/16_idea_run_project.png" width="100%" height="100%" alt="Spuštění ukazkového projektu"/><br/><br/>
+                </li>
+                <li>
+                    Měli byste vidět tuto malinkou aplikaci
+                    <br/><br/>
+                    <img src="img/install-mac/17_first_application.png" alt="Screenshot ukazkového projektu"/><br/><br/>
+                </li>
+            </ol>
+
+            <p>
+                Pokud se někde něco nepovede, nezoufejte.
+                Na akci vám pomůžeme.
+            </p>
+        </div>
+        <!-- #content -->
+
+    </div>
+    <!-- #page -->
+</body>
+</html>

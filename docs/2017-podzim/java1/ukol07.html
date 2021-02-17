@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="cs" lang="cs">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="Content-Language" content="cs"/>
+
+    <meta name="robots" content="index,follow"/>
+    <meta name="googlebot" content="index,follow,snippet,archive"/>
+
+    <link rel="stylesheet" type="text/css" media="screen" href="../../css/styles.css"/>
+    <link rel="stylesheet" type="text/css" media="screen" href="../../css/menu.css"/>
+    <script src="../../js/jquery.1.12.4.min.js"></script>
+    <title>Java | Czechitas</title>
+</head>
+
+<body>
+    <div id="page">
+        <div class="header">
+            <a href="https://www.czechitas.cz/"><img src="../../img/logo.png" alt="Logo Czechitas"/></a>
+        </div>
+        <!-- #header -->
+
+        <div id="title"></div>
+        <script>
+            jQuery("#title").load("title.html");
+        </script>
+        <!-- #title -->
+
+        <!-- #menu -->
+        <div id="menu-wrap"></div>
+        <script>
+            jQuery("#menu-wrap").load("menu.html");
+        </script>
+        <!-- #menu -->
+
+        <div class="content">
+            <span class="published-timestamp">Vloženo: 18. 11. 2017</span>
+
+            <h3>
+                Úkol 07 - Seriózní desktopová aplikace - Mandala
+            </h3>
+
+            <h4>Domácí úkol</h4>
+
+            <p>Cílem domácího úkolu je naprogramovat seriózní
+                desktopovou aplikaci pro vykreslování mandal.</p>
+
+            <h5>
+                Část 1 - Vyplňování místo kreslení
+            </h5>
+
+            <p>
+                Udělejte si kopii programu z hodiny, který uměl kreslit.
+                Při kliknutí na <code>labObrazek</code> ale <b>NE</b>kreslete bod
+                (voláním metody <code>nakresliBod(x, y)</code>),
+                místo toho zavolejte metodu <code>vyplnObrazek(x, y)</code>.
+                V hodině jsem vám dodal zdrojový text této metody.
+                Použijte ale prosím tento aktualizovaný zdrojový text:
+            </p>
+
+            <pre class="java-source-code">
+    private void priKliknutiNaLabObrazek(MouseEvent e) {
+        int x = e.getX();
+        int y = e.getY();
+        vyplnObrazek(x, y);
+        labObrazek.repaint();
+    }
+
+    public void vyplnObrazek(int x, int y) {
+        if (barvaStetce == null) {
+            barvaStetce = new Color(255, 255, 0);
+        }
+
+        if (x &lt; 0 || x &gt;= obrazek.getWidth() || y &lt; 0 || y &gt;= obrazek.getHeight()) {
+            return;
+        }
+
+        WritableRaster pixely = obrazek.getRaster();
+        int[] novyPixel = new int[] {barvaStetce.getRed(), barvaStetce.getGreen(), barvaStetce.getBlue(), barvaStetce.getAlpha()};
+        int[] staryPixel = new int[] {255, 255, 255, 255};
+        staryPixel = pixely.getPixel(x, y, staryPixel);
+
+        // Pokud uz je pocatecni pixel obarven na cilovou barvu, nic nemen
+        if (isEqualRgb(novyPixel, staryPixel)) {
+            return;
+        }
+
+        // Zamez prebarveni cerne cary
+        int[] cernyPixel = new int[] {0, 0, 0, staryPixel[3]};
+        if (isEqualRgb(cernyPixel, staryPixel)) {
+            return;
+        }
+
+        floodLoop(pixely, x, y, novyPixel, staryPixel);
+    }
+
+    // Recursively fills surrounding pixels of the old color
+    private void floodLoop(WritableRaster raster, int x, int y, int[] newColor, int[] originalColor) {
+        Rectangle bounds = raster.getBounds();
+        int[] currentColor = new int[] {255, 255, 255, 255};
+
+        Deque&lt;Point&gt; stack = new ArrayDeque<>();
+        stack.push(new Point(x, y));
+        while (stack.size() > 0) {
+            Point point = stack.pop();
+            x = point.x;
+            y = point.y;
+
+            // finds the left side, filling along the way
+            int fillL = x;
+            do {
+                raster.setPixel(fillL, y, newColor);
+                fillL--;
+            } while (fillL >= 0 && isEqualRgb(raster.getPixel(fillL, y, currentColor), originalColor));
+            fillL++;
+
+            // find the right right side, filling along the way
+            int fillR = x;
+            do {
+                raster.setPixel(fillR, y, newColor);
+                fillR++;
+            }
+            while (fillR < bounds.width - 1 && isEqualRgb(raster.getPixel(fillR, y, currentColor), originalColor));
+            fillR--;
+
+            // checks if applicable up or down
+            for (int i = fillL; i <= fillR; i++) {
+                if (y > 0 && isEqualRgb(raster.getPixel(i, y - 1, currentColor), originalColor)) {
+                    stack.add(new Point(i, y - 1));
+                }
+                if (y < bounds.height - 1 && isEqualRgb(raster.getPixel(i, y + 1, currentColor), originalColor)) {
+                    stack.add(new Point(i, y + 1));
+                }
+            }
+        }
+    }
+
+    // Returns true if RGB arrays are equivalent, false otherwise
+    private boolean isEqualRgb(int[] color1, int[] color2) {
+        // Could use Arrays.equals(int[], int[]), but this is probably a little faster...
+        return color1[0] == color2[0] && color1[1] == color2[1] && color1[2] == color2[2] && color1[3] == color2[3];
+    }
+</pre>
+
+            <p class="odsazeniTop">
+                Dejte pozor, aby <code>labObrazek</code> měl nastavené zarovnání <code>horizontalAlignment = LEFT</code>
+                a <code>verticalAlignment = TOP</code>.
+                Tedy aby obrázek mandaly byl vlevo nahoře.
+                Jinak nebudou souřadnice <code>X</code> a <code>Y</code> z událostního objektu
+                <code>MouseEvent e</code> správně odpovídat souřadnicím bodů na
+                <code>BufferedImage obrazek;</code> a po kliknutí na mandalu se vám vyplní "náhodná oblast".
+            </p>
+
+            <p class="odsazeniTop">
+                V hodině jsem ukazoval, jak nahrát obrázek mandaly ze souboru.
+                Níže je vylepšená verze, která lépe ošetřuje chyby,
+                nastaví <code>labObrazek</code> na rozměry obrázku PNG
+                a zvětší okno,
+                aby se do něj obrázek vešel.
+                Metodu můžete zavolat buď s parametrem null:
+                <pre class="java-source-code">
+nahrajObrazek(null);
+</pre>
+            <p>
+                V tom případě se nahraje zabudovaná <a href="img/ukol07-mandala.png">mandala.png</a>,
+                kterou musíte vložit do projektu do složky <code>src/com/example/kresleni</code>
+                vedle <code>HlavniOkno.java</code>.
+                Pokud budete chtít nahrát jiný soubor,
+                předáte ho jako parametr.
+            <pre class="java-source-code">
+File soubor;
+soubor = new File("C:\\Users\\Kamil\\Documents\\mandala2.png");
+nahrajObrazek(soubor);
+</pre>
+            <p>
+                Celé znění metody je zde:
+            </p>
+
+            <pre class="java-source-code">
+    private void nahrajObrazek(File soubor) {
+        if (soubor == null) {
+            try {
+                obrazek = ImageIO.read(getClass().getResourceAsStream("mandala.png"));
+            } catch (IOException ex) {
+                throw new ApplicationPublicException(ex, "Nepodařilo se nahrát zabudovaný obrázek mandaly");
+            }
+        } else {
+            try {
+                obrazek = ImageIO.read(soubor);
+            } catch (IOException ex) {
+                throw new ApplicationPublicException(ex, "Nepodařilo se nahrát obrázek mandaly ze souboru " + soubor.getAbsolutePath());
+            }
+        }
+        labObrazek.setIcon(new ImageIcon(obrazek));
+        labObrazek.setPreferredSize(null);
+        setMinimumSize(null);
+        pack();
+        setMinimumSize(getSize());
+    }
+</pre>
+
+            <p class="odsazeniTop">
+                Ukázkový celý program si můžete stáhnout zde a spustit.
+                Měl by vypadat takto:
+            </p>
+
+            <a href="../../data/2017-podzim/java1/Mandala.zip">
+                <img src="img/ukol07-program.png" alt="Screenshot domácího úkolu"/>
+            </a>
+
+            <h6>Rady na cestu:</h6>
+            <p>
+                Připravte si vlastní sadu barev k vyplňování.
+                Můžete použít <a href="https://color.adobe.com">Adobe KULER</a>.
+            </p>
+            <p>
+                V první fázi neřešte načítání a ukládání jiných souborů
+                než oné 1 zabudované mandaly.
+            </p>
+            <p>
+                V odevzdávárně ve složce Ukol07 je nahrané moje řešení i s zdrojovými texty.
+                Můžete ho využít, když nebudete vědět kudy kam.
+                Ale pokud to půjde bez něj, bude to výrazně lepší.
+            </p>
+
+
+            <h5>Část 2 - Distribuce programu</h5>
+
+            <p>
+                Opravte si soubor
+                <code><i>váš_projekt</i>/res/META-INF/MANIFEST.MF</code>
+                tak, aby správně odkazoval knihovny MigLayout.
+                Potom začne fungovat výroba distribuční složky
+                <code><i>váš_projekt</i>/dist</code> během překladu (spouštění) aplikace.
+            </p>
+
+            <pre class="java-source-code">
+Manifest-Version: 1.0
+Class-Path: lib/sevecek-net-utils.jar lib/miglayout-core.jar lib/miglayout-swing.jar
+Main-Class: com.example.mandala.SpousteciTrida
+</pre>
+
+            <p>
+                Po opravě zkuste spustit program normálně z IntelliJ IDEA
+                a potom vykopírovat složku <code>dist</code>
+                na plochu a spustit buď
+                <code>Spustit-Windows.bat</code> nebo
+                <code>Spustit-Mac.command</code>
+                přímo na ploše bez IntelliJ IDEA.
+            </p>
+
+
+
+            <h5>Část 3 - Příprava vlastní mandaly</h5>
+
+            <p>
+                Mandal je na internetu spousta. Najděte nebo si nakreslete jednu vlastní.
+                Mandala akorát musí být striktně černo-bílá. Pouze dvě barvy!
+                Pro příklad vyjděme třeba z této alternativní mandaly:
+                <a href="img/ukol07-mandala2.png">ukol07-mandala2.png</a>
+                Vypadá sice, že je černobílá, ale ve skutečnosti
+                má vyhlazené čáry pomocí stupňů šedi.
+                Tyto stupně šedi je nutné oříznout na striktně černou a bílou.
+                Například v IrfanView je menu Image -> Decrease Color Depth...
+                a zvolte 2 barvy.
+            </p>
+            <p>
+                Černo-bílá mandala pak vypadá takto (srovnejte s tou výše):
+                <a href="img/ukol07-mandala2-blackwhite.png">ukol07-mandala2-blackwhite.png</a>
+            </p>
+            <p>
+                Dále je ale nutné opět obrázek mandaly povýšit na plnobarevný obrázek
+                (16 milionů barev neboli 24 bitů na pixel).
+                Proto znovu zvolte Image -> Increase Color Depth...
+                a zvolte 16,7 M barev.
+            </p>
+            <p>
+                Rozumná velikost mandaly je 640x640 bodů, ale můžete použít i jinak velké obrázky.
+                IrfanView umí obrázky i zvětšovat a zmenšovat.
+                Vyzkoušejte a uvidíte samy.
+            </p>
+
+
+
+
+            <h5 class="odsazeniTop">Nepovinná část 4 - Nahrávání a ukládání obrázků</h5>
+
+            <p>
+                Bylo by fajn přidat klasické menu a do něj možnost uložit a nahrát
+                libovolný obrázek.
+                Inspirujte se mým vzorovým řešením: <a href="../../data/2017-podzim/java1/Mandala.zip">Mandala.zip</a>
+            </p>
+            <p>
+                Zde najdete metodu na uložení obrázku:
+            </p>
+
+            <pre class="java-source-code">
+    private void ulozObrazek(File soubor) {
+        try {
+            ImageIO.write(obrazek, "png", soubor);
+        } catch (IOException ex) {
+            throw new ApplicationPublicException(ex, "Nepodařilo se uložit obrázek mandaly do souboru " + soubor.getAbsolutePath());
+        }
+    }
+</pre>
+
+            <p>Zde je kód, který se uživatele zeptá na jméno souboru
+                klasických ukládacím dialogem:
+            </p>
+            <pre class="java-source-code">
+    private void ulozitJako() {
+        JFileChooser dialog;
+        dialog = new JFileChooser(".");
+
+        int vysledek = dialog.showSaveDialog(this);
+        if (vysledek != JFileChooser.APPROVE_OPTION) {
+            return;
+        }
+
+        File soubor = dialog.getSelectedFile();
+        if (!soubor.getName().contains(".") && !soubor.exists()) {
+            soubor = new File(soubor.getParentFile(), soubor.getName() + ".png");
+        }
+        if (soubor.exists()) {
+            int potvrzeni = JOptionPane.showConfirmDialog(this, "Soubor " + soubor.getName() + " už existuje.\nChcete jej přepsat?", "Přepsat soubor?", JOptionPane.YES_NO_OPTION);
+            if (potvrzeni == JOptionPane.NO_OPTION) {
+                return;
+            }
+        }
+        ulozObrazek(soubor);
+    }
+</pre>
+
+            
+
+            <h4>
+                Odevzdání domácího úkolu
+            </h4>
+
+            <p>
+                Domácí úkol (složky s projekty)
+                zabalte pomocí 7-Zipu pod jménem <code>Ukol07-Vase_Jmeno.7z</code>.
+                (Případně lze použít prostý zip, například na Macu).
+                Takto vytvořený archív nahrajte na Google Drive
+                do složky <code>Ukol07</code>.
+            </p>
+
+            <p>
+                Vaši novou mandalu (soubor PNG)
+                nahrejte pod vaším jménem (<code>Vase_Jmeno_mandala.png</code>).
+                do složky <code>Ukol07/Mandaly</code>
+                na Google Drive.
+            </p>
+
+            <p>
+                Vytvořte snímek obrazovky spuštěného programu
+                a pochlubte se s ním v galerii na
+                <a href="https://www.facebook.com/groups/1751843981788039/photos/?filter=albums">Facebooku</a>.
+            </p>
+
+            <p>
+                Pokud byste chtěli odevzdat revizi úkolu (např. po opravě),
+                zabalte ji a nahrajte ji na stejný Google Drive znovu,
+                jen tentokrát se jménem <code>Ukol07-Vase_Jmeno-verze2.7z</code>
+            </p>
+        </div>
+        <!-- #content -->
+    </div>
+    <!-- #page -->
+</body>
+</html>

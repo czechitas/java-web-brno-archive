@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="cs" lang="cs">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="Content-Language" content="cs">
+
+    <meta name="author" content="Kamil Ševeček, Hana Klimentová">
+    <meta name="robots" content="index,follow">
+    <meta name="googlebot" content="index,follow,snippet,archive">
+
+    <link rel="stylesheet" type="text/css" media="screen" href="../../css/styles.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="../../css/menu.css">
+    <script src="../../js/jquery.1.12.4.min.js"></script>
+    <title>Java | Czechitas</title>
+</head>
+
+<body>
+    <div id="page">
+        <div class="header">
+            <a href="https://www.czechitas.cz/"><img src="../../img/logo.png" alt="Logo Czechitas"></a>
+        </div>
+        <!-- #header -->
+
+        <div id="title"></div>
+        <script>
+            jQuery("#title").load("title.html");
+        </script>
+        <!-- #title -->
+
+        <!-- #menu -->
+        <div id="menu-wrap"></div>
+        <script>
+            jQuery("#menu-wrap").load("menu.html");
+        </script>
+        <!-- #menu -->
+
+        <div class="content">
+            <span class="published-timestamp">Publikováno: 17. 3. 2017</span>
+            <h3>Úkol z lekce 4</h3>
+            <h4>Husy a Králíci</h4>
+
+
+            <p class="odsazeniTop">
+                Úkolem je naprogramovat starou známou aplikaci na evidenci hus a králíků a výpočet jejich hlav
+                a nohou.
+            </p>
+
+            <p class="odsazeniTop">
+                Demo úkolu můžete vidět zde: <a href="https://koala.tomcat.cloud/ukol04/">
+                https://koala.tomcat.cloud/ukol04</a>
+            </p>
+            <p class="odsazeniTop">
+                Vytvořte jsp šablonu s formulářem, ve kterém budou 2 textová pole pro zadání počtu hus a
+                králíků a tlačítko pro odeslání (type="submit"). Formuláře nezapomeňte odeslat pomocí metody
+                post, kterou použijete také v @RequestMapping v HlavnímControlleru - přesně jako jsme to
+                dělali na hodině. Po klinutí na odeslat farmář ihned uvidí, jak na tom je. Zkuste demo ;-)
+            </p>
+            <img src="img/ukol04-screenshot.png" width="800px" alt="Snímek demo úkolu">
+            <p>A kdo chce vyhrát zlatého Bludišťáka, může zavzpomínat na hardcore verzi s množením ;-)
+                (<a href="../../2016-podzim/java1/ukol03.html">2016-podzim/java1/ukol03.html)</a></p>
+            <h5>Poznámky</h5>
+            <p>Připravili jsme pro vás novou předlohu pro nové projekty - najdete ji v menu: Studijní materiály ->
+                <a href="../../data/2017-jaro/java2web/ZakladniWebovaAplikace.7z">Předloha pro aplikaci</a>.
+            Můžete ji použít již pro tento úkol. Budete-li chtít změnit pozadí, vyměňte pouze obrázek ve
+                složce images. POZOR zachovejte stejný název obrázku s pozadím - background.png!</p>
+
+        </div>
+        <!-- #content -->
+    </div>
+    <!-- #page -->
+</body>
+</html>

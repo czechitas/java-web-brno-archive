@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="cs" lang="cs">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="Content-Language" content="cs"/>
+
+    <meta name="robots" content="index,follow"/>
+    <meta name="googlebot" content="index,follow,snippet,archive"/>
+
+    <link rel="stylesheet" type="text/css" media="screen" href="../../css/styles.css"/>
+    <link rel="stylesheet" type="text/css" media="screen" href="../../css/menu.css"/>
+    <link href='https://fonts.googleapis.com/css?family=Comfortaa:400,300' rel='stylesheet' type='text/css'/>
+    <script src="../../js/jquery.1.12.4.min.js"></script>
+    <title>Java | Czechitas | Jaro 2016</title>
+</head>
+
+<body>
+    <div id="page">
+        <div class="header">
+            <a href="https://www.czechitas.cz/"><img src="img/logo.png" alt="Logo Czechitas"/></a>
+        </div>
+        <!-- #header -->
+
+        <div id="title">
+            <p class="home">Domovská stránka</p>
+
+            <h1>Intenzivní kurz Programuju: Java</h1>
+
+            <h2>10 týdenní kurz Javy pro začátečnice</h2>
+        </div>
+        <!-- #title -->
+
+        <!-- #menu -->
+        <div id="menu-placeholder"></div>
+        <script>
+            jQuery("#menu-placeholder").load("menu.html");
+        </script>
+        <!-- #menu -->
+
+        <div class="content">
+            <span class="published-timestamp">Vloženo: 12. 5. 2016</span>
+
+            <h3>
+                Lekce 10
+            </h3>
+
+            <p>
+                V lekci 10 jsme se zabývali opět Pexesem.
+            </p>
+
+            <p>
+                Minule jsme rozdali kartičky na plochu okna
+                (projekt C:\Java-Training\Projects\Lekce10\20-Pexeso).
+            </p>
+
+            <p>
+                Tentokrát jsme se nejprve podívali, co je to seznam
+                (<code>java.util.List</code>) a poté jsme ho zapojili do našeho Pexesa.
+                Díky seznamu jsme si mohli evidovat odkazy na jednotlivé kartičky.
+                To nám umožnilo naprogramovat zamíchání karet
+                (projekt C:\Java-Training\Projects\Lekce10\21-Pexeso-Michani).
+            </p>
+
+            <p>
+                Poslední krok byl zavedení nové třídy <code>Karticka</code>,
+                protože evidovat si pouze vizuální tlačítko JButton
+                není dostatečné pro vyhodnocování pexesa
+                (projekt C:\Java-Training\Projects\Lekce10\30-Pexeso-Zavedeni_tridy_Karticka).
+<pre class="java-source">
+public class Karticka {
+
+    Integer cisloKarty;     // 0..63
+    Integer cisloObrazku;   // 0..31
+    Integer poziceX;        // 0..7
+    Integer poziceY;        // 0..7
+    Boolean jeLicemNahoru;
+    ImageIcon obrazekLice;
+    ImageIcon obrazekRubu;
+    JButton btnKarticka;
+
+}
+</pre>
+            <p>
+                Po vytvoření třídy <code>Karticka</code> je ale nutné přepsat program tak,
+                aby vše fungovalo jako předtím.
+                Začali jsme tím, že jsme <code>List&lt;JButton&gt;</code> přepsali na
+                <code>List&lt;Karticka&gt;</code> a všechny další změny nám vyvstali díky tomu.
+                Viz projekt C:\Java-Training\Projects\Lekce10\31-Pexeso-Reseni_tridy_Karticka.
+            </p>
+
+            <h4>Materiály z lekce</h4>
+            <p>
+                Materiály jsou ke stažení zde: <a href="../../data/2016-jaro/java1/lekce10.7z">lekce10.7z</a>
+                <br/>
+                Archív si stáhněte, například na plochu. Celý jej rozbalte přímo do <code>C:\</code>
+                <br/>
+                Archív totiž už obsahuje složku
+                <code>Java-Training</code> a materiály se tím pádem vloží na to správné místo do
+                <code>C:\Java-Training\Projects\Lekce10</code>.
+            </p>
+        </div>
+        <!-- #content -->
+    </div>
+    <!-- #page -->
+</body>
+</html>

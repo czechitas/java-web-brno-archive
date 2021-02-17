@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="cs" lang="cs">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="Content-Language" content="cs"/>
+
+    <meta name="robots" content="index,follow"/>
+    <meta name="googlebot" content="index,follow,snippet,archive"/>
+
+    <link rel="stylesheet" type="text/css" media="screen" href="../../css/styles.css"/>
+    <link rel="stylesheet" type="text/css" media="screen" href="../../css/menu.css"/>
+    <script src="../../js/jquery.1.12.4.min.js"></script>
+    <title>Java | Czechitas</title>
+</head>
+
+<body>
+<div id="page">
+    <div class="header">
+        <a href="https://www.czechitas.cz/"><img src="../../img/logo.png" alt="Logo Czechitas"/></a>
+    </div>
+    <!-- #header -->
+
+    <div id="title"></div>
+    <script>
+        jQuery("#title").load("title.html");
+    </script>
+    <!-- #title -->
+
+    <!-- #menu -->
+    <div id="menu-wrap"></div>
+    <script>
+        jQuery("#menu-wrap").load("menu.html");
+    </script>
+    <!-- #menu -->
+
+    <div class="content">
+        <span class="published-timestamp">Updatováno: 16. 11. 2018</span>
+
+
+        <h2 id="ukol-05-vlastnosti">Nepovinný úkol - Dokončení z hodiny</h2>
+        <h3 id="cast-1">Část 1</h3>
+        <p>Dokončete program <strong>Kalendar</strong> z hodiny.
+            Dodělejte do třídy <code>Datum</code> <em>get</em> a <em>set</em> metody pro všechny proměnné a tyto
+            proměnné
+            nastavte jako <code>private</code>. Jinými slovy, přidejte do třídy <code>Datum</code> to,
+            co jste programovali v minulém domácím úkolu.</p>
+        <h3 id="cast-2">Část 2</h3>
+        <p>Dokončete projekt <strong>Pexeso</strong>, třídu <code>Karticka</code>.
+            Opět nastavte vnitřní proměnné na <code>private</code> a dodělejte k nim <em>get</em> a <em>set</em> metody.
+            Vynechejte <em>get</em> metodu pro <code>stav</code>. Místo ní máme metody
+            <code>isOdebrana()</code>, <code>isRubemNahoru()</code>, <code>isLicemNahoru()</code>,
+            které jsme programovali v hodině.<br>Dokončete metody <code>otoc()</code> a <code>odeber()</code> z hodiny.
+        </p>
+        <ul>
+            <li>Metoda <code>otoc()</code> změní stav z <code>"rub"</code> na <code>"lic"</code> nebo z
+                <code>"lic"</code> na <code>"rub"</code>.
+                Pokud je kartička v jiném stavu (tj. <code>"odebrana"</code>), nestane se nic.
+            </li>
+            <li>Metoda <code>odeber(</code>) změní <code>stav</code> na <code>"odebrana"</code>, bez ohledu na to, jaký
+                byl
+                předchozí <code>stav</code>.
+            </li>
+        </ul>
+        <h3 id="odevzdani-domaciho-ukolu">Odevzdání domácího úkolu</h3>
+        <p>Nejprve appky (<code>Kalendar</code> a <code>Pexeso</code>)
+            zbavte přeložených spustitelných souborů.
+            Zařídíte to tak, že v IntelliJ IDEA vpravo zvolíte
+            Maven Projects -&gt; Lifecycle -&gt; Clean.
+            Úspěch se projeví tak, že v projektové složce zmizí
+            podsložka target.
+            Následně obě složky s projekty
+            zabalte pomocí 7-Zipu pod jménem <code>Ukol06-Vase_Jmeno.7z</code>.
+            (Případně lze použít prostý zip, například na Macu).
+            Takto vytvořený archív nahrajte na Google Drive
+            do složky <code>Ukol06-Nepovinny</code>.</p>
+        <p>Pokud byste chtěli odevzdat revizi úkolu (např. po opravě),
+            zabalte ji a nahrajte ji na stejný Google Drive znovu,
+            jen tentokrát se jménem <code>Ukol06-Vase_Jmeno-verze2.7z</code>.</p>
+        <p>Termín odevzdání je do úterý 20. 11. 2018 23:59.
+            Pokud úkol nebo revizi odevzdáte později,
+            prosím pošlete svému opravujícímu kouči/lektorovi email nebo zprávu přes FB.</p>
+
+    </div>
+    <!-- #content -->
+</div>
+<!-- #page -->
+</body>
+</html>

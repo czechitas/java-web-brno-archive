@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="cs" lang="cs">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="Content-Language" content="cs"/>
+
+    <meta name="robots" content="index,follow"/>
+    <meta name="googlebot" content="index,follow,snippet,archive"/>
+
+    <link rel="stylesheet" type="text/css" media="screen" href="../../css/styles.css"/>
+    <link rel="stylesheet" type="text/css" media="screen" href="../../css/menu.css"/>
+    <script src="../../js/jquery.1.12.4.min.js"></script>
+    <title>Java 1 | Czechitas | Podzim 2016</title>
+</head>
+
+<body>
+    <div id="page">
+        <div class="header">
+            <a href="https://www.czechitas.cz/"><img src="../../img/logo.png" alt="Logo Czechitas"/></a>
+        </div>
+        <!-- #header -->
+
+        <div id="title"></div>
+        <script>
+            jQuery("#title").load("title.html");
+        </script>
+        <!-- #title -->
+
+        <!-- #menu -->
+        <div id="menu-wrap"></div>
+        <script>
+            jQuery("#menu-wrap").load("menu.html");
+        </script>
+        <!-- #menu -->
+
+        <div class="content">
+            <span class="published-timestamp">Vloženo: 2. 12. 2016</span>
+
+            <h3>Domácí úkol - Vytváření objektů za běhu programu</h3>
+
+            <h4>Robot a bludiště</h4>
+
+            <p>
+                Prvním úkolem je dokončit bludiště s robotem.
+            </p>
+            <p>
+                Během hodiny jsme zkusili vytvořit čtvrtou zeď za běhu programu (příkaz
+                <code>new JLabel()</code>) a všechny zdi jsme vložili do seznamu
+                taktéž vytvářeného za běhu (<code>new ArrayList&lt;JLabel&gt;()</code>).
+                Tento seznam jsme měli uložený v proměnné <code>ArrayList&lt;JLabel&gt; seznamZdi</code>.
+            </p>
+            <p>
+                Úkolem je ruční vytváření čtvrté zdi opět zrušit (můžete ho zakomentovat pomocí
+                blokového komentáře <code>/* blokovy komentar */</code>).
+                V programu jsme to zkusili jen z demonstračních účelů.
+            </p>
+            <p>
+                Skutečným cílem je navrhnout pomocí designéru dalších několik stěn bludiště a všechny je přidat do <code>seznamZdi</code>.
+                Díky tomu jimy robot nebude procházet, protože na ně bude aplikována detekce kolizí.
+            </p>
+
+            <p>
+                Pochlubte se s vaší kreativitou ve tvarech a složitostech bludiště!
+            </p>
+
+
+
+
+            <h4>Fotogalerie 2.0</h4>
+
+            <p>
+                V úkolu 04 jsme programovali Fotogalerii.
+                Pokud ji nemáte funkční, můžete se podívat na demo <a href="../../data/2016-podzim/java1/30-ukol-fotogalerie-reseni.7z">30-ukol-fotogalerie-reseni.7z</a>.
+                Bylo ale poněkud nešikovné, že fotky musely být přidány pomocí designéru do JLabelů,
+                které se překrývaly a že jen jeden z JLabelů byl vždycky viditelný a ostatní skryté.
+                Například:
+            </p>
+            <div class="java-source">
+                <pre>
+labFotka1.setVisible(false);
+labFotka2.setVisible(false);
+labFotka3.setVisible(true);
+labFotka4.setVisible(false);
+labFotka5.setVisible(false);
+labFotka5.setVisible(false);
+</pre>
+</div>
+
+            <p>
+                Úkolem je Fotogalerii 1.0 předělat tak, aby v programu byl na fotky jen 1 JLabel
+                a při mačkání tlačítek doleva a doprava
+                se v něm měnily fotky změnou vlastnosti <code>icon</code> tohoto JLabelu. Tedy:
+            </p>
+            <div class="java-source">
+                <pre>
+labFotka.setIcon(obrazekAktualniFotky);
+</pre>
+        </div>
+
+            <img src="img/ukol10/fotogalerie-screenshot.png" alt="Screenshot domácího úkolu - Fotogalerie 2.0" height="581"
+                 class="screenshot"/>
+
+
+            <p>
+                Jednotlivé fotky jsou objekty typu ImageIcon.
+                Jak se za běhu vytváří objekt typu ImageIcon (včetně nahrání fotky ze souboru),
+                lze najít v generovaném kódu v metodě <code>initComponents()</code>.
+                <br/>
+                Nápověda: Hledejte příkaz <code>new ImageIcon(........)</code>.
+            </p>
+            <p>
+                V obsluze události <code>windowOpened</code> (metoda <code>priOtevreniOkna(...)</code>)
+                je potřeba všechny obrázky nahrát a vložit do seznamu
+                <code>ArrayList&lt;ImageIcon&gt; seznamFotek</code>.
+            </p>
+
+            <p>
+                Můžete použít svoje obrázky nebo si stáhnout Hančiny medvídky (<a href="../../data/2016-podzim/java1/medvidci.7z">medvidci.7z</a>).
+            </p>
+
+
+
+
+
+
+            <br/>
+            <br/>
+            <br/>
+
+
+
+            <p>
+                Pokud budete mít s úkoly jakýkoliv problém, využjte naši
+                <a href="https://www.facebook.com/groups/1737519906516542/">facebookovou skupinu</a>,
+                kde vám rádi poradíme.
+            </p>
+            <p>
+                Hotové úkoly zabalte 7-Zipem s heslem <strong>czechitas</strong>
+                včetně šifrování jmen souborů a zašlete ho Kamčovi (mně) a Hance emailem.
+            </p>
+        </div>
+    </div>
+    <!-- #page -->
+</body>
+</html>

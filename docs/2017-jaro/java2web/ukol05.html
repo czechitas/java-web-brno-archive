@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="cs" lang="cs">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="Content-Language" content="cs">
+
+    <meta name="author" content="Kamil Ševeček, Hana Klimentová">
+    <meta name="robots" content="index,follow">
+    <meta name="googlebot" content="index,follow,snippet,archive">
+
+    <link rel="stylesheet" type="text/css" media="screen" href="../../css/styles.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="../../css/menu.css">
+    <script src="../../js/jquery.1.12.4.min.js"></script>
+    <title>Java | Czechitas</title>
+</head>
+
+<body>
+    <div id="page">
+        <div class="header">
+            <a href="https://www.czechitas.cz/"><img src="../../img/logo.png" alt="Logo Czechitas"></a>
+        </div>
+        <!-- #header -->
+
+        <div id="title"></div>
+        <script>
+            jQuery("#title").load("title.html");
+        </script>
+        <!-- #title -->
+
+        <!-- #menu -->
+        <div id="menu-wrap"></div>
+        <script>
+            jQuery("#menu-wrap").load("menu.html");
+        </script>
+        <!-- #menu -->
+
+        <div class="content">
+            <span class="published-timestamp">Publikováno: 2. 4. 2017</span>
+            <h3>Úkol z lekce 5</h3>
+            <h4>Jakou hodnotu má váš chlap</h4>
+
+            <p class="odsazeniTop">
+                Úkolem je naprogramovat aplikaci na výpočet hodnoty muže.
+            </p>
+
+
+            <p class="odsazeniTop">
+                Můžete si vybrat mezi velbloudí a Hančinou verzí.
+            </p>
+
+
+            <p class="odsazeniTop">
+                Demo velbloudí verze úkolu můžete vidět zde: <a href="http://kamelrechner.eu/en">
+                kamelrechner.eu/en</a>
+            </p>
+            
+            <img src="img/ukol05-screenshot1.PNG" width="800px" alt="Snímek demo úkolu">
+
+            <p class="odsazeniTop">
+                Demo Hančiny verze úkolu můžete vidět zde: <a href="https://koala.tomcat.cloud/ukol05/">
+                https://koala.tomcat.cloud/ukol05</a>
+            </p>
+            <img src="img/ukol05-screenshot2.PNG" width="800px" alt="Snímek demo úkolu">
+
+            <h4>Rady na cestu</h4>
+            <p class="odsazeniTop">
+                Budete-li chtít použít "šoupátko":<br>
+                kód pro samotné šoupátko je
+                <code>&lt;input type="range" name="vyska" min="140" max="220" value="180"&gt;</code>
+                a bude plně fungovat. Pokud jej ale chcete doplnit o políčko, ve kterém bude zobrazená aktuální
+                hodnota, je potřeba maličko složitější zápis...
+            </p>
+
+            <p class="odsazeniTop">
+                Nejprve musíte v HTML kódu změnit předchozí zápis na toto: <br>
+                <code>
+                    &lt;output for="vyska"&gt;180&lt;/output&gt;  <br>
+                    &lt;input type="range" id="vyska" name="vyska" min="140" max="220" value="180"&gt;
+                </code> <br>
+                a po té musíte do sekce <code>&lt;head&gt;</code> přidat JavaScriptový kód, který zajistí právě
+                změnu hodnoty v políčku na základě aktuální pozice šoupátka.<br>
+                <code>
+                    &lt;script&gt;<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;window.onload = init;<br><br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;function init() {<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;var pole = document.querySelectorAll('input[type=range]');<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;for (var i = 0; i < pole.length; i++) {<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pole[i].addEventListener('input', zmenaHodnoty);<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;} <br><br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;function zmenaHodnoty() { <br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;var vystup = document.querySelector('output[for=' + this.id + ']');<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;vystup.innerText = this.value;<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;} <br>
+                    &lt;/script&gt;
+                </code><br>
+                tento kód jste dostaly na hodině v souboru js.txt.
+            </p>
+
+
+        </div>
+        <!-- #content -->
+    </div>
+    <!-- #page -->
+</body>
+</html>

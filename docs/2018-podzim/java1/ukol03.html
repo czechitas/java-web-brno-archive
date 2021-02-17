@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="cs" lang="cs">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="Content-Language" content="cs"/>
+
+    <meta name="robots" content="index,follow"/>
+    <meta name="googlebot" content="index,follow,snippet,archive"/>
+
+    <link rel="stylesheet" type="text/css" media="screen" href="../../css/styles.css"/>
+    <link rel="stylesheet" type="text/css" media="screen" href="../../css/menu.css"/>
+    <script src="../../js/jquery.1.12.4.min.js"></script>
+    <title>Java | Czechitas</title>
+</head>
+
+<body>
+    <div id="page">
+        <div class="header">
+            <a href="https://www.czechitas.cz/"><img src="../../img/logo.png" alt="Logo Czechitas"/></a>
+        </div>
+        <!-- #header -->
+
+        <div id="title"></div>
+        <script>
+            jQuery("#title").load("title.html");
+        </script>
+        <!-- #title -->
+
+        <!-- #menu -->
+        <div id="menu-wrap"></div>
+        <script>
+            jQuery("#menu-wrap").load("menu.html");
+        </script>
+        <!-- #menu -->
+
+        <div class="content">
+            <span class="published-timestamp">Vloženo: 19. 10. 2018</span>
+
+            <h2 id="ukol-metody-s-parametrem">Úkol - Metody s parametrem</h2>
+            <h3 id="cast-1">Část 1</h3>
+            <p>Nejprve si okopírujte projekt <strong>30-Turtle-Param_metody</strong> na
+                <strong>40-Turtle-Param_ukol</strong>.
+                Vymažte z něj všechny původní metody a ponechejte si jen prázdný <code>main(...)</code>.</p>
+            <p>Nyní vytvořte metody na kreslení základních tvarů (s pevnými velikostmi stran):
+                Rovnoramenného trojúhelníku, čtverce, obdelníku a kolečka.</p>
+            <h3 id="cast-2">Část 2</h3>
+            <p>Pro další práci bude třeba, aby základní tvary měly volitelné velikosti stran,
+                tedy aby se jejich velikost dala nastavit.
+                Připravíme metody tak, aby přijímaly vstupní parametr(y).
+                Pro zopakování je níže vidět ukázka metody <strong>nakresliRovnostrannyTrojuhelnik()</strong>,
+                která přijímá jako vstupní parametr <strong>velikostStrany</strong> typu
+                <strong>double</strong>.
+                Navenek je potřeba metodu zavolat s nějakou
+                hodnotou, uvnitř metody se <strong>velikostStrany</strong> chová jako proměnná
+                (proto musí mít definovaný typ, např. <strong>double</strong>).</p>
+            <pre><code>public void main(String[] args) {
+    zofka.setLocation(100.0, 100.0);
+    // Volani metody, do ktere se preda hodnota 10
+    nakresliRovnostrannyTrojuhelnik(50.0);
+
+    zofka.setLocation(300.0, 100.0);
+    // Volani metody, do ktere se preda hodnota 15
+    nakresliRovnostrannyTrojuhelnik(70.0);
+}
+
+public void nakresliRovnostrannyTrojuhelnik(double velikostStrany) {
+    // Zde lze používat proměnnou velikostStrany.
+    // Jeji hodnota je takova, s jakou byla metoda zavolana
+    // napr.
+    zofka.move(velikostStrany);
+    zofka.turnLeft(120.0);
+    zofka.move(velikostStrany);
+    zofka.turnLeft(120.0);
+    zofka.move(velikostStrany);
+    zofka.turnLeft(120.0);
+}</code></pre>
+            <p>Metoda může přijímat i více parametrů za sebou (oddělujeme čárkou):</p>
+            <pre><code>public void main(String[] args) {
+    Color cervenaBarva;
+    cervenaBarva = new Color(255, 0, 0);
+
+    zofka.setLocation(100.0, 100.0);
+    // Volani metody, do ktere se preda hodnota 10 a objekt, ktery je v promenne cervenaBarva
+    nakresliBarevnyRovnostrannyTrojuhelnik(50.0, cervenaBarva);
+
+    zofka.setLocation(300.0, 100.0);
+    // Volani metody, do ktere se preda hodnota 15 a nove vytvoreny objekt barvy
+    nakresliBarevnyRovnostrannyTrojuhelnik(70.0, new Color(0, 0, 255));
+}
+
+public void nakresliBarevnyRovnostrannyTrojuhelnik(double velikostStrany, Color barvaCary) {
+    // Zde lze používat proměnnou velikostStrany a barva:
+    zofka.setPenColor(barvaCary);
+    zofka.move(velikostStrany);
+    zofka.turnLeft(120.0);
+    zofka.move(velikostStrany);
+    zofka.turnLeft(120.0);
+    zofka.move(velikostStrany);
+    zofka.turnLeft(120.0);
+}</code></pre>
+            <p>Vytvořte tedy parametrizované metody na kreslení
+                rovnoramenného trojuhelníku, čtverce, obdelníku a kolečka.
+                Metody by měly přijímat
+                jako vstupní parametr velikost strany (typu double).
+                V případě trojúhelníku ještě úhel mezi rameny.
+                V případě obdelníku budou nutné dva parametry (strana A, strana B).
+                V případě kolečka se bude předávat velikost kolečka
+                (zda poloměr, průměr nebo nějakou jinou charakteristiku, nechám na vás).</p>
+            <p>Pokud chcete, jako bonus můžou metody přijímat i barvu kreslení. Není to ale povinné.</p>
+            <p>Pokud byste chtěli vypočítat, jak má být dlouhá
+                třetí strana rovnoramenného trojúhelníku, pokud znáte délku ramene
+                a úhel mezi rameny,
+                ušetřím vás googlení analytické geometrie.
+                Zde je metoda, která délku třetí strany vypočítá.
+                V hodině jsme si neukazovali, jak vypadá metoda, která vrací nějaký výstup.
+                V tomto případě jde o kombinaci jak vstupních parametrů, tak výstupu.</p>
+            <pre><code>public void main(String[] args) {
+    double stranaC;
+
+    stranaC = vypocitejDelkuTretiStrany(100.0, 90.0);
+    System.out.println("Strana A je 100, strana B je 100, strana C je " + stranaC);
+}
+
+public double vypocitejDelkuTretiStrany(double velikostRamene, double uhelMeziRameny) {
+    double tretiStrana;
+    tretiStrana = Math.abs((velikostRamene
+            * Math.sin((uhelMeziRameny * Math.PI / 180.0) / 2.0))
+            * 2.0);
+    return tretiStrana;
+}</code></pre>
+            <h3 id="cast-3">Část 3</h3>
+            <p>Pomocí metod výše nakreslete následující obrázky (zmrzlinu, sněhuláka a mašinku).</p>
+            <img src="img/ukol03-zmrzlina.svg" width="100">
+
+            <img src="img/ukol03-snehulak.svg" height="300">
+
+            <img src="img/ukol03-lokomotiva.svg" height="150">
+
+            <div></div>
+
+
+            <h3 id="odevzdani-domaciho-ukolu">Odevzdání domácího úkolu</h3>
+            <p>Nejprve appku (<code>40-Turtle-Param_ukol</code>)
+                zbavte přeložených spustitelných souborů.
+                Zařídíte to tak, že v IntelliJ IDEA vpravo zvolíte
+                Maven Projects -&gt; Lifecycle -&gt; Clean.
+                Úspěch se projeví tak, že v projektové složce zmizí
+                podsložka target.
+                Následně složku s projektem
+                zabalte pomocí 7-Zipu pod jménem <code>Ukol03-Vase_Jmeno.7z</code>.
+                (Případně lze použít prostý zip, například na Macu).
+                Takto vytvořený archív nahrajte na
+                Google Drive                do složky <code>Ukol03</code>.</p>
+            <p>Vytvořte snímek obrazovky spuštěného programu
+                a pochlubte se s ním v galerii <strong>Ukol03</strong> na
+                <a href="https://www.facebook.com/groups/1149617575205475/photos/?filter=albums">Facebooku</a>.
+            </p>
+            <p>Pokud byste chtěli odevzdat revizi úkolu (např. po opravě),
+                zabalte ji a nahrajte ji na stejný Google Drive znovu,
+                jen tentokrát se jménem <code>Ukol03-Vase_Jmeno-verze2.7z</code>.</p>
+            <p>Termín odevzdání je do úterý 23. 10. 2018 23:59.
+                Pokud úkol nebo revizi odevzdáte později,
+                prosím pošlete svému opravujícímu kouči/lektorovi email nebo zprávu přes FB.</p>
+        </div>
+        <!-- #content -->
+    </div>
+    <!-- #page -->
+</body>
+</html>

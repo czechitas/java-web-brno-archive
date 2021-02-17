@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="cs" lang="cs">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="Content-Language" content="cs"/>
+
+    <meta name="robots" content="index,follow"/>
+    <meta name="googlebot" content="index,follow,snippet,archive"/>
+
+    <link rel="stylesheet" type="text/css" media="screen" href="../../css/styles.css"/>
+    <link rel="stylesheet" type="text/css" media="screen" href="../../css/menu.css"/>
+    <script src="../../js/jquery.1.12.4.min.js"></script>
+    <title>Java 2 | Czechitas</title>
+</head>
+
+<body>
+    <div id="page">
+        <div class="header">
+            <a href="https://www.czechitas.cz/"><img src="../../img/logo.png" alt="Logo Czechitas"/></a>
+        </div>
+        <!-- #header -->
+
+        <div id="title"></div>
+        <script>
+            jQuery("#title").load("title.html");
+        </script>
+        <!-- #title -->
+
+        <!-- #menu -->
+        <div id="menu-wrap"></div>
+        <script>
+            jQuery("#menu-wrap").load("menu.html");
+        </script>
+        <!-- #menu -->
+
+        <div class="content">
+            <span class="published-timestamp">Vloženo: 27. 4. 2018</span>
+
+            <h3>
+                Úkol 09 - Repository nad JDBC
+            </h3>
+
+
+
+
+           <div id="_html" class="markdown-body">
+                <p>Ukolem je zprovoznit VideoBoss s pristupem do databaze.</p>
+                <p>Druhym ukolem je zalozit novou databazi
+                    a predelat webovou aplikaci Daily Planet (evidence clanku) na tuto databazi.</p>
+                <h2 id="videoboss-prvni-cast"><a class="anchor" name="videoboss-prvni-cast" href="#videoboss-prvni-cast"><span class="octicon octicon-link"></span></a>VideoBoss - prvni cast</h2>
+                <p>V hodine jste jiz delaly:</p>
+                <ol>
+                    <li><p>Pristup do databaze
+                        z konzolove aplikace v Jave (viz <code>21-Simple_JDBC_Customers</code>).</p>
+                    </li>
+                    <li><p>Dale jste zprovoznili webovou aplikaci, ktera vyuzila jednou odladeny kod
+                        z konzolove aplikace (viz <code>31-Simple_JDBC_Web</code>).</p>
+                    </li>
+                    <li><p>Takhle spagetove by ale pristup k databazi nemel vypadat, takze jste mely za ukol
+                        vyuzit vzor Repository a separovat databazovy pristup
+                        do <code>CustomerRepository</code> (viz <code>41-JDBC_Repository</code>).
+                        Prozatim jen metody <code>findAll()</code> a pripadne <code>findOne()</code>.</p>
+                    </li>
+                </ol>
+                <p>Podle toho, jak jste byly rychle, jste nektere stihly bod 3, nektere jen bod 2.</p>
+                <p>Dalsim ukolem je do <code>CustomerRepository</code> dopsat zbyle metody <code>save()</code> a <code>delete()</code>
+                    a zprovoznit cele stranky VideoBossu (viz <code>51-JDBC_VideoBoss</code>).
+                    V lekci jsem vam neposkytl webove podklady,
+                    jen jiz hotovy <code>51-JDBC_VideoBoss</code>, ze ktereho sly webove stranky "vykrast".
+                    Kazdopadne v ramci tohoto domaciho ukolu dodavam tyto webove podklady rovnou,
+                    dale dodavam implementaci metod <code>pridej(...)</code>, <code>updatuj(...)</code> a <code>delete(...)</code>, ktere muzete vyuzit
+                    ve svoji implementaci <code>CustomerRepository</code>.</p>
+                <h2 id="daily-planet-druha-cast"><a class="anchor" name="daily-planet-druha-cast" href="#daily-planet-druha-cast"><span class="octicon octicon-link"></span></a>Daily Planet - druha cast</h2>
+                <p>Druha cast je <strong>povinna</strong> jen <strong>pro pokrocile studentky</strong>.</p>
+                <p>Adaptujte predchozi ukol 07 (Daily planet) take na databazovou repository.
+                    Repository bude mit stejne hlavicky metod, jako v puvodni verzi (v ukolu 07).
+                    Pro jejich implementaci cerpejte inspiraci z repository ve VideoBossu.</p>
+                <p>Pro Daily Planet si budete muset zalozit v MySQL serveru novou databazi.
+                    A to jak lokalne (<code>localhost</code>), tak az aplikaci budete chtit nasadit na Tomcat.cloud,
+                    tak stejnym zpusobem jeste jednou na <code>db.tomcat.cloud</code>. </p>
+                <p>Pokud byste nemely hotovy ukol 07 a chtely se vrhnout rovnou na tento,
+                    vyjdete z meho reseni ukolu 07 v odevzdavarne.</p>
+                <h1 id="detaily-zadani"><a class="anchor" name="detaily-zadani" href="#detaily-zadani"><span class="octicon octicon-link"></span></a>Detaily zadani</h1>
+                <h2 id="webove-stranky-videoboss-prvni-cast"><a class="anchor" name="webove-stranky-videoboss-prvni-cast" href="#webove-stranky-videoboss-prvni-cast"><span class="octicon octicon-link"></span></a>Webove stranky VideoBoss - prvni cast</h2>
+                <p>Podklady webovych stranek VideoBoss si muzete stahnout zde:
+                    <a href="../../data/2018-jaro/java2/VideoBoss-podklady.zip">VideoBoss-podklady.zip</a></p>
+                <h3 id="repository-pro-videoboss"><a class="anchor" name="repository-pro-videoboss" href="#repository-pro-videoboss"><span class="octicon octicon-link"></span></a>Repository pro VideoBoss</h3>
+                <p>Repository by mela mit tyto metody:</p>
+                <pre class="java-source-code"><code>public class CustomerRepository {
+
+    public List&lt;Customer&gt; findAll() {
+    }
+
+    public Customer findOne(Long id) {
+    }
+
+    public Customer save(Customer zakaznikKUlozeniNeboPridani) {
+    }
+
+    public void delete(Long id, int version) {
+    }
+
+}
+</code></pre><p>Zdrojovy text metod na pridavani, updatovani a mazani najdete nize.
+                    Nemusite je umet stvorit samy, ale je nutne, abyste jim rozumely
+                    a predevsim si vsimnete zabudovanych dotazu SQL. Dale si vsimnete to,
+                    ze SQL je parametrizovano <code>?</code> a ze se vykonava pomoci
+                    metody <code>jdbcTemplate.update(...)</code>
+                    (<code>odesilacDotazu</code> je <code>jdbcTemplate</code>),
+                    podobne jako nacitani dat z databaze se provadi metodou <code>jdbcTemplate.query(...)</code>. </p>
+               <p>Poznamka: Metoda <code>clone(...)</code> objekt Customer do noveho objektu Customer. Je to nepovinna praktika,
+                   kterou ja sam delam rad, protoze je program potom mene nachylny na vedlejsi efekty.
+                   Povinne to ale rozhodne neni.
+                   Zdrojovy text teto metody neprikladam.
+                   Bud si ji muzete napsat samy nebo program modifikujte a nepouzivejte ji.</p>
+                <pre class="java-source-code"><code>    private Customer pridej(Customer zaznamKPridani) {
+        Customer zakaznik = clone(zaznamKPridani);
+        GeneratedKeyHolder drzakNaVygenerovanyKlic = new GeneratedKeyHolder();
+        String sql = "INSERT INTO customers (Firstname, Lastname, Address, Version) " +
+                "VALUES (?, ?, ?, ?)";
+        odesilacDotazu.update((Connection con) -&gt; {
+                    PreparedStatement prikaz = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+                    prikaz.setString(1, zakaznik.getFirstName());
+                    prikaz.setString(2, zakaznik.getLastName());
+                    prikaz.setString(3, zakaznik.getAddress());
+                    prikaz.setInt(4, zakaznik.getVersion());
+                    return prikaz;
+                },
+                drzakNaVygenerovanyKlic);
+        zakaznik.setId(drzakNaVygenerovanyKlic.getKey().longValue());
+        return zakaznik;
+    }
+
+    private Customer updatuj(Customer zaznamKUlozeni) {
+        Customer zakaznik = clone(zaznamKUlozeni);
+        odesilacDotazu.update(
+                "UPDATE customers SET Firstname = ?, Lastname = ?, Address = ?, Version = Version + 1 WHERE id = ? AND Version = ?",
+                zakaznik.getFirstName(),
+                zakaznik.getLastName(),
+                zakaznik.getAddress(),
+                zakaznik.getId(),
+                zakaznik.getVersion());
+        zakaznik.setVersion(zakaznik.getVersion() + 1);
+        return zakaznik;
+    }
+
+    public void delete(Long id, int version) {
+        odesilacDotazu.update(
+                "UPDATE customers SET Deleted = TRUE, Version = Version + 1 WHERE id = ? AND Version = ?",
+                id,
+                version);
+    }
+</code></pre><p>Poznamka: Vsimnete si, ze pri mazani se zaznam ve skutecnosti nemaze,
+                    jen se oznaci priznakem <code>deleted</code> a v pri zobrazovani vsech zakazniku
+                    se proste preskakuje.</p>
+               <p>Aby se skutecne preskakoval, zkontrolujte, ze vase metoda <code>findAll()</code> pouziva
+                   SQL dotaz v tomto zneni (jde o klauzuli <code>WHERE Deleted = FALSE</code>):</p>
+                <pre class="java-source-code"><code>SELECT ID, Firstname, Lastname, Address, Deleted, Version FROM Customers WHERE Deleted = FALSE
+</code></pre><h3 id="nasazeni-na-tomcat-cloud"><a class="anchor" name="nasazeni-na-tomcat-cloud" href="#nasazeni-na-tomcat-cloud"><span class="octicon octicon-link"></span></a>Nasazeni na Tomcat.cloud</h3>
+                <p>VideoBoss vystavte na vas Tomcat.cloud na
+                    https://sladkost.tomcat.cloud/ukol09/.
+                    Pokud jste pokrocila studentka a <em>musite :-)</em> tudiz delat i druhou cast (Daily Planet),
+                    pak VideoBoss nasadte jako <code>ukol09videoboss</code> a Daily Planet jako <code>ukol09</code>.</p>
+
+               <p>Na serveru Tomcat.cloud jiz MySQL server bezi a jiz v sobe ma databazi VideoBoss,
+                   nemusite proto vasi lokalni databazi kopirovat na Tomcat.cloud.
+                   V aplikaci nemusite nic menit, protoze pri instantciovani MariaDbDataSource
+                   jste totiz uvedly cestu k databazi jako <code>localhost</code>
+                   (presneji <code>jdbc:mysql://localhost:3306/VideoBoss</code>),
+                   coz znamena, ze na Tomcat.cloudu
+                   se proste pouzije databazovy server bezici lokalne na Tomcat.cloudu.</p>
+               <p>Poznamka: To take znamena, ze domaci ukoly vsech z vas budou
+                   v <em>produkcnim nasazeni</em> sdilet jednu databazi.
+                   Chovejte se k ni, prosim, hezky a moc tam zaznamy nemazte :-)</p>
+
+               <h2 id="daily-planet-druha-cast"><a class="anchor" name="daily-planet-druha-cast" href="#daily-planet-druha-cast"><span class="octicon octicon-link"></span></a>Daily Planet - druha cast</h2>
+                <h3 id="zalozeni-nove-databaze"><a class="anchor" name="zalozeni-nove-databaze" href="#zalozeni-nove-databaze"><span class="octicon octicon-link"></span></a>Zalozeni nove databaze</h3>
+               <p>Tak jako webovy server Tomcat hostuje jednu
+                   nebo vice webovych aplikaci (<em>"warka"</em>),
+                   ktere se skladaji ze stranek HTML,
+                   MySQL je databazovy server, coz znamena, ze hostuje jednu nebo vice databazi
+                   (a databaze se skladaji z tabulek). Databazi si muzete predstavit jako
+                   excelovy soubor (ktery obsahuje sesity neboli tabulky).</p>
+               <p>Aktualne mate ve svem MySQL serveru na svem pocitaci pouze databazi <code>VideoBoss</code>.
+                   Pro Daily Planet bude treba zalozit novou databazi.
+                   To zaridite tak, ze se pripojite k MySQL serveru k existujici databazi (k <code>VideoBossu</code>)
+                   a odeslete SQL prikazy na zalozeni nove databaze (nize).
+                   Teprve pak se budete moct odpojit a pripojit k nove databazi.</p>
+               <p>Jak na to: V IntelliJ IDEA, v pod-okne Database mate nakonfigurovan
+                   <code>VideoBoss Global DataSource</code>, ktery se umi pripojit do lokalniho MySQL serveru.
+                   Kliknete na nej pravym tlacitkem mysi a zvolte Open Console.
+                   Ve stredove editorove oblasti se otevre SQL konzole,
+                   ze ktere vymazte jakekoliv puvodni prikazy (pokud tam nejake byly).</p>
+               <p>Vlozte prikazy nize.</p>
+                <p>Poznamka: Jmeno databaze necht obsahuje jmeno vasi sladkosti.
+                    Moje jmeno je <code>margot</code>.</p>
+                <p>Poznamka: Aby se provedly konkretni prikazy,
+                    je vzdy nutne oznacit tyto prikazy
+                    a stisknout zelenou sipku Execute nad konzoli.</p>
+                <pre class="java-source-code"><code>CREATE DATABASE DailyPlanet_margot
+  CHARACTER SET utf8mb4
+  COLLATE utf8mb4_czech_ci;
+
+USE DailyPlanet_margot;
+
+CREATE TABLE Clanky (
+  ID INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+  Nazev VARCHAR(250) NOT NULL,
+  Autor VARCHAR(250) NOT NULL,
+  Datum DATE NOT NULL
+);
+</code></pre><p>Pro archivacni ucely je dobre vykonany skript ulozit jako textovy soubor
+                    do projektu, napr. <code>PROJEKT/zalozeni_db.sql</code>. Opravujici lektor/kouc
+                    si tak bude moct zalozit stejnou databazi, jako mate vy u sebe.</p>
+                <p>Az to budete mit, zalozte si novy data source v IntelliJ IDEA
+                    prave pro databazi <code>DailyPlanet_sladkost</code>.
+                    IntelliJ IDEA -&gt; pod-okno Database -&gt; Tlacitko + (pridat) -&gt;
+                    DataSource -&gt; MariaDB. Objevi se dialog. Vyplnte:</p>
+                <pre class="java-source-code"><code>Name:       DailyPlanet_sladkost Global DataSource
+Host:       localhost
+Port:       3306
+Database:   DailyPlanet_sladkost
+User:       student
+Password:   password
+</code></pre><p>Stisknete Test Connection a overte, ze se do databaze jde pripojit.
+                    Dale kliknete pravym tlacitkem mysi v seznamu Project Data Sources na
+                    <code>DailyPlanet_sladkost Global DataSource</code> a zvolte Make global.
+                    Data source se presune do skupiny Global Data Sources.
+                    <code>DailyPlanet_sladkost Global DataSource</code> tim padem nebude svazany s timto ani jimym
+                    projektem, ale bude nakonfigurovan globalne v IntelliJ IDEA.</p>
+                <p>Pokud byste si chtely zalozit i jine tabulky nez jen <code>Clanek</code>,
+                    jde na <code>DailyPlanet_sladkost Global DataSource</code>
+                    kliknout pravym tlacitkem mysi v pod-okne Database
+                    a zvolit New -&gt; Table.
+                    V dialogovem okne Create New Table si muzete naklikat pozadovanou
+                    formu nove tabulky. V dolni polovine se zobrazuje SQL skript,
+                    ktery se skutecne odesle do databaze a zalozi danou tabulku.
+                    Tento skript si pred odeslanim uschovejte a pridejte ho k domacimu ukolu
+                    do <code>PROJEKT/zalozeni_db.sql</code>, aby si opravujici
+                    lektor/kouc mohl vytvorit stejnou databazi vcetne teto pridane tabulky.</p>
+                <h3 id="uprava-tridy-clanek"><a class="anchor" name="uprava-tridy-clanek" href="#uprava-tridy-clanek"><span class="octicon octicon-link"></span></a>Uprava tridy Clanek</h3>
+                <p>Trida Clanek ma v sobe generovani primarniho klice (ID).
+                    To je nesikovne, to by mela delat databaze (v prikaze <code>INSERT</code>).</p>
+                <p>Zmente tedy tridu Clanek tak, ze odeberete </p>
+                <pre class="java-source-code"><code>private static AtomicLong idSequence = new AtomicLong(3000L);
+</code></pre><p>a zaroven ze vsech konstruktoru odeberete generovani ID.</p>
+                <h3 id="sql-prikazy-pro-praci-s-clanky"><a class="anchor" name="sql-prikazy-pro-praci-s-clanky" href="#sql-prikazy-pro-praci-s-clanky"><span class="octicon octicon-link"></span></a>SQL prikazy pro praci s clanky</h3>
+                <p>Abyste nemusely vymyslet SQL prikazy pro komunikaci s databazi, zde jsou:</p>
+                <pre class="java-source-code"><code>SELECT ID, Nazev, Autor, Datum FROM Clanky
+SELECT ID, Nazev, Autor, Datum FROM Clanky WHERE ID=?
+INSERT INTO Clanky (Nazev, Autor, Datum) VALUES (?, ?, ?)
+UPDATE Clanky SET Nazev = ?, Autor = ?, Datum = ? WHERE ID = ?
+DELETE FROM Clanky WHERE ID = ?
+</code></pre><h3 id="nasazeni-na-tomcat-cloud"><a class="anchor" name="nasazeni-na-tomcat-cloud" href="#nasazeni-na-tomcat-cloud"><span class="octicon octicon-link"></span></a>Nasazeni na Tomcat.cloud</h3>
+               <p>Pro odevzdani ukolu jej bude nutne nasadit jeste na Tomcat.cloud.
+                   Na Tomcat.cloudu take bezi MySQL server a pripojit se k nemu muzete
+                   pres internet uplne stejne jako k vasemu lokalnimu MySQL,
+                   jen pri zakladani data sourcu v IntelliJ IDEA nevyplnite
+                   <code>localhost</code>, ale <code>db.tomcat.cloud</code>.</p>
+               <p>Na MySQL serveru na Tomcat.cloudu je vytvorena pouze databaze <code>VideoBoss</code>,
+                   ale zadne dalsi.</p>
+               <p>Zalozte si tedy nejprve novy data source v IntelliJ IDEA (v pod-okne Database),
+                   ktery povede na tuto existujici databazi <code>VideoBoss</code> na <code>db.tomcat.cloud</code>.</p>
+               <p>Pripojte se k ni a pomoci SQL konzole v IntelliJ IDEA (Open Console)<br>odeslete prikazy na zalozeni nove databaze <code>DailyPlanet-sladkost</code> (na <code>db.tomcat.cloud</code>).</p>
+               <p>Nakonec si zalozte jeste posledni novy data source v IntelliJ IDEA (v pod-okne Database),
+                   ktery uz povede na vasi prave zalozenou databazi
+                   <code>DailyPlanet-sladkost</code> na <code>db.tomcat.cloud</code> z minuleho kroku.</p>
+                <p class="odsazeniTopSmall">Web Daily Planet vystavte na vas Tomcat.cloud na https://sladkost.tomcat.cloud/ukol09/.</p>
+                <h2 id="tipy"><a class="anchor" name="tipy" href="#tipy"><span class="octicon octicon-link"></span></a>Tipy</h2>
+                <ul>
+                    <li><p>Ukázkový web VideoBoss můžete vidět na <a href="https://margot.tomcat.cloud/ukol09videoboss/">https://margot.tomcat.cloud/ukol09videoboss/</a></p>
+                    </li>
+                    <li><p>Ukázkový web DailyPlanet můžete vidět na <a href="https://margot.tomcat.cloud/ukol09/">https://margot.tomcat.cloud/ukol09/</a></p>
+                    </li>
+                    <li><p>Nastavte si v <code>PROJEKT/src/main/resources/application.properties</code>
+                        vlastnost <code>server.context-path = /ukol09</code>,
+                        aby Spring Boot věděl, že chcete spouštět zabudovaný Tomcat tak,
+                        že appka bude k dispozici
+                        na <code>https://localhost:8080/ukol09</code>.</p>
+                    </li>
+                    <li><p>Aby se vám při Maven Projects -&gt; <code>package</code> vytvořil soubor .war se správným jménem,
+                        nastavte si ještě v <code>PROJEKT/pom.xml</code> /project/build/finalName na <code>ukol09</code>.</p>
+                    </li>
+                </ul>
+                <h2 id="odevzd-n-dom-c-ho-kolu"><a class="anchor" name="odevzd-n-dom-c-ho-kolu" href="#odevzd-n-dom-c-ho-kolu"><span class="octicon octicon-link"></span></a>Odevzdání domácího úkolu</h2>
+                <p>Projekty nejprve zbavte přeložených artefaktů,
+                    aby byly menší.
+                    To zařídíte ručním smazáním složky PROJEKT/target
+                    nebo pomocí v IntelliJ IDEA -&gt; Maven Projects -&gt; ukol -&gt; Lifecycle -&gt; <code>clean</code>.
+                    Poté projekty zabalte pomocí 7-Zipu pod jménem
+                    <code>Ukol09-Vase_Jmeno.7z</code>.
+                    Lze použít i jen prostý zip (například na Macu).</p>
+                <p>Takto vytvořený archív nahrajte na
+                    Google Drive
+                    do složky <code>Ukol09</code>.</p>
+                <p>Vytvořte archív .war v IntelliJ IDEA -&gt; Maven Projects -&gt; ukol -&gt; Lifecycle -&gt; <code>clean</code>
+                    a následně IntelliJ IDEA -&gt; Maven Projects -&gt; ukol -&gt; Lifecycle -&gt; <code>package</code>.
+                    Goal <code>package</code> vytvoří archív .war <code>PROJEKT/target/ukol09.war</code>.
+                    Nasaďte jej do vašeho lokálního Tomcatu (<code>JAVATRAINING/Tomcat/webapps</code>)
+                    a vyzkoušejte, že funguje (<code>https://localhost:8080/ukol09/</code>).</p>
+                <p>Po odladění nasaďte tento archív ještě přes FTP na server Tomcat.cloud
+                    (<code>https://sladkost.tomcat.cloud/ukol09/</code>).</p>
+                <p>Vytvořte snímek obrazovky spuštěného programu
+                    a pochlubte se s ním ve fotoalbu <strong>Úkol09</strong> na
+                    <a href="https://www.facebook.com/groups/2065013227074688/photos/?filter=albums">Facebooku</a>.</p>
+                <p>Pokud byste chtěli odevzdat revizi úkolu (např. po opravě),
+                    zabalte ji a nahrajte ji na stejný Google Drive znovu,
+                    jen tentokrát se jménem <code>Ukol09-Vase_Jmeno-verze2.7z</code></p>
+                <p>Termín odevzdání je do úterý 2. 5. 2018 23:59.
+                    Pokud úkol nebo revizi odevzdáte později,
+                    prosím pošlete svému opravujícímu kouči/lektorovi email nebo zprávu přes FB.</p>
+            </div>
+
+
+
+        </div>
+        <!-- #content -->
+    </div>
+    <!-- #page -->
+</body>
+</html>

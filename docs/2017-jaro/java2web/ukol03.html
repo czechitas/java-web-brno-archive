@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="cs" lang="cs">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="Content-Language" content="cs">
+
+    <meta name="author" content="Kamil Ševeček, Hana Klimentová">
+    <meta name="robots" content="index,follow">
+    <meta name="googlebot" content="index,follow,snippet,archive">
+
+    <link rel="stylesheet" type="text/css" media="screen" href="../../css/styles.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="../../css/menu.css">
+    <script src="../../js/jquery.1.12.4.min.js"></script>
+    <title>Java | Czechitas</title>
+</head>
+
+<body>
+    <div id="page">
+        <div class="header">
+            <a href="https://www.czechitas.cz/"><img src="../../img/logo.png" alt="Logo Czechitas"></a>
+        </div>
+        <!-- #header -->
+
+        <div id="title"></div>
+        <script>
+            jQuery("#title").load("title.html");
+        </script>
+        <!-- #title -->
+
+        <!-- #menu -->
+        <div id="menu-wrap"></div>
+        <script>
+            jQuery("#menu-wrap").load("menu.html");
+        </script>
+        <!-- #menu -->
+
+        <div class="content">
+            <span class="published-timestamp">Updatováno: 15. 3. 2017</span>
+            <h3>Update způsobu publikování na cloud</h3>
+
+            <ol>
+                <li>Pokud při nahrávání a správě souborů na FTP
+                    pomocí Průzkumníka Windows narazíte na problém,
+                    že vidíte ve složkách na FTP staré soubory,
+                    přestože jste je před chvílí smazaly,
+                    je to způsobeno příliš agresivní cachí v Průzkumníkovi.
+                    Průzkumník jde obnovit stiskem Ctrl+F5
+                    (podobně jako webový prohlížeč).
+                </li>
+                <li>Updatoval jsem pokyny k tomu, do jaké složky v cloudu nahrávat domácí úkol:</li>
+                <ol>
+                    <li>Publikujte jen nejvyšší level domácího úkolu do složky /ukol03 na FTP.
+                        <br>
+                        Tedy tak, aby byla přístupná jako http://drahokam.tomcat.cloud/ukol03/</li>
+                    <li>Do složky /ukoly na FTP nahrajte celý zazipovaný projekt pro každý level zvlášť.
+                        <br>
+                        Na FTP tedy chceme soubory:
+                        <ul>
+                            <li><b>/ukoly/Ukol03-Level1-projekt.7z</b></li>
+                            <li><b>/ukoly/Ukol03-Level2-projekt.7z</b></li>
+                            <li>a případně <b>/ukoly/Ukol03-Level3-projekt.7z</b></li>
+                        <br>
+                        </ul>
+                        (Je povolenou použít zip místo 7z)
+                    </li>
+                    <li>Do alba na Facebooku
+                        (<a href="https://www.facebook.com/media/set/?set=oa.1270192803049108">facebook.com/media/set/...</a>)
+                        přidejte snímek obrazovky vaší webové stránky,
+                        do popisku vložte adresu svého úkolu
+                        (http://drahokam.tomcat.cloud/ukol03/)
+                        a můžete dál připsat libovolný text</li>
+                </ol>
+                <li>Obecně: Nezapomínejte, prosím, nahrávat celé projekty do složky /ukoly, ať vidíme i zdrojové texty.
+                    <br>
+                    A publikujte do galerie FB snímek obrazovky vašeho webu, abychom z něj mohli mít radost :-)</li>
+            </ol>
+        </div>
+        <!-- #content -->
+
+        <div class="content">
+            <span class="published-timestamp">Updatováno: 15. 3. 2017</span>
+
+            <h3>
+                Úkol z lekce 3
+            </h3>
+
+            <h4>
+                Meme generátor II: Ze šablony
+            </h4>
+
+
+            <p class="odsazeniTop">
+                Úkolem je opět naprogramovat Meme generátor. Úkol je rozdělen na 3 levely.
+            </p>
+
+            <p class="odsazeniTop">
+                Demo úkolu celého úkolu (level 03) můžete vidět zde: <a href="https://koala.tomcat.cloud/ukol03/">
+                https://koala.tomcat.cloud/ukol03/</a>
+            </p>
+
+
+
+            <h5>Level 1 - Dokončení generátoru výroků z hodiny</h5>
+
+            <p class="odsazeniTop">
+                Na hodině jste začaly generátor výroků.<br>
+                Dokončete ho.<br>
+                Tento level je psán retrospektivně, protože jsme začaly spolu
+                a některé kroky už máte hotové.
+                Pokud jste jej nestihly celý, pokračujte od místa, kam jste došly.
+            </p>
+
+            <h6>Postup</h6>
+            <ol>
+                <li>
+                    Vyšly jste z prázdného projektu WebLekce03/ZakladniWebovaAplikace,
+                    který jste si zkopírovaly na WebLekce03/20-Vyroky
+                </li>
+                <li>
+                    Vaše kolegyně, webová návrhářka, vám dodala statickou předlohu webu:
+                    WebLekce03/Sablona vyroku
+                </li>
+                <li>
+                    Statickou předlohu HTML bylo nutné vložit do projektu.
+                    <ol>
+                        <li>
+                            Samotný soubor HTML (WebLekce03/Sablona vyroku/vyrok.html) bylo nutné přetvořit na šablonu JSP a vložit ho do projektu do chráněné složky VAS_PROJEKT/web/WEB-INF/view/vyrok.jsp
+                            <ol>
+                                <li>
+                                    Soubor .html jste přejmenovaly na .jsp
+                                </li>
+                                <li>
+                                    Na začátek šablony JSP jste místo hlavičky HTML:
+                                    <pre class="java-source-code">
+&lt;!doctype html&gt;
+
+<span class="grey-out">
+&lt;html&gt;
+&lt;head&gt;
+...
+</span></pre>
+                                    vložily hlavičku JSP:
+                                    <pre class="java-source-code">
+&lt;%@page contentType="text/html;charset=UTF-8" language="java"
+%&gt;&lt;%@taglib prefix="jstl" uri="http://java.sun.com/jsp/jstl/core"
+%&gt;&lt;!doctype html&gt;
+
+<span class="grey-out">
+&lt;html&gt;
+&lt;head&gt;
+...
+</span></pre>
+                                </li>
+                            </ol>
+                        </li>
+                        <li>
+                            Statické soubory (jako kaskadové styly a obrázky) jste jednoduše překopírovaly do složky se statickými soubory (VAS_PROJEKT/web)
+                            <br>
+                            <img src="img/ukol03-css_a_obr.png" alt="Adresarova struktura">
+                        </li>
+                    </ol>
+
+                </li>
+                <li>
+                    Rozběhly jste webovou aplikaci, se šablonou a controllerem
+                    <ol>
+                        <li>
+                            Do třídy HlavniController jste přidaly:
+                            <pre class="java-source-code">
+<span class="grey-out">@Controller
+    public class HlavniController {
+
+    @RequestMapping("/ukazka.html")
+    public ModelAndView zobrazUkazku() {
+        ModelAndView modelAndView = new ModelAndView(
+                "/WEB-INF/view/ukazka.jsp");
+        modelAndView.addObject("jmeno", "Kamil");
+        return modelAndView;
+    }
+</span>
+
+    @RequestMapping("/vyrok.html")
+    public ModelAndView zobrazVyrok() {
+        ModelAndView modelAndView = new ModelAndView(
+                "/WEB-INF/view/vyrok.jsp");
+        return modelAndView;
+    }
+
+<span class="grey-out">}</span></pre>
+                        </li>
+                        <li>
+                            V souboru VAS_PROJEKT/web/index.html jste změnily testovací odkaz:
+                            <pre class="java-source-code">
+<span class="grey-out">&lt;h3&gt;Zkuste zde: &lt;a href="</span>vyrok.html<span class="grey-out">"&gt;</span>vyrok.html<span class="grey-out">&lt;/a&gt;&lt;/h3&gt;</span>
+                            </pre>
+                        </li>
+                    </ol>
+                </li>
+                <li>
+                    Do šablony vyrok.jsp jste přidaly zástupny symbol ${veta} a naplnily jste odpovídající klíč v modelu:
+                    <ol>
+                        <li>
+                            Do třídy HlavniController jste přidaly:
+<pre class="java-source-code">
+<span class="grey-out">&lt;%@page contentType=&quot;text/html;charset=UTF-8&quot; language=&quot;java&quot;
+%&gt;&lt;%@taglib prefix=&quot;jstl&quot; uri=&quot;http://java.sun.com/jsp/jstl/core&quot;
+%&gt;<!doctype html></span>
+
+&lt;jsp:useBean id="veta"
+             type="java.lang.String"
+             scope="request"/&gt;
+
+<span class="grey-out">&lt;html&gt;
+&lt;head&gt;
+    &lt;meta charset="utf-8"&gt;
+    &lt;title&gt;Vtipn výroky&lt;/title&gt;
+    &lt;link rel="stylesheet" type="text/css" href="css/styles.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div class="textovepole"&gt;</span>
+        &lt;h1&gt;${veta}&lt;/h1&gt;<span class="grey-out">
+    &lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</span></pre>
+                        </li>
+                        <li>
+                            Klíč <code>veta</code> je nutný nastavit v modelu:
+                            <pre class="java-source-code">
+<span class="grey-out">@Controller
+public class HlavniController {
+
+    @RequestMapping("/ukazka.html")
+    public ModelAndView zobrazUkazku() {
+        ModelAndView modelAndView = new ModelAndView(
+                "/WEB-INF/view/ukazka.jsp");
+        modelAndView.addObject("jmeno", "Kamil");
+        return modelAndView;
+    }
+
+    @RequestMapping("/vyrok.html")
+    public ModelAndView zobrazVyrok() {
+        ModelAndView modelAndView = new ModelAndView(
+                "/WEB-INF/view/vyrok.jsp");</span>
+        modelAndView.addObject("veta", "Když jsem přijížděl domů, ...");
+<span class="grey-out">        return modelAndView;
+    }
+
+}
+</span></pre>
+                        </li>
+                    </ol>
+                </li>
+                <li>
+                    Do třídy HlavniController jste přidaly seznam výroků a změnily metodu zobrazVyrok() tak,
+                    aby místo pevného výroku do modelu přidával náhodný výrok.
+                    <pre class="java-source-code">
+<span class="grey-out">@Controller
+public class HlavniController {
+
+    @RequestMapping("/ukazka.html")
+    public ModelAndView zobrazUkazku() {
+        ModelAndView modelAndView = new ModelAndView(
+                "/WEB-INF/view/ukazka.jsp");
+        modelAndView.addObject("jmeno", "Kamil");
+        return modelAndView;
+    }</span>
+
+    List&lt;String&gt; vyroky = Arrays.asList(
+            "Když jsem přijížděl domů, vjel jsem omylem do jiného dvora a naboural do stromu, protože ho doma na tomto místě nemám.",
+            "To druhé auto do mne nabouralo bez jakéhokoliv předchozího varování.",
+            "Myslel jsem, že mám stažené okénko. Zjistil jsem ale, že je zavřené, když jsem vystrčil ruku ven.",
+            "Srazil jsem se se stojícím nákladním automobilem, když přijížděl z opačného směru.",
+            "Ten dědula, kterého jsem porazil, by se na druhou stranu silnice stejně nedostal.",
+            "Chodec do mne narazil a pak mi skočil pod auto.",
+            "Ten chodec váhal, kterým směrem se má vydat, tak jsem ho přejel.");
+    <span class="grey-out">
+    @RequestMapping("/vyrok.html")
+    public ModelAndView zobrazVyrok() {
+        ModelAndView modelAndView = new ModelAndView(
+                "/WEB-INF/view/vyrok.jsp");</span>
+
+        Integer cisloVyroku = (int)(Math.random()*vyroky.size());
+        String jednaVeta = vyroky.get(cisloVyroku);
+        modelAndView.addObject("veta", jednaVeta);
+
+<span class="grey-out">        return modelAndView;
+    }
+
+}
+</span></pre>
+                </li>
+            </ol>
+
+
+
+
+
+
+
+            <h5>Level 2 - Meme generátor</h5>
+
+            <p class="odsazeniTop">
+                Vytvořte stejný Meme generátor jako v minulém domácím úkolu,
+                jen tentokrát bude založen na šabloně JSP a
+                nebudete celou stránku generovat ve formě Stringu
+                uvnitř metody zobrazVyrok().
+            </p>
+            <p class="odsazeniTop">
+                <img src="img/ukol02-screenshot.png" height="634" alt="Snímek demo úkolu">
+            </p>
+
+            <p class="odsazeniTop">
+                Demo úkolu můžete vidět na <a href="https://koala.tomcat.cloud/ukol02/">
+                https://koala.tomcat.cloud/ukol02/</a>
+            </p>
+
+
+            <h6>Postup</h6>
+            <ol>
+                <li>
+                    Nejprve si pořiďte statickou předlohu z vašeho minulého Meme generátoru.
+                    Pokud by vám minulý generátor nefungoval,
+                    lze vyjít z naší předlohy <code>WebLekce03/Sablona meme generatoru</code>,
+                    ale využijte ji jen v případě nouze.
+                    <ol>
+                        <li>
+                            Běžte v prohlížeči na stránku s vaším náhodným memem (např. https://koala.tomcat.cloud/ukol02/ukol02.html).
+                        </li>
+                        <li>
+                            Klikněte na stránce pravým tlačítkem a zvolte Zobrazit zdrojový text stránky
+                        </li>
+                        <li>
+                            Zkopírujte text stránky (Ctrl+C nebo Command+C)
+                        </li>
+                        <li>
+                            Založte v IntelliJ IDEA v soubor VAS_PROJEKT/web/WEB-INF/view/meme.jsp a vložte do něj obsah schránky (Ctrl+V nebo Command+V)
+                        </li>
+                        <li>
+                            Do VAS_PROJEKT/web zkopírujte všechny obrázky a kaskádové styly z webu (do odpovídajících podsložek).
+                        </li>
+                    </ol>
+                </li>
+
+                <li>
+                    Přetvořte statickou předlohu HTML na šablonu JSP stejně, jako v minulém levelu.
+                </li>
+                <li>
+                    Zprovozněte generování náhodného text a obrázek podobně jako v minulém bodě se statickým textem v modelu pro zastupný symbol ${veta} a ${obrazek}
+                </li>
+                <li>
+                    Přidejte do třídy HlavniController vaše výroky z minulého Meme generátoru a nechejte je náhodně generovat, stejně jako cestu k obrázku
+                </li>
+            </ol>
+            <p>
+                Po dokonceni tohoto levelu jej bud muzete publikovat na vas cloud jako /ukol03
+                nebo muzete zkusit bonus level 3 a publikovat az ten.
+            </p>
+
+
+
+
+
+            <h5>Level 3 - bonus level</h5>
+
+            <p class="odsazeniTop">
+                <img src="img/ukol03-screenshot.png" alt="Snímek demo úkolu">
+            </p>
+
+            <p class="odsazeniTop">
+                Vytvořte web "Jen pro holky".
+                V podstatě takový meme generátor na steroidech.
+                Pokaždé se vygenerují tři náhodné výroky a tři náhodné obrázky.
+                Je nutné zaručit, aby na stránce nebyly nikdy žádné dva stejné.
+            </p>
+
+            <p class="odsazeniTop">
+                Demo úkolu můžete vidět zde na <a href="https://koala.tomcat.cloud/ukol03/">
+                https://koala.tomcat.cloud/ukol03/</a>
+            </p>
+
+            <h6>Postup</h6>
+            <ol>
+                <li>
+                    Opět vyjděte z projektu WebLekce03/ZakladniWebovaAplikace.
+                    Obsah této složky zkopírujte do složky WebLekce03-Ukol/30-Jen_pro_holky.
+                </li>
+                <li>
+                    Použijte Hančinu statickou předlohu HTML
+                    <code>WebLekce03-Ukol/Predloha Jen_pro_holky</code> z archívu <a href="../../data/2017-jaro/java2web/Java2Web-Ukol03-heslo_czechitas.7z">Java2Web-Ukol03-heslo_czechitas.7z</a>.
+                </li>
+            </ol>
+
+
+            <div class="odsazeniTop">&nbsp;</div>
+            <div class="odsazeniTop">&nbsp;</div>
+
+
+            <h4>Publikování do cloudu</h4>
+
+            <ol>
+                <li>
+                    Projekt zkuste pustit z IntelliJ IDEA, zkontrolujte ve webovém prohlížeči
+                    a pokud funguje, projekt zastavte.
+                </li>
+                <li>
+                    Pusťte lokálně webový server Tomcat
+                    <ol>
+                        <li>
+                            Na Windows najdete Tomcat v C:/Java-Training/Tomcat,
+                            na Macu je v /Users/VAS_PROFIL/Java-Training/Tomcat.
+                            Této složce budeme zkráceně říkat TOMCAT.
+                        </li>
+                        <li>
+                            Spusťte soubor startup.bat nebo startup.sh ze složky TOMCAT/bin
+                            <br>
+                            <img src="img/tomcat-startup.png" alt="Tomcat startup.bat">
+                        </li>
+                        <li>
+                            Vyskočí na vás okno Tomcatu. Důležitý je nápis <code>Starting protocol handler</code>
+                            a <code>Server startup</code>. Pokud tam nejsou nebo je tam uvedena nějaká chyba,
+                            napište Kamilovi na FB.
+                            <br>
+                            <img src="img/lokalni-tomcat.png" alt="Lokalni Tomcat screenshot">
+                        </li>
+                        <li>
+                            Presvědčte se, že funguje. Zjistíte to tak, že ve webovém prohlížeči otevřete
+                            http://localhost/.
+                            Případně http://localhost:8080/,
+                            pokud používáte tuto adresu.
+                            <br>
+                            <img src="img/tomcat-running.png" alt="Tomcat bezici">
+                        </li>
+                    </ol>
+                </li>
+                <li>
+                    Nasaďte vaši web aplikaci do lokálního webového serveru Tomcat jako /ukol03 a vyzkoušejte http://localhost/ukol03/ (případně http://localhost:8080/ukol03/).
+                    <ol>
+                        <li>
+                            Webové aplikace se nasazují do složky TOMCAT/webapps
+                        </li>
+                        <li>
+                            Je tedy nutné vytvořit složku TOMCAT/webapps/ukol03
+                            <br>
+                            <img src="img/lokalni-tomcat-tvorba-slozky.png" alt="Lokalni Tomcat screenshot">
+                        </li>
+                        <li>
+                            Obsah složky VAS_PROJET/dist/ROOT zkopírujte do schránky (Ctrl+C nebo Command+C)
+                            <br>
+                            <img src="img/dist-copy2.png" alt="dist/ROOT copy screenshot">
+                        </li>
+                        <li>
+                            Obsah schránky vložte do TOMCAT/webapps/ukol03
+                            <br>
+                            <img src="img/dist-copy.png" alt="dist/ROOT copy screenshot">
+                        </li>
+                        <li>
+                            Případné problémy dolaďte v IntelliJ IDEA a opravenou aplikaci zkuste nasadit tímto způsobem do lokálního Tomcatu znovu.
+                        </li>
+                    </ol>
+                </li>
+                <li>
+                    Otevřete si FTP v cloudu v průzkumníkovi: ftp://drahokam:password@drahokam.tomcat.cloud/
+                    <br>
+                    Pokud používáte nějakého jiného FTP klienta:<br>
+                    Adresa: drahokam.tomcat.cloud<br>
+                    Port: 21<br>
+                    Username: drahokam<br>
+                    Password: password<br>
+                    Pokud by byl problém s připojení a FTP klient by se vás ptal na pasivní mód, klidně jej povolte
+                </li>
+                <li>
+                    Vytvořte na FTP složku /ukol03
+                    <br>
+                    <img src="img/ftp-screenshot.png" alt="FTP screenshot">
+                </li>
+                <li>
+                    Nakopírujte do ní výslednou webovou aplikaci ze složky VAS_PROJEKT/dist/ROOT
+                    <br>
+                    <img src="img/dist-copy2.png" alt="dist/ROOT copy screenshot">
+                    <br>
+                    <img src="img/ftp-2-screenshot.png" alt="FTP target copy screenshot">
+                </li>
+                <li>
+                    Iniciujte restart webové aplikace v cloudu
+                    <ol>
+                        <li>
+                            V editoru IntelliJ IDEA si otevřete váš lokální soubor VAS_PROJEKT/dist/ROOT/WEB-INF/web.xml a změňte ho. Stačí připsat libovolný znak a hned jej odmazat.
+                        </li>
+                        <li>
+                            Nakopírujte pouze tento jeden soubor VAS_PROJEKT/dist/ROOT/WEB-INF/web.xml na cloud tak, aby přepsal původní soubor na FTP: /ukol03/WEB-INF/web.xml
+                        </li>
+                        <li>
+                            Vydržte zhruba 5 sekund, než se webová aplikace restartuje.
+                        </li>
+                    </ol>
+                </li>
+                <li>
+                    Vyzkoušejte v prohlížeči http://drahokam.tomcat.cloud/ukol03/
+                </li>
+                <li>Do složky /ukoly na FTP nahrajte celý zazipovaný projekt pro každý level zvlášť.
+                    <br>
+                    Na FTP tedy chceme soubory:
+                    <ul>
+                        <li><b>/ukoly/Ukol03-Level1-projekt.7z</b></li>
+                        <li><b>/ukoly/Ukol03-Level2-projekt.7z</b></li>
+                        <li>a případně <b>/ukoly/Ukol03-Level3-projekt.7z</b></li>
+                        <br>
+                    </ul>
+                    (Je povolenou použít zip místo 7z)
+                </li>
+                <li>Do alba na Facebooku
+                    (<a href="https://www.facebook.com/media/set/?set=oa.1270192803049108">facebook.com/media/set/...</a>)
+                    přidejte snímek obrazovky vaší webové stránky,
+                    do popisku vložte adresu svého úkolu
+                    (http://drahokam.tomcat.cloud/ukol03/)
+                    a můžete dál připsat libovolný text</li>
+            </ol>
+
+
+            <h6>Poznámky</h6>
+            <ul>
+                <li>
+                    Materiály k úkolu:
+                    <a href="../../data/2017-jaro/java2web/Java2Web-Ukol03-heslo_czechitas.7z">
+                        Java2Web-Ukol03-heslo_czechitas.7z</a>
+                </li>
+            </ul>
+
+
+        </div>
+        <!-- #content -->
+    </div>
+    <!-- #page -->
+</body>
+</html>

@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="cs" lang="cs">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="Content-Language" content="cs"/>
+
+    <meta name="robots" content="index,follow"/>
+    <meta name="googlebot" content="index,follow,snippet,archive"/>
+
+    <link rel="stylesheet" type="text/css" media="screen" href="../../css/styles.css"/>
+    <link rel="stylesheet" type="text/css" media="screen" href="../../css/menu.css"/>
+    <script src="../../js/jquery.1.12.4.min.js"></script>
+    <title>Java | Czechitas</title>
+</head>
+
+<body>
+    <div id="page">
+        <div class="header">
+            <a href="https://www.czechitas.cz/"><img src="../../img/logo.png" alt="Logo Czechitas"/></a>
+        </div>
+        <!-- #header -->
+
+        <div id="title"></div>
+        <script>
+            jQuery("#title").load("title.html");
+        </script>
+        <!-- #title -->
+
+        <!-- #menu -->
+        <div id="menu-wrap"></div>
+        <script>
+            jQuery("#menu-wrap").load("menu.html");
+        </script>
+        <!-- #menu -->
+
+        <div class="content">
+            <span class="published-timestamp">Vloženo: 21. 12. 2018</span>
+
+
+            <h2 id="bonus-distribuce-vasi-aplikace">Bonus - Distribuce vaší aplikace</h2>
+            <p>Jak vytvořit distribuční balík, který se bude dát nahrát
+                běžným uživatelům?</p>
+            <ol>
+                <li><p>Do pom.xml si přidejte deklaraci mavenových pluginů,
+                    které vytvoří distribuční složku <strong>PROJEKT/target/dist</strong>.</p>
+                    <pre class=" language-xml"><code class=" language-xml"><span class="token tag"><span
+                            class="token tag"><span class="token punctuation">&lt;</span>plugin</span><span
+                            class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span
+            class="token punctuation">&lt;</span>groupId</span><span
+            class="token punctuation">&gt;</span></span>org.apache.maven.plugins<span class="token tag"><span
+                                class="token tag"><span
+                                class="token punctuation">&lt;/</span>groupId</span><span
+                                class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span
+            class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">&gt;</span></span>maven-jar-plugin<span
+                                class="token tag"><span class="token tag"><span
+                                class="token punctuation">&lt;/</span>artifactId</span><span
+                                class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span
+            class="token punctuation">&lt;</span>version</span><span
+            class="token punctuation">&gt;</span></span>3.1.1<span class="token tag"><span
+                                class="token tag"><span
+                                class="token punctuation">&lt;/</span>version</span><span
+                                class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span
+            class="token punctuation">&lt;</span>configuration</span><span
+            class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>outputDirectory</span><span
+                class="token punctuation">&gt;</span></span>${project.build.directory}/dist<span
+                                class="token tag"><span class="token tag"><span
+                                class="token punctuation">&lt;/</span>outputDirectory</span><span
+                                class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span
+                class="token punctuation">&lt;</span>archive</span><span class="token punctuation">&gt;</span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>addMavenDescriptor</span><span
+                    class="token punctuation">&gt;</span></span>false<span class="token tag"><span
+                                class="token tag"><span class="token punctuation">&lt;/</span>addMavenDescriptor</span><span
+                                class="token punctuation">&gt;</span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>manifest</span><span
+                    class="token punctuation">&gt;</span></span>
+                <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>addClasspath</span><span
+                        class="token punctuation">&gt;</span></span>true<span class="token tag"><span
+                                class="token tag"><span
+                                class="token punctuation">&lt;/</span>addClasspath</span><span
+                                class="token punctuation">&gt;</span></span>
+                <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>classpathPrefix</span><span
+                        class="token punctuation">&gt;</span></span>lib/<span class="token tag"><span
+                                class="token tag"><span class="token punctuation">&lt;/</span>classpathPrefix</span><span
+                                class="token punctuation">&gt;</span></span>
+                <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>mainClass</span><span
+                        class="token punctuation">&gt;</span></span>SEM PRIJDE PLNE KVALIFIKOVANE JMENO SPOUSTECI TRIDY<span
+                                class="token tag"><span class="token tag"><span
+                                class="token punctuation">&lt;/</span>mainClass</span><span
+                                class="token punctuation">&gt;</span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>manifest</span><span
+                    class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span
+                class="token punctuation">&lt;/</span>archive</span><span
+                class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>configuration</span><span
+            class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>plugin</span><span
+        class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>plugin</span><span
+        class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span
+            class="token punctuation">&lt;</span>groupId</span><span
+            class="token punctuation">&gt;</span></span>org.apache.maven.plugins<span class="token tag"><span
+                                class="token tag"><span
+                                class="token punctuation">&lt;/</span>groupId</span><span
+                                class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span
+            class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">&gt;</span></span>maven-dependency-plugin<span
+                                class="token tag"><span class="token tag"><span
+                                class="token punctuation">&lt;/</span>artifactId</span><span
+                                class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span
+            class="token punctuation">&lt;</span>version</span><span
+            class="token punctuation">&gt;</span></span>3.1.1<span class="token tag"><span
+                                class="token tag"><span
+                                class="token punctuation">&lt;/</span>version</span><span
+                                class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span
+            class="token punctuation">&lt;</span>executions</span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span
+                class="token punctuation">&lt;</span>execution</span><span
+                class="token punctuation">&gt;</span></span>
+            <span class="token tag"><span class="token tag"><span
+                    class="token punctuation">&lt;</span>phase</span><span
+                    class="token punctuation">&gt;</span></span>package<span class="token tag"><span
+                                class="token tag"><span
+                                class="token punctuation">&lt;/</span>phase</span><span
+                                class="token punctuation">&gt;</span></span>
+            <span class="token tag"><span class="token tag"><span
+                    class="token punctuation">&lt;</span>goals</span><span
+                    class="token punctuation">&gt;</span></span>
+                <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>goal</span><span
+                        class="token punctuation">&gt;</span></span>copy-dependencies<span
+                                class="token tag"><span class="token tag"><span
+                                class="token punctuation">&lt;/</span>goal</span><span
+                                class="token punctuation">&gt;</span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>goals</span><span
+                    class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>execution</span><span
+                class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span
+            class="token punctuation">&lt;/</span>executions</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span
+            class="token punctuation">&lt;</span>configuration</span><span
+            class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>outputDirectory</span><span
+                class="token punctuation">&gt;</span></span>${project.build.directory}/dist/lib<span
+                                class="token tag"><span class="token tag"><span
+                                class="token punctuation">&lt;/</span>outputDirectory</span><span
+                                class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>configuration</span><span
+            class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>plugin</span><span
+        class="token punctuation">&gt;</span></span></code></pre>
+                    <p>Tyto pluginy je nutné vložit do správné sekce, ideálně za plugin
+                        <code>maven-compiler-plugin</code>:</p>
+                    <pre class=" language-xml"><code class=" language-xml"><span class="token tag"><span
+                            class="token tag"><span class="token punctuation">&lt;</span>project</span><span
+                            class="token punctuation">&gt;</span></span>
+
+    (VYNECHANO PRO PREHLEDNOST)
+
+    <span class="token tag"><span class="token tag"><span
+            class="token punctuation">&lt;</span>build</span><span
+            class="token punctuation">&gt;</span></span>
+
+        (VYNECHANO PRO PREHLEDNOST)
+
+        <span class="token tag"><span class="token tag"><span
+                class="token punctuation">&lt;</span>plugins</span><span class="token punctuation">&gt;</span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>plugin</span><span
+                    class="token punctuation">&gt;</span></span>
+                <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span
+                        class="token punctuation">&gt;</span></span>org.apache.maven.plugins<span
+                                class="token tag"><span class="token tag"><span
+                                class="token punctuation">&lt;/</span>groupId</span><span
+                                class="token punctuation">&gt;</span></span>
+                <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span
+                        class="token punctuation">&gt;</span></span>maven-compiler-plugin<span
+                                class="token tag"><span class="token tag"><span
+                                class="token punctuation">&lt;/</span>artifactId</span><span
+                                class="token punctuation">&gt;</span></span>
+                <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>version</span><span
+                        class="token punctuation">&gt;</span></span>3.6.1<span class="token tag"><span
+                                class="token tag"><span
+                                class="token punctuation">&lt;/</span>version</span><span
+                                class="token punctuation">&gt;</span></span>
+                (VYNECHANO PRO PREHLEDNOST)
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>plugin</span><span
+                    class="token punctuation">&gt;</span></span>
+
+            SEM VLOZTE DEKLARACI PLUGINU (BLOK XML UKAZANY VYSE)
+
+        <span class="token tag"><span class="token tag"><span
+                class="token punctuation">&lt;/</span>plugins</span><span
+                class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span
+            class="token punctuation">&lt;/</span>build</span><span
+            class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span
+        class="token punctuation">&lt;/</span>project</span><span class="token punctuation">&gt;</span></span>        </code></pre>
+                </li>
+            </ol>
+            <ol start="2">
+                <li><p>Když si pročtete, co jste právě přidali, uvidíte tam element
+                    <code>&lt;mainClass&gt;...&lt;/mainClass&gt;</code>.
+                    Do něj je nutné vepsat správné, plně kvalifikované jméno spouštěcí třídy (tedy včetně java package).
+                </p>
+                    <p>Jsou to údaje z vaší třídy, ve které máte metodu <code>main(...)</code>.</p>
+                    <img src="img/fqn-classname.png" alt="">
+                    <p>Takže například:</p>
+                    <pre class=" language-xml"><code class=" language-xml"><span class="token tag"><span
+                            class="token tag"><span class="token punctuation">&lt;</span>mainClass</span><span
+                            class="token punctuation">&gt;</span></span>cz.czechitas.mandala.SpousteciTrida<span
+                            class="token tag"><span class="token tag"><span
+                            class="token punctuation">&lt;/</span>mainClass</span><span
+                            class="token punctuation">&gt;</span></span></code></pre>
+                </li>
+            </ol>
+            <ol start="3">
+                <li><p>Nechejte vytvořit distribuční složku vyvoláním Mavenu z IntelliJ IDEA:
+                    Maven projects -&gt; Lifecycle -&gt; Package</p>
+                    <p>Výsledek najdete v <strong><em>PROJEKT</em>/target/dist</strong>.</p>
+                </li>
+            </ol>
+            <ol start="4">
+                <li><p>Bylo by fajn dodat do distribuční složky ještě spustitelné skripty,
+                    na které může běžný uživatel dvojkliknout a aplikace se mu spustí.</p>
+                    <p>Připravil jsem vám je do materiálů lekce 12:</p>
+                    <ul>
+                        <li>Spustit-Windows.bat</li>
+                        <li>Spustit-Mac.command</li>
+                    </ul>
+                    <p>Postupujte tedy takto:</p>
+                    <ol>
+                        <li><p>Před použitím v nich upravte údaje (konkrétní jména). </p>
+                            <p>Tip: Nejsnadněji to provedete tak, že soubory přetáhnete do IntelliJ IDEA
+                                (do prostoru středového editoru) a změníte v ní. IDEA je spolehlivý editor.</p>
+                            <ul>
+                                <li><p>Spustit-Windows.bat:</p>
+                                    <pre class=" language-bash"><code class=" language-bash"><span
+                                            class="token keyword">set</span> <span
+                                            class="token string">"APP_JAR=NAZEV VYSLEDNEHO JAR SOUBORU"</span></code></pre>
+                                    <p>Tedy například:</p>
+                                    <pre class=" language-bash"><code class=" language-bash"><span
+                                            class="token keyword">set</span> <span
+                                            class="token string">"APP_JAR=Mandala.jar"</span></code></pre>
+                                </li>
+                                <li><p>Spustit-Mac.command:</p>
+                                    <pre class=" language-bash"><code class=" language-bash">APP_JAR<span
+                                            class="token operator">=</span><span
+                                            class="token string">"NAZEV VYSLEDNEHO JAR SOUBORU"</span>
+APP_NAME<span class="token operator">=</span><span
+                                                class="token string">"NAPIS V ZAHLAVI OKNA"</span></code></pre>
+                                    <p>Tedy například:</p>
+                                    <pre class=" language-bash"><code class=" language-bash">APP_JAR<span
+                                            class="token operator">=</span><span
+                                            class="token string">"Mandala.jar"</span>
+APP_NAME<span class="token operator">=</span><span class="token string">"Mandala"</span></code></pre>
+                                </li>
+                            </ul>
+                        </li>
+                        <li><p>Hotové spouštěcí skripty zkopírujte do distribuční složky
+                            <strong><em>PROJEKT</em>/target/dist</strong>.</p>
+                        </li>
+                    </ol>
+                </li>
+                <li><p>A hotovo! Takto vytvořenou složku
+                    <strong><em>PROJEKT</em>/target/dist</strong> můžete komukoliv nahrát,
+                    a pokud má nainstalované JRE Java 8, pojede mu to. Instalátor JRE si může kdokoliv
+                    stáhnout z <a href="https://www.java.com/">https://www.java.com/</a>.</p>
+                </li>
+            </ol>
+
+        </div>
+    </div>
+    <!-- #content -->
+    </div>
+    <!-- #page -->
+</body>
+</html>

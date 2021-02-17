@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="cs" lang="cs">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="Content-Language" content="cs"/>
+
+    <meta name="robots" content="index,follow"/>
+    <meta name="googlebot" content="index,follow,snippet,archive"/>
+
+    <link rel="stylesheet" type="text/css" media="screen" href="../../css/styles.css"/>
+    <link rel="stylesheet" type="text/css" media="screen" href="../../css/menu.css"/>
+    <script src="../../js/jquery.1.12.4.min.js"></script>
+    <title>Java 2 | Czechitas</title>
+</head>
+
+<body>
+    <div id="page">
+        <div class="header">
+            <a href="https://www.czechitas.cz/"><img src="../../img/logo.png" alt="Logo Czechitas"/></a>
+        </div>
+        <!-- #header -->
+
+        <div id="title"></div>
+        <script>
+            jQuery("#title").load("title.html");
+        </script>
+        <!-- #title -->
+
+        <!-- #menu -->
+        <div id="menu-wrap"></div>
+        <script>
+            jQuery("#menu-wrap").load("menu.html");
+        </script>
+        <!-- #menu -->
+
+        <div class="content">
+            <span class="published-timestamp">Vloženo: 5. 5. 2018</span>
+
+            <h3>
+                Úkol 10 - Pexeso na webu
+            </h3>
+
+
+
+
+           <div id="_html" class="markdown-body">
+
+
+
+
+
+                <p>Ukolem je zprovoznit pexeso na webu.</p>
+
+                <p>Materialy pro pexeso najdete zde: <a href="../../data/2018-jaro/java2/Ukol10-pexeso.zip">Ukol10-pexeso.zip</a></p>
+
+                <h2 id="1-rozbehnuti-a-prozkoumani-architektury"><a class="anchor" name="1-rozbehnuti-a-prozkoumani-architektury" href="#1-rozbehnuti-a-prozkoumani-architektury"><span class="octicon octicon-link"></span></a>1. Rozbehnuti a prozkoumani architektury</h2>
+                <p>Vyjdete z <code>10-Pexeso-In_memory</code>.
+                    Nejprve si aplikaci spustte a vsimnete si, za co je ktera komponenta zodpovedna.</p>
+                <p>Chteli jste videt, jak se napise trosku vetsi realna aplikace. Tak tady ji mate :-) </p>
+                <p><img src="img/pexeso-architektura.png" alt="Obrazek architektury"></p>
+                <p>Predevsim si vsimete komponenty <code>PexesoService</code>, do ktere je presunuta cela logika pexesa.</p>
+                <p>Dale si vsimete datoveho modelu, tedy trid <code>HerniPlocha</code> a <code>Karta</code>.
+                    Vsimete si, ze trida HerniPlocha ma ID, ktere se pouziva na webu. Program tak umoznuje evidovat vice her soubezne (coz je na webu bezne).</p>
+                <p>Aktualne je aplikace stavova, tzn. ze je v programu uchovavan stav her. Pokud byste ji restartovaly, vsechny rozbehnute hry se ztrati. Uchovavani stavu je zamerne separovano do jedine tridy - <code>PexesoRepository</code>.</p>
+                <p>Webova interakce je taky zajimava. Vsimnete si, jak spolu interaguje <code>stul.html</code> a <code>HlavniController</code>. Predevsim ze kazdy pozadavek <code>GET</code> na <code>stul.html</code> zobrazi aktualni stav herni plochy. Zaroven kazdy pozadavek <code>POST</code> na <code>stul.html</code> provede tah (vstupni parametr <code>vybranaKarta<em>XX</em></code> urcuje, se kterou kartou byl proveden tah). </p>
+
+
+                <h2 id="2-naprogramovani-vlastni-pexesoservice"><a class="anchor" name="2-naprogramovani-vlastni-pexesoservice" href="#2-naprogramovani-vlastni-pexesoservice"><span class="octicon octicon-link"></span></a>2. Naprogramovani vlastni PexesoService</h2>
+                <p><strong>Tento podukol je povinny jen pro pokrocile studentky.</strong></p>
+                <p>Zavrete <code>10-Pexeso-In_memory</code> a vyjdete z <code>20-Pexeso-Bez_logiky</code>. Ukolem je napsat vlastni logiku pexesa.</p>
+                <p>HlavniController pozaduje po PexesoService zhruba tyto sluzby (metody):</p>
+                <pre><code>vytvorNovouHerniPlochu()       -&gt; vraci objekt HerniPlocha
+najdiHerniPlochu(Long id)      -&gt; vraci objekt HerniPlocha
+provedTah(Long idHerniPlochy, int cisloKartyNaKterouSeKliknulo)
+</code></pre><p>Prvni dve metody jsou jednoduche.
+                    <code>vytvorNovouHerniPlochu()</code> zalozi novou herni plochu se vsemi kartickami
+                    a ulozi ji do <code>PexesoRepository</code>.
+                    Nove herni plose se priradi <code>ID</code>,
+                    podle ktereho bude <code>najdiHerniPlochu(Long id)</code>
+                    schopna kdykoliv tuto herni plochu znovu vyzvednout.</p>
+                <p>Treti metoda, to je ta masita cast (veganky prominou :-).
+                    <code>provedTah(...)</code> se vola pri kliknuti na karticku pexesa.
+                    Hra pexesa se muze nachazet v 1 z techto stavu:</p>
+                <pre><code>HRAC1_VYBER_PRVNI_KARTY,
+HRAC1_VYBER_DRUHE_KARTY,
+HRAC1_ZOBRAZENI_VYHODNOCENI,
+KONEC
+</code></pre><p>Pokud byste chtely implementovat hru 2 hracu, stacilo by pridat par stavu a evidovat, ktery hrac je ktery. Pro zjednoduseni to ale <strong>nebudeme</strong> uvazovat.</p>
+                <p><img src="img/pexeso-stavy.png" alt="Stavy pexesa"></p>
+                <p>Podle stavu, ve kterem se hra nachazi, se interpretuje, co ma provest kliknuti na kartu.</p>
+                <ul>
+                    <li><code>HRAC1_VYBER_PRVNI_KARTY</code> ... vybrana karta se zobrazi licem nahoru (pokud byla rubem nahoru; jinak se tah ignoruje) </li>
+                    <li><code>HRAC1_VYBER_DRUHE_KARTY</code> ... vybrana karta se zobrazi licem nahoru (pokud byla rubem nahoru; jinak se tah ignoruje) </li>
+                    <li><code>HRAC1_ZOBRAZENI_VYHODNOCENI</code> ... vyhodnoti se, ktere karty jsou licem nahoru (museji byt prave 2) a pokud maji stejne cislo obrazku, nastavi se jako odebrane. Dale se hra prepne zase do prvniho stavu <code>HRAC1_VYBER_PRVNI_KARTY</code> nebo do stavu <code>KONEC</code>.  </li>
+                    <li><code>KONEC</code> ... znamena, ze uz nic dalsiho hra delat nebude. </li>
+                </ul>
+                <p>Naprogramujte tedy chybejici metody v <code>PexesoService</code>. Tam kde je <code>// TODO</code>. </p>
+                <h3 id="3-prevod-na-databazovou-persistenci"><a class="anchor" name="3-prevod-na-databazovou-persistenci" href="#3-prevod-na-databazovou-persistenci"><span class="octicon octicon-link"></span></a>3. Prevod na databazovou persistenci</h3>
+                <p>Tento podukol je opet povinny pro vsechny!</p>
+                <p>Stav hry je separovan do komponenty <code>PexesoRepository</code>.</p>
+                <p>Aktualni verze uklada data v pameti, takze se pri restartu aplikace stav soubeznych her ztrati.</p>
+                <pre><code>public class PexesoRepository {
+
+    private Map&lt;Long, HerniPlocha&gt; seznamHernichPloch;
+
+}
+</code></pre><p>Ukolem je dopsat druhou verzi repository,
+                    ktera bude ukladat stav her do databaze
+                    a program pujde libovolne restartovat bez ztraty stavu her.
+                    Tim padem se stane samotna javova cast bezstavovou
+                    (ZEN vsech webovych aplikaci).</p>
+                <p>Pokud jste delaly predchozi podukol, pokracujte v nem.
+                    Pokud ne, vyjdete z <code>10-Pexeso_in_memory</code>. </p>
+                <p>Postup:</p>
+                <ol>
+                    <li>Prejmenovani <code>PexesoRepository</code> na <code>InMemoryPexesoRepository</code>.</li>
+                    <li>Vytvoreni <code>interface PexesoRepository</code> a nastaveni <code>InMemoryPexesoRepository</code> jako potomka interfacu <code>PexesoRepository</code>. </li>
+                    <li>Vytvoreni noveho potomka <code>PexesoRepository</code> jmenem <code>JdbcTemplatePexesoRepository</code>. </li>
+                </ol>
+                <h4 id="detailni-popis-1-a-2"><a class="anchor" name="detailni-popis-1-a-2" href="#detailni-popis-1-a-2"><span class="octicon octicon-link"></span></a>Detailni popis 1 a 2</h4>
+                <p>Postup jsme si ukazovali v hodine. Najdete na videu.</p>
+                <h4 id="detailni-popis-3-"><a class="anchor" name="detailni-popis-3-" href="#detailni-popis-3-"><span class="octicon octicon-link"></span></a>Detailni popis 3:</h4>
+                <p>Bude treba zalozit databazi na vasem lokalnim pocitaci.
+                    Vsechny z vas, prosim, pouzijte stejnou databazovou strukturu.</p>
+                <p>Na Tomcat.cloudu uz bude zalozena, takze tam ji nemusite vytvaret.
+                    Protoze se jednotlive hry identifikuji pomoci ID,
+                    vic webovych aplikaci (jedna od kazde z vas) si na Tomcat.cloudu
+                    "nepoleze navzajem do zeli", takze spolu muzou v klidu koexistovat
+                    nad 1 databazi.</p>
+                <pre><code>CREATE DATABASE Pexeso
+    CHARACTER SET utf8mb4
+    COLLATE utf8mb4_czech_ci;
+
+USE Pexeso;
+
+CREATE TABLE HerniPlochy (
+    ID INT PRIMARY KEY AUTO_INCREMENT,
+    Stav VARCHAR(250),
+    CasPoslednihoTahu TIMESTAMP DEFAULT now() NOT NULL
+);
+
+CREATE TABLE Karty (
+    ID INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+    HerniPlochaID INT NOT NULL,
+    CisloKarty INT DEFAULT 0 NOT NULL,
+    Stav VARCHAR(250) ,
+    PoradiKarty INT NOT NULL DEFAULT 0,
+    CONSTRAINT HerniPlocha_FK FOREIGN KEY (HerniPlochaID) REFERENCES HerniPlochy (ID)
+);
+</code></pre><p>Zde jsou metody pro pristup do databaze.</p>
+                <p>Zalozeni nove <code>HerniPlochy</code> v databazi:</p>
+                <pre><code>private HerniPlocha pridejHerniPlochu(HerniPlocha plocha) {
+    GeneratedKeyHolder drzakNaVygenerovanyKlic = new GeneratedKeyHolder();
+    String sql = "INSERT INTO HerniPlochy (Stav, CasPoslednihoTahu) VALUES (?, ?)";
+    odesilacDotazu.update((Connection con) -&gt; {
+                PreparedStatement prikaz = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+                prikaz.setString(1, plocha.getStav().name());
+                prikaz.setObject(2, Instant.now());
+                return prikaz;
+            },
+            drzakNaVygenerovanyKlic);
+    plocha.setId(drzakNaVygenerovanyKlic.getKey().longValue());
+
+    List&lt;Karta&gt; karticky = plocha.getKarticky();
+    for (int i = 0; i &lt; karticky.size(); i++) {
+        Karta karticka = karticky.get(i);
+        pridejKarticku(karticka, plocha.getId(), i);
+    }
+    return plocha;
+}
+
+private void pridejKarticku(Karta karticka, Long plochaId, int poradiKarty) {
+    GeneratedKeyHolder drzakNaVygenerovanyKlic = new GeneratedKeyHolder();
+    String sql = "INSERT INTO karty (CisloKarty, Stav, HerniPlochaID, PoradiKarty) " +
+            "VALUES (?, ?, ?, ?)";
+    odesilacDotazu.update((Connection con) -&gt; {
+                PreparedStatement prikaz = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+                prikaz.setInt(1, karticka.getCisloKarty());
+                prikaz.setString(2, karticka.getStav().name());
+                prikaz.setLong(3, plochaId);
+                prikaz.setInt(4, poradiKarty);
+                return prikaz;
+            },
+            drzakNaVygenerovanyKlic);
+    karticka.setId(drzakNaVygenerovanyKlic.getKey().longValue());
+}
+</code></pre><p>Nalezeni <code>HerniPlochy</code> z databaze podle ID:</p>
+                <pre><code>public HerniPlocha findOne(Long id) {
+    HerniPlocha herniPlocha = odesilacDotazu.queryForObject(
+          "SELECT ID, Stav FROM HerniPlochy WHERE ID = ?",
+          prevodnikPlochy,
+          id);
+    List&lt;Karta&gt; karticky = odesilacDotazu.query(
+          "SELECT ID, CisloKarty, Stav FROM Karty WHERE HerniPlochaID = ?",
+          prevodnikKarty,
+          id);
+    herniPlocha.setKarticky(karticky);
+    return herniPlocha;
+}
+</code></pre><p>Update (ulozeni) stavu herni plochy do databaze, vcetne stavu karticek:</p>
+                <pre><code>private HerniPlocha updatuj(HerniPlocha plocha) {
+    odesilacDotazu.update(
+            "UPDATE herniplochy SET Stav = ?, CasPoslednihoTahu = ? WHERE ID = ?",
+            plocha.getStav().name(),
+            Instant.now(),
+            plocha.getId());
+
+    List&lt;Karta&gt; karticky = plocha.getKarticky();
+    for (int i = 0; i &lt; karticky.size(); i++) {
+        Karta karticka = karticky.get(i);
+        odesilacDotazu.update(
+                "UPDATE karty SET Stav = ?, PoradiKarty = ? WHERE ID = ?",
+                karticka.getStav().name(),
+                i,
+                karticka.getId());
+    }
+    return plocha;
+}
+</code></pre><p>Operace <em>update</em> a <em>insert</em> by bylo dobre provadet v transakci, ale to ted resit nebudeme. Pokud by to nekoho zajimalo, zeptejte se na hodine.</p>
+                <h2 id="odevzd-n-dom-c-ho-kolu"><a class="anchor" name="odevzd-n-dom-c-ho-kolu" href="#odevzd-n-dom-c-ho-kolu"><span class="octicon octicon-link"></span></a>Odevzdání domácího úkolu</h2>
+                <p>Svoje pexeso vystavte na Tomcat.cloud na https://sladkost.tomcat.cloud/ukol10/.</p>
+                <p>Ukázkové pexeso můžete vidět na <a href="https://margot.tomcat.cloud/ukol10/">https://margot.tomcat.cloud/ukol10/</a>.</p>
+                <p>Projekty nejprve zbavte přeložených artefaktů,
+                    aby byly menší.
+                    To zařídíte ručním smazáním složky PROJEKT/target
+                    nebo pomocí v IntelliJ IDEA -&gt; Maven Projects -&gt; ukol -&gt; Lifecycle -&gt; <code>clean</code>.
+                    Poté projekty zabalte pomocí 7-Zipu pod jménem
+                    <code>Ukol10-Vase_Jmeno.7z</code>.
+                    Lze použít i jen prostý zip (například na Macu).</p>
+                <p>Takto vytvořený archív nahrajte na
+                    Google Drive
+                    do složky <code>Ukol10</code>.</p>
+                <p>Vytvořte archív .war v IntelliJ IDEA -&gt; Maven Projects -&gt; ukol -&gt; Lifecycle -&gt; <code>clean</code>
+                    a následně IntelliJ IDEA -&gt; Maven Projects -&gt; ukol -&gt; Lifecycle -&gt; <code>package</code>.
+                    Goal <code>package</code> vytvoří archív .war <code>PROJEKT/target/ukol10.war</code>.
+                    Nasaďte jej do vašeho lokálního Tomcatu (<code>JAVATRAINING/Tomcat/webapps</code>)
+                    a vyzkoušejte, že funguje (<code>https://localhost:8080/ukol10/</code>).</p>
+                <p>Po odladění nasaďte tento archív ještě přes FTP na server Tomcat.cloud
+                    (<code>https://sladkost.tomcat.cloud/ukol10/</code>).</p>
+                <p>Vytvořte snímek obrazovky spuštěného programu
+                    a pochlubte se s ním ve fotoalbu <strong>Úkol10</strong> na
+                    <a href="https://www.facebook.com/groups/2065013227074688/photos/?filter=albums">Facebooku</a>.</p>
+                <p>Pokud byste chtěli odevzdat revizi úkolu (např. po opravě),
+                    zabalte ji a nahrajte ji na stejný Google Drive znovu,
+                    jen tentokrát se jménem <code>Ukol10-Vase_Jmeno-verze2.7z</code></p>
+                <p>Termín odevzdání je do úterý 8. 5. 2018 23:59.
+                    Pokud úkol nebo revizi odevzdáte později,
+                    prosím pošlete svému opravujícímu kouči/lektorovi email nebo zprávu přes FB.</p>
+            </div>
+
+        </div>
+        <!-- #content -->
+    </div>
+    <!-- #page -->
+</body>
+</html>

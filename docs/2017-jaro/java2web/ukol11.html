@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="cs" lang="cs">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="Content-Language" content="cs">
+
+    <meta name="author" content="Kamil Ševeček, Hana Klimentová">
+    <meta name="robots" content="index,follow">
+    <meta name="googlebot" content="index,follow,snippet,archive">
+
+    <link rel="stylesheet" type="text/css" media="screen" href="../../css/styles.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="../../css/menu.css">
+    <script src="../../js/jquery.1.12.4.min.js"></script>
+    <title>Java | Czechitas</title>
+</head>
+
+<body>
+    <div id="page">
+        <div class="header">
+            <a href="https://www.czechitas.cz/"><img src="../../img/logo.png" alt="Logo Czechitas"></a>
+        </div>
+        <!-- #header -->
+
+        <div id="title"></div>
+        <script>
+            jQuery("#title").load("title.html");
+        </script>
+        <!-- #title -->
+
+        <!-- #menu -->
+        <div id="menu-wrap"></div>
+        <div class="content">
+            <span class="published-timestamp">Vloženo: 13. 5. 2017</span>
+
+            <h3>
+                Úkol z lekce 11
+            </h3>
+
+            <h4>
+                Zobrazení detailu autora
+            </h4>
+
+
+            <p class="odsazeniTop">
+                V hodině jsme si vytvořili <code>AutorRepository</code>
+                a rozběhli metodu <code>findAll()</code>.
+                V tomto domácím úkolu doplníme implementace ostatních metod
+                <code>AutorRepository</code>
+                a využijeme metodu <code>findById(...)</code>.
+                Abyste si nerozbili fungující aplikaci z hodiny,
+                zkopírujte si projekt z hodiny do složky
+                <code>WebLekce11/20-Daily_Planet-Jeden_autor</code>.
+                Pokud byste neměly z hodiny fungující projekt,
+                vyjděte z <code>WebLekce11/11-Daily_Planet-Refactor-Solution</code>
+                a zkopírujte si tento projekt.
+            </p>
+
+
+            <h5>Část 1 - Manipulace s autory v databázi</h5>
+
+            <p class="odsazeniTop">
+                Vyzkoušejte si následující SQL příkazy:
+            </p>
+
+            <pre class="java-source-code">
+INSERT INTO autor (Autor_ID, KrestniJmeno, Prijmeni, Email, Telefon)
+    VALUES ('bb652abd-8521-0012-a345-ae2562689bc2', 'Jack', 'Sparrow',
+            'jack.sparrow@blackpearl.com', '+11356004322')
+</pre>
+            <pre class="java-source-code">
+SELECT Autor_ID as id, KrestniJmeno, Prijmeni, Email, Telefon
+    FROM autor
+    WHERE Autor_ID = 'bb652abd-8521-0012-a345-ae2562689bc2'
+</pre>
+            <pre class="java-source-code">
+UPDATE autor SET KrestniJmeno = 'Jackie', Prijmeni = 'Pirate',
+    Email = 'pirate@blackpearl.com', Telefon = '+11356000007'
+    WHERE Autor_ID = 'bb652abd-8521-0012-a345-ae2562689bc2'
+</pre>
+            <pre class="java-source-code">
+DELETE FROM autor
+    WHERE Autor_ID = 'bb652abd-8521-0012-a345-ae2562689bc2'
+</pre>
+
+            <p>
+                Po každém příkazu se podívejte do tabulky
+                <code>autor</code> a zkontrolujte, co se v ní stalo.
+            </p>
+
+            <h5>Část 2 - Doplnění implementace metod v <code>AutorRepository</code></h5>
+
+            <p>
+                Po tom, co jste ověřili funkčnost příkazů SQL,
+                je zabudujte do Javy do třídy <code>AutorRepository</code>.
+                Místo konkrétních hodnot vždy napište otazník,
+                protože <code>JdbcTemplate</code> místo něj bude vkládat konkrétní hodnotu.
+                Například <code>INSERT</code> tedy bude vypadat správně takto:
+            </p>
+            <pre class="java-source-code">
+INSERT INTO autor (Autor_ID, KrestniJmeno, Prijmeni, Email, Telefon) VALUES (<span class="source-code-highlight">?</span>, <span class="source-code-highlight">?</span>, <span class="source-code-highlight">?</span>, <span class="source-code-highlight">?</span>, <span class="source-code-highlight">?</span>)
+</pre>
+
+            <p>
+                Nyní tedy doplňte správné SQL příkazy do správných metod:
+            </p>
+            <pre class="java-source-code">
+<span class="grey-out">public Autor findById(UUID id) {</span>
+    Autor jedenAutor = pokladacDotazu.queryForObject(
+            <span class="source-code-highlight">"NAHRADTE SPRAVNYM SQL PRIKAZEM S OTAZNIKY"</span>,
+            prevodnikTridyAutor,
+            id.toString());
+    return jedenAutor;
+<span class="grey-out">}
+
+public Autor update(Autor zaznamKUlozeni) {</span>
+    pokladacDotazu.update(
+            <span class="source-code-highlight">"NAHRADTE SPRAVNYM SQL PRIKAZEM S OTAZNIKY"</span>,
+            zaznamKUlozeni.getKrestniJmeno(),
+            zaznamKUlozeni.getPrijmeni(),
+            zaznamKUlozeni.getEmail(),
+            zaznamKUlozeni.getTelefon(),
+            zaznamKUlozeni.getId().toString());
+    return zaznamKUlozeni;
+<span class="grey-out">}
+
+public void remove(UUID id) {</span>
+    pokladacDotazu.update(
+            <span class="source-code-highlight">"NAHRADTE SPRAVNYM SQL PRIKAZEM S OTAZNIKY"</span>,
+            id.toString());
+<span class="grey-out">}
+
+public Autor insert(Autor zaznamKPridani) {</span>
+    pokladacDotazu.update(
+            <span class="source-code-highlight">"NAHRADTE SPRAVNYM SQL PRIKAZEM S OTAZNIKY"</span>,
+            zaznamKPridani.getId().toString(),
+            zaznamKPridani.getKrestniJmeno(),
+            zaznamKPridani.getPrijmeni(),
+            zaznamKPridani.getEmail(),
+            zaznamKPridani.getTelefon());
+    return zaznamKPridani;
+<span class="grey-out">}</span>
+</pre>
+
+            <h5>Část 3 - Stránka s detailem autora</h5>
+
+            <p>
+                Dalším úkolem je adaptovat stránku <code>autor.html</code>,
+                kterou si můžete stáhnout z
+                <a href="../../data/2017-jaro/java2web/Java2Web-Ukol11.7z">Java2Web-Ukol11.7z</a>.
+                Převeďte ji na <code>autor.jsp</code> a vložte klasicky do <code>/WEB-INF/view</code>.
+                Před stránku JSP opět klasicky představte controllerovou metodu,
+                jejíž hlavička bude vypadat takto:
+            </p>
+            <pre class="java-source-code">
+@RequestMapping(value = "<span class="source-code-highlight">/autor/{autorId:[0-9a-f\\-]{36}}.html</span>", method = RequestMethod.GET)
+public ModelAndView zobrazAutora(<span class="source-code-highlight">@PathVariable("autorId")</span> UUID id) {
+<span class="grey-out">    // Zde vyrobte ModelAndView a nastavte do nej autora podle predaneho id</span>
+}
+</pre>
+
+            <p>
+                Všimněte si zástupného znaku <code>{autorId:[0-9a-f\\-]{36}}</code> ve virtuální adrese.
+                Do controlleru se tedy lze dostat v prohlížeči zadáním<br/>
+                <code>http://localhost/autor/<span class="source-code-highlight">7d92828e-5b8a-43d4-a9ce-7fcf02778950</span>.html</code> nebo<br/>
+                <code>http://localhost/autor/<span class="source-code-highlight">5d35d75b-892b-4f14-be3c-f8964369d6a2</span>.html</code> nebo třeba<br/>
+                <code>http://localhost/autor/<span class="source-code-highlight">c705ef4e-5de0-4409-b537-957605df610c</span>.html</code><br/>
+
+                Levá část zástupného znaku
+                <code>{<span class="source-code-highlight">autorId</span>:[0-9a-f\\-]{36}}</code>
+                říká Springu,
+                že ze skutečné adresy má být tato část zapamatována pod názvem <code class="source-code-highlight">autorId</code>.
+                Zároveň si všimněte vstupního parametru metody <code>zobrazAutora()</code>,
+                konkrétně <code>UUID id</code>.
+                Tento vstupní parametr je označen anotací <code>@PathVariable("<span class="source-code-highlight">autorId</span>")</code>,
+                která Springu říká, aby výše zméněnou část z adresy
+                (pojmenovanou zástupným znakem <code class="source-code-highlight">autorId</code>)
+                vložil do vstupního parametru <code>id</code>.
+                Pravá část zástupného znaku <code>{autorId:<span class="source-code-highlight">[0-9a-f\\-]{36}</span>}</code>
+                za dvojtečkou je nepovinná a určuje regulární výraz,
+                kterému musí část adresy odpovídat.
+                Regulární výrazy jsou složitější látka,
+                nicméně v našem případě stačí vědět, že
+                výraz v hranatých závorkách určuje interval povolených znaků.
+                <code>[0-9a-f\-]</code> tedy povoluje
+                <code>0</code> až <code>9</code> a <code>a</code> až <code>f</code>
+                a ještě pomlčku <code>-</code>. Hodnota ve složených závorkách
+                <code>{36}</code>
+                říká, že se povolené znaky musejí opakovat přesně 36 krát.
+            </p>
+
+            <h5>Část 4 - Odkaz na detail ze seznamu autorů</h5>
+
+            <p>
+                Posledním úkolem je do hlavní stránky k seznamu autorů
+                přidat odkazy na detail autora.
+                Do hlavni.jsp tedy přidejte tento sloupeček:
+            </p>
+            <pre class="java-source-code">
+<span class="grey-out">&lt;jstl:forEach var="autor" items="${autori}"&gt;
+&lt;tr&gt;
+    &lt;td&gt;${autor.krestniJmeno}&lt;/td&gt;
+    &lt;td&gt;${autor.prijmeni}&lt;/td&gt;
+    &lt;td&gt;${autor.email}&lt;/td&gt;
+    &lt;td&gt;${autor.telefon}&lt;/td&gt;</span>
+    &lt;td&gt;
+        &lt;jstl:url var="autorLink" value="/autor/${autor.id}.html"/&gt;
+        &lt;a href="${autorLink}" class="button"&gt;Detail&lt;/a&gt;
+    &lt;/td&gt;
+<span class="grey-out">    &lt;/tr&gt;
+&lt;/jstl:forEach&gt;
+</span></pre>
+
+            <h4>Odevzdávání úkolu</h4>
+
+            <ol>
+                <li>
+                    Odladěnou webovou aplikaci publikujte do vašeho cloudu pod názvem <code>/ukol11</code>.
+                </li>
+                <li>
+                    Zdrojový projekt zabalte 7-Zipem
+                    a nahrejte také na váš cloud do složky <code>/ukoly</code>.
+                </li>
+                <li>
+                    Snímek obrazovky z prohlížeče vložte do galerie
+                    <code>Úkol z lekce 11 - Detail autora</code> na Facebooku.
+                    Pokud by galerie ještě neexistovala, založte ji prvním snímkem.
+                    Ke snímku do popisu napište adresu vaší webové aplikace.
+                </li>
+            </ol>
+
+
+        </div>
+        <!-- #menu -->
+
+        <script>
+            jQuery("#menu-wrap").load("menu.html");
+        </script>
+        <!-- #content -->
+    </div>
+    <!-- #page -->
+</body>
+</html>

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="cs" lang="cs">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="Content-Language" content="cs"/>
+
+    <meta name="robots" content="index,follow"/>
+    <meta name="googlebot" content="index,follow,snippet,archive"/>
+
+    <link rel="stylesheet" type="text/css" media="screen" href="../../css/styles.css"/>
+    <link rel="stylesheet" type="text/css" media="screen" href="../../css/menu.css"/>
+    <script src="../../js/jquery.1.12.4.min.js"></script>
+    <title>Java | Czechitas</title>
+</head>
+
+<body>
+    <div id="page">
+        <div class="header">
+            <a href="https://www.czechitas.cz/"><img src="../../img/logo.png" alt="Logo Czechitas"/></a>
+        </div>
+        <!-- #header -->
+
+        <div id="title"></div>
+        <script>
+            jQuery("#title").load("title.html");
+        </script>
+        <!-- #title -->
+
+        <!-- #menu -->
+        <div id="menu-wrap"></div>
+        <script>
+            jQuery("#menu-wrap").load("menu.html");
+        </script>
+        <!-- #menu -->
+
+        <div class="content">
+            <span class="published-timestamp">Vloženo: 3. 3. 2017</span>
+
+            <h3>
+                Úkol z lekce 2
+            </h3>
+
+            <h4>
+                Meme generátor
+            </h4>
+
+
+            <p class="odsazeniTop">
+                Cílem je udělat webovou aplikaci, která bude při obnovení stránky generovat náhodný obrázek,
+                pod kterým bude napsaný náhodně vybraný text v černém pruhu. K žádnému obrázku nebude pevně
+                daný text - propojovat se budou náhodně.
+            </p>
+            <p class="odsazeniTop">
+                Demo úkolu můžete vidět zde: <a href="https://koala.tomcat.cloud/meme/">
+                https://koala.tomcat.cloud/meme/</a>
+            </p>
+
+            <p class="odsazeniTop">
+                <img src="img/ukol02-screenshot.png" height="634" alt="Snímek demo úkolu">
+            </p>
+
+            <p class="odsazeniTop">
+                Jak bude web vypadat, necháme na vás. Pevně je daný pouze obrázek s černým pruhem pod ním.
+            </p>
+
+            <p class="odsazeniTop">
+                Materiály k úkolu:
+                <a href="../../data/2017-jaro/java2web/Java2Web-Ukol02-heslo_czechitas.7z">
+                    Java2Web-Ukol02-heslo_czechitas.7z</a>
+            </p>
+            <p class="odsazeniTop">
+                RADA NA CESTU: Udělejte si kopii projektu 11-HazeniKostkou-Solution z hodiny (WebLekce02),
+                pojmenujte novou složku například MemeGen a vyjděte z něj.
+            </p>
+
+            <p class="odsazeniTop">
+                Nezapomeňte na OPRAVU KÓDOVÁNÍ, kterou publikoval Kamča -  aby fungovaly háčky a čárky
+                ve vašem existujícím projektu:
+                <a href="../../data/2017-jaro/java2web/Oprava_kodovani.7z">Oprava_kodovani.7z</a>
+                <br/>
+                V archívu je složka <code>src-boot</code>. Stačí, když jejím obsahem přepíšete obsah
+                původní složky <code>src-boot</code>, kterou máte ve vašem projektu a háčky a čárky
+                začnou fungovat.
+            </p>
+
+
+            <h3 class="odsazeniTop">FAQ</h3>
+            <h4>Nejede mi web appka v cloudu ale při spuštění z IDEI ano. Co je špatně?</h4>
+            <ol class="icka">
+                <li>Zkontroluj, jestli jsi správně nahrála appku:
+                    <ul class="odrazky">
+                        <li>Je potřeba nahrát obsah složky <b>TVUJ_PROJEKT\dist\ROOT</b> (objeví se ti po prvním spuštění
+                            appky) na správné místo na FTP (viz dále).<br>
+                            Konkrétně to může to být např:<br>
+                            <span class="note">(Windows) <b>C:\Java-Training\Projects\WebLekce02\MemeGen\dist\ROOT</b><br>
+                                (Mac) <b>/Users/TVUJ_PROFIL/Java-Training/Projects/WebLekce02/MemeGen/dist/ROOT</b></span>
+                        </li>
+                        <li>Přihlas se na svůj cloud přes FTP. Například na Windows můžeš použít klasický
+                            Průzkumník (Tento počítač) nebo si můžeš nainstalovat libovolný FTP klient. V
+                            Průzkumníkovi zadej do adresního řádku <b>ftp://drahokam:password@drahokam.tomcat.cloud</b><br>
+                            <span class="note">Např: ftp://koala:password@koala.tomcat.cloud</span><br><br>
+                            Pokud používáš jiný FTP klient, zadej prostě:<br>
+                            Adresa: drahokam.tomcat.cloud<br>
+                            Port: 21<br>
+                            Username: drahokam<br>
+                            Password: password<br>
+                            Pokud by byl problém s připojení a FTP klient by se tě ptal na pasivní mód, klidně
+                            to povol</li>
+                        <li>Po přihlášení bys měla vidět složku ROOT. Vedle ní si vytvoř složku <b>meme</b>. NE
+                            uvnitř ROOTu! <br>
+                            Potom bys měla mít na svém cloudu složky:
+                            <ul class="odrazky">
+                                <li>ROOT</li>
+                                <li>ukoly <span class="note"> (tuhle složku si vytvoř pro nahrávání
+                                    zazipovaných projektů)</span></li>
+                                <li><b>meme</b></li>
+                                <li>Ostatní složky úkolů...</li>
+                            </ul>
+                            Do této nové složky <b>meme</b> zkopíruj obsah složky <b>TVUJ_PROJEKT\dist\ROOT</b> (z prvního
+                            bodu)</li>
+
+                        <li>Nakonec je potřeba, abys vyvolala restart webové aplikace. To se provede tak, že
+                            změníš soubor <b>/WEB-INF/web.xml</b> ve svojí appce na FTP. <br><br>
+                            Postupuj tak, že si otevřeš soubor u sebe na disku <b>TVUJ_PROJEKT\dist\ROOT\WEB-INF\web.xml</b>
+                            v libovolném editoru (např. v IntelliJ IDEA), připíšeš kamkoliv mezeru, opět ji
+                            smažeš, uložíš změny a tento soubor samostatně nahraješ na správné místo na FTP
+                            tak, abys přepsala původní soubor.<br>
+                            <span>Např: Na FTP:   <b>/meme/WEB-INF/web.xml</b></span></li>
+                    </ul>
+                </li>
+                <li>Přesvědč se ještě jednou o bodu 1 :-)</li>
+                <li>NAPIŠ NA FB KAMILOVI</li>
+            </ol>
+        </div>
+        <!-- #content -->
+    </div>
+    <!-- #page -->
+</body>
+</html>

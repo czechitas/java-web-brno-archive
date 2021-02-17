@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="cs" lang="cs">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="Content-Language" content="cs"/>
+
+    <meta name="robots" content="index,follow"/>
+    <meta name="googlebot" content="index,follow,snippet,archive"/>
+
+    <link rel="stylesheet" type="text/css" media="screen" href="../../css/styles.css"/>
+    <link rel="stylesheet" type="text/css" media="screen" href="../../css/menu.css"/>
+    <script src="../../js/jquery.1.12.4.min.js"></script>
+    <title>Java | Czechitas</title>
+</head>
+
+<body>
+    <div id="page">
+        <div class="header">
+            <a href="https://www.czechitas.cz/"><img src="../../img/logo.png" alt="Logo Czechitas"/></a>
+        </div>
+        <!-- #header -->
+
+        <div id="title"></div>
+        <script>
+            jQuery("#title").load("title.html");
+        </script>
+        <!-- #title -->
+
+        <!-- #menu -->
+        <div id="menu-wrap"></div>
+        <script>
+            jQuery("#menu-wrap").load("menu.html");
+        </script>
+        <!-- #menu -->
+
+        <div class="content">
+            <span class="published-timestamp">Vloženo: 4. 12. 2016</span>
+
+            <h3>
+                Úkol z lekce 10 - Třídy Osoba a TelefonniCislo
+            </h3>
+
+            <p>
+                V hodině jsme zkusili napsat SeznamKontaktů tak,
+                aby místo kolekce <code>Map&lt;String, Set&lt;String&gt;&gt;</code>
+                (tedy pouhé Stringy)
+                používal <code>Map&lt;Osoba, Set&lt;TelefonniCislo&gt;&gt;</code>
+                (tedy sémantické třídy vyjadřující typ dat, které jejich objekty nesou).
+            </p>
+
+            <p>
+                Úkolem je to dokončit a stejnou funkcionalitu napsat i do grafické verze programu.
+            </p>
+
+            <p>
+                Abych vám ulehčil práci a všichni jsme začínali ze stejného základu,
+                vyjděte prosím z mojí verze zadání.
+                <br/>
+                Jsou tam projekty SeznamKontaktuCLI (textová verze) a SeznamKontaktuGUI (okenní verze).
+                Změnu proveďte u obou verzí.
+            </p>
+
+            <img src="img/ukol10.png" height="582" alt="Screenshot Seznamu kontaktů"/>
+
+            <p/>
+
+            <p>
+                Archív si stáhněte zde:
+                <br/>
+                <a href="../../data/2016-podzim/java2/Ukol10-heslo_czechitas.7z">
+                    <b>Ukol10-heslo_czechitas.7z</b>
+                </a>
+            </p>
+
+            <br/>
+            <br/>
+
+            <p>
+                Začněte tím, že změníte metodu ve třídě
+                <code>TelefonniSeznamService</code> z původní hlavičky:
+                <br/>
+                <code>public Map&lt;String, Set&lt;String&gt;&gt; nactiTelefonniCisla(String vstup)</code>
+                <br/>
+                na metodu:
+                <br/>
+                <code>public Map&lt;Osoba, Set&lt;TelefonniCislo&gt;&gt; nactiTelefonniCisla(String vstup)</code>
+                <br/>
+                <br/>
+                Java vás
+                sama donutí opravit zbylé části programu,
+                jinak by nešel spustit.
+                Je to díky tomu, že Java je staticky silně typovaný jazyk
+                a překladač propustí jen logicky platný program.
+            </p>
+
+            <p>
+                Až budete mít program funkční, změňte metodu <code>compareTo(...)</code>
+                ve třídě <code>Osoba</code> tak,
+                aby seznam osob nebyl setříděný podle celého jména (počínaje křestním jménem),
+                ale prioritně podle <code>prijmeni</code> a
+                teprve při shodném <code>prijmeni</code> by rozhodovalo <code>krestniJmeno</code>.
+            </p>
+
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+
+            <p>
+                Práci vám ulehčím, v archívu je i hotové řešení:
+                <br/>
+                Pokud byste tápaly a nedařilo se vám úkol vyřešit,
+                alespoň prosím důkladně srovnejte,
+                v čem se liší zadání a řešení.
+            </p>
+
+            <br/>
+            <br/>
+
+            <p>
+                Domácí úkol mi, prosím, pošlete klasicky na můj email zabalený pomocí
+                7-Zipu s heslem <strong>czechitas</strong> (se zapnutým šifrováním jmen souborů),
+                aby Gmail akceptoval přílohu.
+            </p>
+        </div>
+        <!-- #content -->
+    </div>
+    <!-- #page -->
+</body>
+</html>

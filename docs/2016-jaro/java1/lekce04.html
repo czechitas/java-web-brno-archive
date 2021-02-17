@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="cs" lang="cs">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="Content-Language" content="cs"/>
+
+    <meta name="robots" content="index,follow"/>
+    <meta name="googlebot" content="index,follow,snippet,archive"/>
+
+    <link rel="stylesheet" type="text/css" media="screen" href="../../css/styles.css"/>
+    <link rel="stylesheet" type="text/css" media="screen" href="../../css/menu.css"/>
+    <link href='https://fonts.googleapis.com/css?family=Comfortaa:400,300' rel='stylesheet' type='text/css'/>
+    <script src="../../js/jquery.1.12.4.min.js"></script>
+    <title>Java | Czechitas | Jaro 2016</title>
+</head>
+
+<body>
+    <div id="page">
+        <div class="header">
+            <a href="https://www.czechitas.cz/"><img src="img/logo.png" alt="Logo Czechitas"/></a>
+        </div>
+        <!-- #header -->
+
+        <div id="title">
+            <p class="home">Domovská stránka</p>
+
+            <h1>Intenzivní kurz Programuju: Java</h1>
+
+            <h2>10 týdenní kurz Javy pro začátečnice</h2>
+        </div>
+        <!-- #title -->
+
+        <!-- #menu -->
+        <div id="menu-placeholder"></div>
+        <script>
+            jQuery("#menu-placeholder").load("menu.html");
+        </script>
+        <!-- #menu -->
+
+        <div class="content">
+            <span class="published-timestamp">Vloženo: 24. 3. 2016</span>
+
+            <h3>
+                Lekce 04
+            </h3>
+
+            <p>
+                Vyráběli jsme malé hry a hříčky.
+                <br/>
+                Nejprve jsme pohybovali rybkou Nemo při stisku kurzorových kláves.
+                Jednalo se o událost KeyPressed hlavního okna.
+            </p>
+
+            <img src="img/lekce04/screenshot1.png" alt="Screenshot Hledá se Nemo" width="584" height="414"
+                 class="screenshot"/>
+
+            <p>
+                Jako druhý program jsme házeli kostkou.
+                <br/>
+                Při stisku tlačítka jsme použili nevizuální komponentu <code>Random</code>
+                (přesněji <code>java.util.Random</code>) a získali z ní číslo od 0 do 5.
+                V návrháři jsme ji přidali volbou <i>Choose bean</i> a používali jsme ji takto:
+            </p>
+
+            <div class="java-source">
+                <code>
+                    Integer cislo = generatorCisel.nextInt(6) + 1;
+                </code>
+            </div>
+
+            <img src="img/lekce04/screenshot2.png" alt="Screenshot Házení kostkou" width="265" height="200"
+                 class="screenshot"/> <br />
+
+            <h4>Rozšiřující úkol na doma</h4>
+
+            <p>Zadání najdete pod Domácí úkoly -> <a href="ukol04.html">Úkol z lekce 4</a></p>
+
+			<h4>Materiály z lekce</h4>
+            <p>
+                Materiály jsou ke stažení zde: <a
+                    href="../../data/2016-jaro/java1/lekce04.7z">lekce04.7z</a>
+                <br/>
+                Archív si stáhněte, například na plochu. Celý jej rozbalte přímo do <code>C:\</code>
+                <br/>
+                Archív totiž už obsahuje složku
+                <code>Java-Training</code> a materiály se tím pádem vloží na to správné místo do
+                <code>C:\Java-Training\Projects\Lekce04</code>.
+            </p>
+        </div>
+        <!-- #content -->
+    </div>
+    <!-- #page -->
+</body>
+</html>

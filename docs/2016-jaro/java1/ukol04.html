@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="cs" lang="cs">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="Content-Language" content="cs"/>
+
+    <meta name="robots" content="index,follow"/>
+    <meta name="googlebot" content="index,follow,snippet,archive"/>
+
+    <link rel="stylesheet" type="text/css" media="screen" href="../../css/styles.css"/>
+    <link rel="stylesheet" type="text/css" media="screen" href="../../css/menu.css"/>
+    <link href='https://fonts.googleapis.com/css?family=Comfortaa:400,300' rel='stylesheet' type='text/css'/>
+    <script src="../../js/jquery.1.12.4.min.js"></script>
+    <title>Java | Czechitas | Jaro 2016</title>
+</head>
+
+<body>
+    <div id="page">
+        <div class="header">
+            <a href="https://www.czechitas.cz/"><img src="img/logo.png" alt="Logo Czechitas"/></a>
+        </div>
+        <!-- #header -->
+
+        <div id="title">
+            <p class="home">Domovská stránka</p>
+
+            <h1>Intenzivní kurz Programuju: Java</h1>
+
+            <h2>10 týdenní kurz Javy pro začátečnice</h2>
+        </div>
+        <!-- #title -->
+
+        <!-- #menu -->
+        <div id="menu-placeholder"></div>
+        <script>
+            jQuery("#menu-placeholder").load("menu.html");
+        </script>
+        <!-- #menu -->
+
+        <div class="content">
+            <span class="published-timestamp">Vloženo: 24. 3. 2016</span>
+
+            <h3>
+                Lekce 04 - Rozšiřující úkol na doma
+            </h3>
+
+            <p>
+                Hozené číslo se zobrazuje pouze jako text.
+                Bylo by ale hezké zobrazit výsledek jako obrázek s puntíky.
+                Obrázky s puntíky jsem vám dal k dispozici do <code>C:\Java-Training\Projects\Lekce04\kostka<i>?</i>.png</code>
+                <br/>
+                Zobrazit jednoduchý obrázek pomocí <code>JLabel</code>u už umíme.
+                Jak ale přepínat mezi obrázky se správným počtem puntíků?
+                Jednoduše. Pomocí vizuálního návrháře vložte na okno 6 komponent <code>JLabel</code>.
+                Každé nastavte jeden obrázek s puntíky.
+                Následně je všechny zneviditelněte pomocí vlastnosti
+                <code>visible</code> nastavené na <code>false</code>.
+                Při hodu kostkou vyberte odpovídající <code>JLabel</code>
+                a nastavte mu vlastnost <code>visible</code> na <code>true</code>.
+                Ostatním <code>JLabel</code>ům nastavte tuto vlastnost naopak na <code>false</code>.
+                Například takto:
+            </p>
+            <div class="java-source">
+                <code>
+                    if (cislo == 1) { <br/>
+                    &nbsp;&nbsp;&nbsp;&nbsp;labHozeno1.setVisible(true); <br/>
+                    } else { <br/>
+                    &nbsp;&nbsp;&nbsp;&nbsp;labHozeno1.setVisible(false); <br/>
+                    }
+                </code>
+            </div>
+
+            <h4>Materiály k úkolu</h4>
+			<p>
+                Materiály jsou ke stažení zde: <a
+                    href="../../data/2016-jaro/java1/lekce04.7z">lekce04.7z</a>
+                <br/>
+                Archív si stáhněte, například na plochu. Celý jej rozbalte přímo do <code>C:\</code>
+                <br/>
+                Archív totiž už obsahuje složku
+                <code>Java-Training</code> a materiály se tím pádem vloží na to správné místo do
+                <code>C:\Java-Training\Projects\Lekce04</code>.
+            </p>
+        </div>
+        <!-- #content --> 
+    </div>
+    <!-- #page -->
+</body>
+</html>

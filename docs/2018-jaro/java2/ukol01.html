@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="cs" lang="cs">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="Content-Language" content="cs"/>
+
+    <meta name="robots" content="index,follow"/>
+    <meta name="googlebot" content="index,follow,snippet,archive"/>
+
+    <link rel="stylesheet" type="text/css" media="screen" href="../../css/styles.css"/>
+    <link rel="stylesheet" type="text/css" media="screen" href="../../css/menu.css"/>
+    <script src="../../js/jquery.1.12.4.min.js"></script>
+    <title>Java | Czechitas</title>
+</head>
+
+<body>
+    <div id="page">
+        <div class="header">
+            <a href="https://www.czechitas.cz/"><img src="../../img/logo.png" alt="Logo Czechitas"/></a>
+        </div>
+        <!-- #header -->
+
+        <div id="title"></div>
+        <script>
+            jQuery("#title").load("title.html");
+        </script>
+        <!-- #title -->
+
+        <!-- #menu -->
+        <div id="menu-wrap"></div>
+        <script>
+            jQuery("#menu-wrap").load("menu.html");
+        </script>
+        <!-- #menu -->
+
+        <div class="content">
+            <span class="published-timestamp">Vloženo: 24. 2. 2018</span>
+
+            <h3>
+                Úkol 01 - Experimentování se statickým webem a Tomcatem
+            </h3>
+
+            <h4>Domácí úkol</h4>
+
+            <p>Cílem domácího úkolu je vytvořit
+                2 jednoduché statické weby
+                a nasadit je na váš Tomcat.cloud</p>
+
+            <ul>
+                <li>Váš osobní webík o čemkoliv</li>
+                <li>Rozcestník domácích úkolů</li>
+            </ul>
+
+
+            <h4>Krátký popis:</h4>
+
+            <h5>Část 1 a 2 - Váš osobní webík</h5>
+
+            <p>Úkolem bude připravit si svůj osobní web
+            (například na úrovni jednodenního workshopu Tvořím web HTML/CSS
+            <a href="https://www.czechitas.cz/cs/co-delame/tvorim-web">https://www.czechitas.cz/cs/co-delame/tvorim-web</a> ).
+            Webové stránky (index.html, styly.css, ...) můžete buď napsat
+            v nově založeném projektu v IntelliJ IDEA od začátku
+            nebo použít existující webové soubory
+            a přidat je do nově založeného projektu v IntelliJ IDEA.
+            Tak jako tak je třeba web nasadit lokálně na Tomcat a odladit.
+            Odladěný web bude třeba nasadit na Tomcat.cloud.</p>
+
+
+
+            <h5>Část 3 - Webový rozcestník k domácím ukolům</h5>
+
+            <p>Druhý statický web, který bude třeba vytvořit,
+            je úvodní stránka, která bude fungovat jako rozcestník pro vaše domácí úkoly
+            na Tomcat.cloudu.</p>
+
+            <p>I ten bude za úkol vytvořit v projektu v IntelliJ IDEA a nasadit na Tomcat.cloud.</p>
+
+
+            <h6>Ukázku řešení lze najít na</h6>
+            <ul>
+                <li><a href="https://margot.tomcat.cloud/">https://margot.tomcat.cloud/</a></li>
+                <li><a href="https://margot.tomcat.cloud/ukol01simple/">https://margot.tomcat.cloud/ukol01simple/</a></li>
+                <li><a href="https://margot.tomcat.cloud/ukol01/">https://margot.tomcat.cloud/ukol01/</a></li>
+            </ul>
+
+            <h4>Detailní popis:</h4>
+
+            <h5>Část 1 - Váš osobní webík</h5>
+
+            <p>Abychom měli s čím experimentovat, budeme potřebovat nějaký váš web.
+            Může to klidně být i váš již existující web nebo statické webové stránky
+            odkudkoliv.
+            Pokud se necítíte na tvorbu vlastního webu,
+            můžete si klidně půjčit nějaký existující web.
+            Například <a href="http://krystufek.rolecek.cz/">http://krystufek.rolecek.cz/</a>
+            Pro psaní webu existuje na internetu spousta návodů.</p>
+
+            <p>Web můžete tvořit v libovolném textovém editoru.
+            Za úkol je ale vyzkoušet IntelliJ IDEA.
+            V IntelliJ IDEA založte nový projekt -> Static web ->
+            Složka CESTA_K_JAVA-TRAINING/Projects/WebLekce01/Ukol01-Simple.
+            V projektu založte podsložku static a do ní připravte celý web
+                (začněte s index.html).</p>
+            <p>Projekt bude vypadat takto:</p>
+            <div>
+                <img src="img/ukol01-static-web-project.png"/>
+            </div>
+
+            <p>Stránky můžete během editování zobrazit přímo v prohlížeči zadáním adresy:</p>
+            <p>Na windows:</p>
+            <p>
+            <code>file:///C:/Java-Training/Projects/WebLekce01/Ukol01-Simple/static/index.html</code>
+            </p>
+            <br/>
+            <p>Na Macu:</p>
+            <p>
+            <code>file:///Users/VASE_JMENO/Java-Training/Projects/WebLekce01/Ukol01-Simple/static/index.html</code>
+            </p>
+            <br/>
+
+            <p>IntelliJ dokáže vyrobit výsledný .war/.zip soubor k nasazení.
+            Zvolte File -> Project Structure -> Artifacts -> + (Přidat) -> Other<br/>
+            Name: Distribucni archiv WAR<br/>
+            Output: CESTA_K_JAVA-TRAINING/Projects/WebLekce01/Ukol01-Simple/target<br/>
+            Include in project build: Ano (zaškrtnout)<br/>
+            Pod tím ikonka zipu (Create Archive): ukol01simple.war<br/>
+            Pravým tlačítkem na &lt;output root&gt;, Add copy of... -> Directory content -> Ukol01-Simple/static</p>
+
+            <p>Ukázka správně nakonfigurováného artifactu:</p>
+            <div>
+                <img src="img/ukol01-artifact.png"/>
+            </div>
+
+            <p>Archív .war vytvoříte v menu Build -> Rebuild Project nebo Build -> Build Artifacts...</p>
+
+            <p>Takto vytvořený archív .war nasaďte do vašeho lokálního Tomcatu (CESTA_K_JAVA-TRAINING/Tomcat/webapps)
+            a vyzkoušejte, že funguje ( http://localhost:8080/ukol01simple/ ).</p>
+
+            <p>Po odladění nasaďte tento archív ještě přes FTP na server Tomcat.cloud
+            ( http://sladkost.tomcat.cloud/ukol01simple/ ).</p>
+
+
+
+            <h5>Část 2 - Osobní webík v javovém projektu v IntelliJ IDEA</h5>
+
+            <p>Druhý úkol je převod osobního webíku do předpřipraveného javového projektu
+            v IntelliJ IDEA.
+            Ten získáte zde: <a href="../../data/2018-jaro/java2/Ukol01.zip">Ukol01.zip</a>.
+            Web z minulé části (obsah složky static) překopírujte
+            do nového projektu do složky PROJEKT/src/main/resources/static.
+            Projekt už má nastavený artifact (ukol01.war), takže opět stačí pouze
+            Build -> Rebuild project
+            nebo
+            Build -> Build Artifacts
+            a ve složce target budete mít výsledný archív .war, který opět nasaďte do
+            lokálního Tomcatu
+            ( http://localhost:8080/ukol01/ )
+            a po finalním odladění přes FTP na Tomcat.cloud
+            ( http://sladkost.tomcat.cloud/ukol01/ ).</p>
+
+            <p>Poznámka: Ve složce static a ve výsledném archívu .war si můžete všimnout
+            konfiguračního souboru WEB-INF/web.xml. To je konfigurační soubor pro Tomcat.
+            Zatím ho ignorujte.</p>
+
+            <p>Během psaní můžete využít ještě třetí možnost nasazení:
+            Na Tomcat zabudovaný přímo v projektu (jako knihovna).
+            Ten spustíte pomocí klasického spouštěcího tlačítka
+            (zelená šipka vpravo nahoře v IntelliJ IDEA).
+            Otevře se vám okno zabudovaného webového serveru a zobrazí se adresa,
+            kterou překopírujte do prohlížeče.
+            (např. http://localhost/ukol01/ )
+            Výhoda tohoto postupu je, že můžete stránky měnit rovnou v editoru
+            a pro zobrazení změny pouze obnovit stránku v prohlížeči (Ctrl+F5).</p>
+
+            <p>Ukázka možného řešení webu (všimněte si souborů ve složce PROJEKT/src/main/resources/static)</p>
+            <div>
+                <img src="img/ukol01-static-web-project-reseni.png"/>
+            </div>
+
+
+            <h5>Část 3 - Webový rozcestník k domacím ukolům</h5>
+
+            <p>Posledním úkolem je vytvořit webovou stránku -
+            rozcestník pro vaše budoucí domácí úkoly.</p>
+
+            <p>Na Tomcat.cloud budete postupem kurzu nasazovat domácí úkoly
+            na adresy</p>
+            <div>http://sladkost.tomcat.cloud/ukol01/</div>
+            <div>http://sladkost.tomcat.cloud/ukol02/</div>
+            <div>http://sladkost.tomcat.cloud/ukol03/</div>
+            <div>atd.</div>
+            <p>a já bych chtěl, aby na ně vedl odkaz z vaší hlavní stránky
+            http://sladkost.tomcat.cloud/</p>
+
+            <p>To zařídíte tak, že vytvoříte ještě jednu webovou aplikaci a nasadíte ji
+            pod názvem ROOT (archív ROOT.war).</p>
+
+            <p>Postupovat můžete buď jako v části 1 nebo jako v části 2.
+            Doporučuji použít druhý způsob a předpřipravený projekt zde:
+            <a href="../../data/2018-jaro/java2/Ukoly-Rozcestnik.zip">Ukoly-Rozcestnik.zip</a></p>
+
+            <p>Na FTP Tomcat.cloudu to pak může vypadat takto:</p>
+            <div>
+                <img src="img/ukol01-nasazeni.png"/>
+            </div>
+            
+            
+            
+            <h5>Pár tipů:</h5>
+
+            <ul>
+                <li class="odsazeniTop">Pozor! Mezi zdrojovým projektem (složkou)
+                    a výsledným webovým archívem .war je velký rozdíl.
+                    Do Tomcatu se nasazuje výsledný archív .war,
+                    do odevzdávárny na Google Drivu se nahrává
+                    zazipovaná složka celého projektu.</li>
+                <li class="odsazeniTop">Do Tomcatu se NIKDY nekopíruje rozbalená složka webu,
+                    pouze archív .war. Tomcat si tento archív sám rozbalí.</li>
+                <li class="odsazeniTop">Pokud se chcete zbavit nasazené webové aplikace z Tomcatu,
+                    smažte pouze archív .war ve složce TOMCAT/webapps.
+                    Nemažte rozbalenou složku webu.
+                    Tomcat sám pozná,
+                    že jste odebrali zdrojový archív .war a rozbalenou složku smaže sám.
+                    To slouží zároveň jako potvrzení, že byla webová aplikace úspěšně sesazena.</li>
+                <li class="odsazeniTop">Pro psaní doporučuji používat javový projekt
+                    se zabudovaným malým Tomcatem,
+                    který spustíte klasicky pomocí zelené šipky.
+                    Okno zabudovaného Tomcatu vám vypíše adresu pro prohlížeč.
+                    V tomto případě stačí pouze editovat zdrojové soubory webu
+                    a obnovovat stránku v prohlížeči.</li>
+            </ul>
+
+
+            <h4>
+                Odevzdání domácího úkolu
+            </h4>
+
+            <p>
+                Domácí úkol (celé složky s projekty, ne jen výsledné webové archívy!)
+                zabalte pomocí 7-Zipu pod jménem <code>Ukol01-Vase_Jmeno.7z</code>.
+                (Případně lze použít prostý zip, například na Macu).
+                Takto vytvořený archív nahrajte na
+                Google Drive
+                do složky <code>Ukol01</code>.
+            </p>
+
+            <p>
+                Vytvořte snímek obrazovky spuštěného programu
+                a pochlubte se s ním ve fotoalbu Ukol01 na
+                <a href="https://www.facebook.com/groups/2065013227074688/photos/?filter=albums">Facebooku</a>.
+            </p>
+
+            <p>
+                Pokud byste chtěli odevzdat revizi úkolu (např. po opravě),
+                zabalte ji a nahrajte ji na stejný Google Drive znovu,
+                jen tentokrát se jménem <code>Ukol01-Vase_Jmeno-verze2.7z</code>
+            </p>
+        </div>
+        <!-- #content -->
+    </div>
+    <!-- #page -->
+</body>
+</html>

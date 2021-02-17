@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="cs" lang="cs">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="Content-Language" content="cs"/>
+
+    <meta name="robots" content="index,follow"/>
+    <meta name="googlebot" content="index,follow,snippet,archive"/>
+
+    <link rel="stylesheet" type="text/css" media="screen" href="../../css/styles.css"/>
+    <link rel="stylesheet" type="text/css" media="screen" href="../../css/menu.css"/>
+    <script src="../../js/jquery.1.12.4.min.js"></script>
+    <title>Java | Czechitas</title>
+</head>
+
+<body>
+    <div id="page">
+        <div class="header">
+            <a href="https://www.czechitas.cz/"><img src="../../img/logo.png" alt="Logo Czechitas"/></a>
+        </div>
+        <!-- #header -->
+
+        <div id="title"></div>
+        <script>
+            jQuery("#title").load("title.html");
+        </script>
+        <!-- #title -->
+
+        <!-- #menu -->
+        <div id="menu-wrap"></div>
+        <script>
+            jQuery("#menu-wrap").load("menu.html");
+        </script>
+        <!-- #menu -->
+
+        <div class="content">
+            <span class="published-timestamp">Vloženo: 19. 3. 2018</span>
+
+            <h3>
+                Lekce 03 - Adresy a odkazy, více o ThymeLeaf
+            </h3>
+
+            <p>
+                Sepsal jsem článek o cestách a odkazech z pohledu různých programů.
+                Hlavní protagonisté jsou:
+            </p>
+            <ul>
+                <li>Webový prohlížeč</li>
+                <li>Webový server</li>
+                <li>Spring Boot</li>
+            </ul>
+
+            <p>
+                Nejde o vyčerpávající popis, chtěl jsem to ukázat na příkladech.
+            </p>
+
+            <p>Mrkněte se na to. Ideální by bylo napsat si za (nepovinný) úkol malou webovou aplikaci
+                a vyzkoušet si všechny příklady.
+            </p>
+
+            
+            <h2 class="odsazeniTop"><a href="#prohlizec-pri-odesilani-pozadavku-rozpoznava-tyto-casti-adresy" id="prohlizec-pri-odesilani-pozadavku-rozpoznava-tyto-casti-adresy">Prohlizec pri odesilani pozadavku rozpoznava tyto casti adresy:</a></h2>
+            <p>Priklady:</p>
+            <ol>
+                <li>
+    <pre><code>http://www.pokus.com/vtipy/zvireci/index.html
+^^^^                                                Protokol (http)
+       ^^^^^^^^^^^^^                                Domena, internetova adresa serveru (www.pokus.com)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^       Adresa stranky (/vtipy/zvireci/index.html)
+</code></pre>
+                </li>
+                <li>
+    <pre><code>https://pokus.com:8080/
+^^^^^                                               Protokol (https)
+        ^^^^^^^^^                                   Domena, internetova adresa serveru (pokus.com)
+                  ^^^^                              Cislo sitoveho portu na serveru (8080)
+                      ^                             Adresa stranky (/)
+</code></pre>
+                </li>
+                <li>
+    <pre><code>https://pokus.com/vtipy/index.html?jazyk=cs
+^^^^^                                               Protokol (https)
+        ^^^^^^^^^                                   Domena, internetova adresa serveru (pokus.com)
+                 ^^^^^^^^^^^^^^^^^                  Adresa stranky (/vtipy/index.html)
+                                   ^^^^^^^^         1 parametr (jazyk=cs)
+</code></pre>
+                </li>
+                <li>
+    <pre><code>https://pokus.com/index.html?jazyk=cs&amp;barvy=tmave
+^^^^^                                               Protokol (https)
+        ^^^^^^^^^                                   Domena, internetova adresa serveru (pokus.com)
+                 ^^^^^^^^^^^                        Adresa stranky (/vtipy/index.html)
+                             ^^^^^^^^^^^^^^^^^^^^   2 parametry (jazyk=cs, barvy=tmave)
+</code></pre>
+                </li>
+                <li>
+    <pre><code>http://localhost:8000/index.html
+^^^^                                                Protokol (http)
+       ^^^^^^^^^                                    Domena, internetova adresa serveru
+                 ^^^^                               Cislo sitoveho portu na serveru (8000)
+                     ^^^^^^^^^^^                    Adresa stranky
+</code></pre>
+                </li>
+            </ol>
+            <p>Poznamky:</p>
+            <ul>
+                <li>http je klasicky protokol. https je to stejne, jen sifrovane (proti odposlechu).</li>
+                <li>Pokud neni uvedeno cislo sitoveho portu, pak se predpoklada 80 pro http a 443 pro https.</li>
+                <li>pokus.com a www.pokus.com jsou zcela jine internetove adresy serveru.
+                    Obvykle jsou nasmerovany na stejny server, ale vubec tomu tak byt nemusi.</li>
+                <li>localhost znamena vzdycky tento pocitac (z hlediska pocitace tedy pozadavek sam na sebe).</li>
+            </ul>
+            <h2><a href="#webovy-server-pri-obdrzeni-pozadavku-rozpoznava-tyto-casti-adresy" id="webovy-server-pri-obdrzeni-pozadavku-rozpoznava-tyto-casti-adresy">Webovy server pri obdrzeni pozadavku rozpoznava tyto casti adresy:</a></h2>
+            <p>Je dulezite si uvedomit, ze webovy server vi, jake ma nasazene webove aplikace.
+                Z toho plyne, ze rozpoznava stejne casti adresy jako webovy prohlizec, jen navic jmeno webove aplikace.
+                Definujme, ze ma nasazene:</p>
+            <ul>
+                <li>ROOT.war            ... tedy aplikace nasazena na (prazdno)</li>
+                <li>vtipy.war           ... tedy aplikace nasazena na /vtipy</li>
+                <li>VideoBoss.war       ... tedy aplikace nasazena na /VideoBoss (pozor, rozlisuji se velka a mala pismena)</li>
+            </ul>
+            <ol>
+                <li>
+    <pre><code>https://pokus.com/index.html?jazyk=cs&amp;barvy=tmave
+^^^^^                                               Protokol (https)
+        ^^^^^^^^^                                   Domena, internetova adresa serveru (pokus.com)
+                                                    Webova aplikace (prazdno, tedy ROOT.war)
+                 ^^^^^^^^^^^                        Adresa stranky (/index.html)
+                             ^^^^^^^^^^^^^^^^^^^^   2 parametry (jazyk=cs, barvy=tmave)
+</code></pre>
+                </li>
+                <li>
+    <pre><code>http://www.pokus.com/vtipy/zvireci/index.html
+^^^^                                                Protokol (http)
+       ^^^^^^^^^^^^^                                Domena, internetova adresa serveru (www.pokus.com)
+                    ^^^^^^                          Webova aplikace (/vtipy, tedy vtipy.war)
+                          ^^^^^^^^^^^^^^^^^^^       Adresa stranky (/zvireci/index.html)
+</code></pre>
+                </li>
+                <li>
+    <pre><code>http://tomcat.cloud/VideoBoss/customers/all.html
+^^^^                                                Protokol (http)
+       ^^^^^^^^^^^^                                 Domena, internetova adresa serveru (www.pokus.com)
+                   ^^^^^^^^^^                       Webova aplikace (/VideoBoss, tedy VideoBoss.war)
+                             ^^^^^^^^^^^^^^^^^^^    Adresa stranky (/customers/all.html)
+</code></pre>
+                </li>
+                <li>
+    <pre><code>https://tomcat.cloud/Pexeso/vecernicek/index.html
+^^^^^                                               Protokol (https)
+        ^^^^^^^^^^^^                                Domena, internetova adresa serveru (www.pokus.com)
+                                                    Webova aplikace (prazdno, tedy ROOT.war).
+                                                        Ackoliv to vypada, ze by na serveru
+                                                        mohla byt webova aplikace Pexeso,
+                                                        vyse jsme definovali, ze webovy server
+                                                        ma nasazena jen 3 warka,
+                                                        takze nutne pujde do ROOT.war
+                                                        a bude tam hledat slozku Pexeso.
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^   Adresa stranky (/Pexeso/customers/all.html)
+</code></pre>
+                </li>
+            </ol>
+            <h2><a href="#cesty-z-pohledu-spring-bootu" id="cesty-z-pohledu-spring-bootu">Cesty z pohledu Spring Bootu</a></h2>
+            <p>Pro Spring Boot je dulezity @RequestMapping uvnitr Java tridy oznacene @Controller.
+                Dejme tomu, ze webova aplikace je nasazena na /ukol02,
+                tedy ze je distribuovana jako ukol02.war
+                a webovy server bezi na internetove adrese <code>pokus.com</code>.</p>
+            <ol>
+                <li>
+    <pre><code>Pozadavek na adresu:
+http://pokus.com/ukol02/index.html
+                       ^^^^^^^^^^^              Adresa stranky
+
+Spring Boot vyvola metodu oznacenou @RequestMapping(&quot;/index.html&quot;)
+</code></pre>
+                </li>
+                <li>
+    <pre><code>Pozadavek na adresu:
+http://pokus.com/ukol02/vyroky/index.html
+                       ^^^^^^^^^^^^^^^^^^       Adresa stranky
+
+Spring Boot vyvola metodu oznacenou @RequestMapping(&quot;/vyroky/index.html&quot;)
+</code></pre>
+                </li>
+                <li>
+    <pre><code>Pozadavek na adresu:
+http://pokus.com/ukol02/vyroky/
+                       ^^^^^^^^                 Adresa stranky
+
+Spring Boot vyvola metodu oznacenou @RequestMapping(&quot;/vyroky&quot;) nebo @RequestMapping(&quot;/vyroky/&quot;)
+</code></pre>
+                </li>
+                <li>
+    <pre><code>Pozadavek na adresu:
+http://pokus.com/ukol02/vyroky/?id=100
+                       ^^^^^^^^                 Adresa stranky
+                                ^^^^^^          Parametr
+
+Spring Boot vyvola metodu oznacenou @RequestMapping(&quot;/vyroky&quot;) nebo @RequestMapping(&quot;/vyroky/&quot;)
+</code></pre>
+                </li>
+            </ol>
+            <h2><a href="#ktere-soubory-bude-spring-boot-odesilat" id="ktere-soubory-bude-spring-boot-odesilat">Ktere soubory bude Spring Boot odesilat</a></h2>
+            <p>Dejme tomu, ze webova aplikace je nasazena na /ukol02,
+                tedy ze je distribuovana jako ukol02.war a webovy server bezi na internetove adrese pokus.com.
+                Mejme ve webove aplikaci tyto soubory:</p>
+            <pre><code>PROJEKT
+    src
+        main
+            resources
+                static
+                    index.html
+                    css
+                        styly.css
+                    kontakt
+                        o-nas.html
+                    test
+                        testik.html
+                templates
+                    meme-template.html
+                    kontakt
+                        napiste-nam-template.html
+                    vsichni-uzivatele
+                        login-template.html
+                    admin
+                        pokus.html
+</code></pre>
+            <p>Dale mejme ve webove aplikaci javovou tridu oznacenou @Controller, ktera ma nasledujici @RequestMapping:</p>
+            <pre><code>@RequestMapping(&quot;/meme.html&quot;)
+metoda vraci ModelAndView(&quot;meme-template&quot;)
+
+@RequestMapping(&quot;/test/testik.html&quot;)
+metoda vraci ModelAndView(&quot;meme-template&quot;)
+
+@RequestMapping(&quot;/kontakt/napiste-nam.html&quot;)
+metoda vraci ModelAndView(&quot;kontakt/napiste-nam-template&quot;)
+
+@RequestMapping(&quot;/admin/prihlaseni.html&quot;)
+metoda vraci ModelAndView(&quot;vsichni-uzivatele/login-template&quot;)
+
+@RequestMapping(&quot;/admin/pokus.html&quot;)
+metoda vraci ModelAndView()         // Bez udani jmena sablony!
+</code></pre>
+            <ol>
+                <li>
+                    <p>Prohlizec posle pozadavek na:<br/>
+                        http://pokus.com/ukol02/index.html</p>
+                    <p>Spring Boot vrati staticky soubor:<br/>
+                        PROJEKT/src/main/resources/static/index.html</p>
+                </li>
+                <li>
+                    <p>Prohlizec posle pozadavek na:<br/>
+                        http://pokus.com/ukol02/css/styly.css</p>
+                    <p>Spring Boot vrati staticky soubor:<br/>
+                        PROJEKT/src/main/resources/static/css/styly.css</p>
+                </li>
+                <li>
+                    <p>Prohlizec posle pozadavek na:<br/>
+                        http://pokus.com/ukol02/kontakt/o-nas.html</p>
+                    <p>Spring Boot vrati staticky soubor:<br/>
+                        PROJEKT/src/main/resources/static/kontakt/o-nas.html</p>
+                </li>
+                <li>
+                    <p>Prohlizec posle pozadavek na:<br/>
+                        http://pokus.com/ukol02/meme.html</p>
+                    <p>Existuje @RequestMapping(&quot;/meme.html&quot;),<br/>
+                        metoda vraci ModelAndView(&quot;meme-template&quot;)</p>
+                    <p>Spring Boot provede sablonu:<br/>
+                        PROJEKT/src/main/resources/templates/meme-template.html</p>
+                </li>
+                <li>
+                    <p>Prohlizec posle pozadavek na:<br/>
+                        http://pokus.com/ukol02/test/testik.html</p>
+                    <p>Existuje @RequestMapping(&quot;/test/testik.html&quot;),<br/>
+                        metoda vraci ModelAndView(&quot;meme-template&quot;)</p>
+                    <p>Spring Boot provede sablonu:<br/>
+                        PROJEKT/src/main/resources/templates/meme-template.html</p>
+                </li>
+                <li>
+                    <p>Prohlizec posle pozadavek na:<br/>
+                        http://pokus.com/ukol02/kontakt/napiste-nam.html</p>
+                    <p>Existuje @RequestMapping(&quot;/kontakt/napiste-nam.html&quot;),<br/>
+                        metoda vraci ModelAndView(&quot;kontakt/napiste-nam-template&quot;)</p>
+                    <p>Spring Boot provede sablonu:<br/>
+                        PROJEKT/src/main/resources/templates/kontakt/napiste-nam-template.html</p>
+                </li>
+                <li>
+                    <p>Prohlizec posle pozadavek na:<br/>
+                        http://pokus.com/ukol02/admin/prihlaseni.html</p>
+                    <p>Existuje @RequestMapping(&quot;/admin/prihlaseni.html&quot;)<br/>
+                        metoda vraci ModelAndView(&quot;vsichni-uzivatele/login-template&quot;)</p>
+                    <p>Spring Boot provede sablonu:<br/>
+                        PROJEKT/src/main/resources/templates/vsichni-uzivatele/login-template.html</p>
+                </li>
+                <li>
+                    <p>Prohlizec posle pozadavek na:<br/>
+                        http://pokus.com/ukol02/admin/pokus.html</p>
+                    <p>Existuje @RequestMapping(&quot;/admin/pokus.html&quot;)<br/>
+                        metoda vraci ModelAndView()         // Bez udani jmena sablony!</p>
+                    <p>Spring Boot provede sablonu:
+                        PROJEKT/src/main/resources/templates/admin/pokus.html</p>
+                </li>
+                <li>
+                    <p>Prohlizec posle pozadavek na:
+                        http://pokus.com/ukol02/cervena-karkulka.html</p>
+                    <p>Neexistuje ani @RequestMapping(&quot;/cervena-karkulka.html&quot;)
+                        ani staticky soubor PROJEKT/src/main/resources/static/cervena-karkulka.html</p>
+                    <p>Spring Boot odesle chybovou stranku</p>
+                </li>
+            </ol>
+            <h2><a href="#relativni-vs-absolutni-cesta-ve-webove-strance-uvnitr-html-souboru" id="relativni-vs-absolutni-cesta-ve-webove-strance-uvnitr-html-souboru">Relativni vs absolutni cesta ve webove strance (uvnitr html souboru)</a></h2>
+            <p>Odkazy vyhodnocuje webovy prohlizec</p>
+            <p>Priklady:</p>
+            <ol>
+                <li>
+                    <p>Jsme na strance:<br/>
+                        http://sladkost.tomcat.cloud/ukol02/vyrok/index.html</p>
+                    <p>V ni je:<br/>
+                        <code>&lt;a href=&quot;pokus.html&quot;&gt;Odkaz&lt;/a&gt;</code></p>
+                    <p>Po klinuti na odkaz pujde prohlizec na:<br/>
+                        http://sladkost.tomcat.cloud/ukol02/vyrok/pokus.html</p>
+                </li>
+                <li>
+                    <p>Jsme na strance:<br/>
+                        http://sladkost.tomcat.cloud/ukol02/vyrok/index.html</p>
+                    <p>V ni je:<br/>
+                        <code>&lt;a href=&quot;../o-me/&quot;&gt;Odkaz&lt;/a&gt;</code></p>
+                    <p>Po klinuti na odkaz pujde prohlizec na:<br/>
+                        http://sladkost.tomcat.cloud/ukol02/o-me/</p>
+                </li>
+                <li>
+                    <p>Jsme na strance:<br/>
+                        http://sladkost.tomcat.cloud/ukol02/vyrok/index.html</p>
+                    <p>V ni je:<br/>
+                        <code>&lt;a href=&quot;/pokus.html&quot;&gt;Odkaz&lt;/a&gt;</code></p>
+                    <p>Po klinuti na odkaz pujde prohlizec na:<br/>
+                        http://sladkost.tomcat.cloud/pokus.html</p>
+                </li>
+                <li>
+                    <p>Jsme na strance:<br/>
+                        http://sladkost.tomcat.cloud/ukol02/vyrok/index.html</p>
+                    <p>V ni je:<br/>
+                        <code>&lt;a href=&quot;//zkouska/pokus.html&quot;&gt;Odkaz&lt;/a&gt;</code></p>
+                    <p>Po klinuti na odkaz pujde prohlizec na:<br/>
+                        http://zkouska/pokus.html</p>
+                </li>
+                <li>
+                    <p>Jsme na strance:<br/>
+                        https://sladkost.tomcat.cloud/ukol02/index.html</p>
+                    <p>V ni je:<br/>
+                        <code>&lt;a href=&quot;//zkouska/pokus.html&quot;&gt;Odkaz&lt;/a&gt;</code></p>
+                    <p>Po klinuti na odkaz pujde prohlizec na:<br/>
+                        https://zkouska/pokus.html</p>
+                </li>
+            </ol>
+
+
+
+
+
+
+
+
+
+
+            <h4 id="soubory" class="odsazeniTop">Soubory</h4>
+
+            <p class="odsazeniTop">
+                Archív najdete zde: <a
+                    href="../../data/2018-jaro/java2/WebLekce03.zip">WebLekce03.zip</a>
+            </p>
+
+
+            <h4>Videozáznam</h4>
+
+            <p>
+                Na Youtube je záznam z lekce:
+            </p>
+
+            <iframe width="560" height="315"
+                    src="https://www.youtube.com/embed/2exrkEkaxIU"
+                    frameborder="0"
+                    allowfullscreen></iframe>
+
+            <p class="odsazeniTop">
+                Celý playlist na Youtube najdete zde:
+                <a href="https://www.youtube.com/playlist?list=PLTCx5oiCrIJ6mcuJ1VaY8s0mzFsaMUzp-">Java 2 - Brno (jaro 2018) - Youtube playlist</a>.
+            </p>
+
+        </div>
+        <!-- #content -->
+    </div>
+    <!-- #page -->
+</body>
+</html>

@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="cs" lang="cs">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="Content-Language" content="cs"/>
+
+    <meta name="robots" content="index,follow"/>
+    <meta name="googlebot" content="index,follow,snippet,archive"/>
+
+    <link rel="stylesheet" type="text/css" media="screen" href="../../css/styles.css"/>
+    <link rel="stylesheet" type="text/css" media="screen" href="../../css/menu.css"/>
+    <script src="../../js/jquery.1.12.4.min.js"></script>
+    <title>Java 2 | Czechitas</title>
+</head>
+
+<body>
+    <div id="page">
+        <div class="header">
+            <a href="https://www.czechitas.cz/"><img src="../../img/logo.png" alt="Logo Czechitas"/></a>
+        </div>
+        <!-- #header -->
+
+        <div id="title"></div>
+        <script>
+            jQuery("#title").load("title.html");
+        </script>
+        <!-- #title -->
+
+        <!-- #menu -->
+        <div id="menu-wrap"></div>
+        <script>
+            jQuery("#menu-wrap").load("menu.html");
+        </script>
+        <!-- #menu -->
+
+        <div class="content">
+            <span class="published-timestamp">Vloženo: 12. 5. 2018</span>
+
+            <h3>
+                Úkol 11 - Pexeso s REST API
+            </h3>
+
+
+
+            <div id="_html" class="markdown-body">
+                <p>Ukolem je predelat pexeso tak, aby negenerovalo webove stranky z sablon ThymeLeafu,
+                    ale aby vystavovalo REST API a to bylo konzumovano staticky web s JavaScriptem. </p>
+                <h2 id="1-rozbehnuti-a-prozkoumani-architektury"><a class="anchor" name="1-rozbehnuti-a-prozkoumani-architektury" href="#1-rozbehnuti-a-prozkoumani-architektury"><span class="octicon octicon-link"></span></a>1. Rozbehnuti a prozkoumani architektury</h2>
+                <p>Nejprve prozkoumejte nasazenou aplikaci pexesa na
+                    <a href="https://margot.tomcat.cloud/ukol11/">https://margot.tomcat.cloud/ukol11/</a>.</p>
+                <p>Obzlvast se podivejte, jak tam funguje JavaScript
+                    a jake dela pozadavky pomoci <code>XMLHttpRequest</code>.
+                    Zkuste si vyvolat ekvivalentni pozadavek samy.
+                    Bud pomoci prohlizece nebo
+                    pomoci online nastroje <em>hurl.it</em>.</p>
+                <h2 id="2-predelani-komponenty-hlavnicontroller"><a class="anchor" name="2-predelani-komponenty-hlavnicontroller" href="#2-predelani-komponenty-hlavnicontroller"><span class="octicon octicon-link"></span></a>2. Predelani komponenty HlavniController</h2>
+                <p>Materialy pro pexeso najdete zde:
+                    <a href="../../data/2018-jaro/java2/Ukol11-pexeso-REST_API.zip">Ukol11-pexeso-REST_API.zip</a></p>
+                <p>Srovnejte, jak se lisi projekty <code>10-Pexeso-ThymeLeaf</code> a <code>20-Pexeso-REST_API-zadani</code>.</p>
+                <p>Zamerme se na <code>HlavniController</code>. Jeho puvodni podoba z minuleho ukolu byla asi takovato:</p>
+                <pre><code>@Controller
+public class HlavniController {
+
+    @RequestMapping(value = "/")
+    public String zobrazIndex();
+
+    @RequestMapping(value = "/stul.html", method = RequestMethod.GET)
+    public ModelAndView zobrazStul(@RequestParam("id") Long id);
+
+    @RequestMapping(value = "/stul.html", method = RequestMethod.POST)
+    public String zpracujTah(@RequestParam("id") Long idHerniPlochy,
+                             @RequestParam Map&lt;String, String&gt; allParams);
+
+}
+</code></pre><p>Nova podoba by mohla byt takovato:</p>
+                <pre><code>@Controller
+public class HlavniController {
+
+    @RequestMapping(value = "/")
+    public String zobrazIndex();
+
+    @RequestMapping(value = "/api/stul", method = RequestMethod.GET)
+    public @ResponseBody HerniPlocha zobrazStul(@RequestParam("id") Long id);
+
+    @RequestMapping(value = "/api/stul", method = RequestMethod.POST)
+    public @ResponseBody HerniPlocha zpracujTah(@RequestParam("id") Long idHerniPlochy,
+                                                @RequestBody Tah vybranaKarta);
+}
+</code></pre><p>Poznamka: Moje metoda <code>zpracujTah(...)</code> prijima <code>Tah</code>,
+                    coz je objekt nesouci pozici vybrane karty:</p>
+                <pre><code>public class Tah {
+
+    private int poziceKarty;
+
+    public int getPoziceKarty() {
+        return poziceKarty;
+    }
+
+    public void setPoziceKarty(int newValue) {
+        poziceKarty = newValue;
+    }
+}
+</code></pre><p>Naprogramujte tedy metody v <code>HlavniController</code> tak, aby JavaScript fungoval.</p>
+                <p>PexesoService ani zbytek aplikace se nemusi menit. Menime jen webovou vrstvu.</p>
+                <h2 id="3-provedeni-stejne-zmeny-ve-vasi-verzi-pexesa"><a class="anchor" name="3-provedeni-stejne-zmeny-ve-vasi-verzi-pexesa" href="#3-provedeni-stejne-zmeny-ve-vasi-verzi-pexesa"><span class="octicon octicon-link"></span></a>3. Provedeni stejne zmeny ve vasi verzi pexesa</h2>
+                <p>Vyjdete ze sveho reseni pexesa z ukolu 10
+                    a zkuste i predelat webovou stranku na pouziti JavaScriptu/AJAXu.</p>
+                <p>Pokud byste nemely svoji verzi pexesa, ale stejne si chtely vyzkouset tento podukol,
+                    muzete vyjit z <code>10-Pexeso-ThymeLeaf</code> a predelat si tento projekt.</p>
+                <p>Poznamka: V moji minule verzi pexesa byla zabudovana nesikovnost:
+                    Na server se <strong>neposilala pozice karty</strong>, na kterou se kliknulo,
+                    ale <strong>cislo karty</strong> (= dvojnasobek cisla obrazku karty).
+                    Tim padem se hra dala dohrat snadno, kdyz se hrac podival do zdrojoveho textu HTML v prohlizeci,
+                    ktera cisla karet jsou na webove strance kde umistena.
+                    Tuto nesikovnost jsem opravil v puvodni verzi a v REST API je tato oprava uz zohlednena.  </p>
+                <h2 id="odevzd-n-dom-c-ho-kolu"><a class="anchor" name="odevzd-n-dom-c-ho-kolu" href="#odevzd-n-dom-c-ho-kolu"><span class="octicon octicon-link"></span></a>Odevzdání domácího úkolu</h2>
+                <p>Svoje pexeso vystavte na Tomcat.cloud na https://sladkost.tomcat.cloud/ukol11/.</p>
+                <p>Ukázkové pexeso můžete vidět na <a href="https://margot.tomcat.cloud/ukol11/">https://margot.tomcat.cloud/ukol11/</a>.</p>
+                <p>Projekty nejprve zbavte přeložených artefaktů,
+                    aby byly menší.
+                    To zařídíte ručním smazáním složky PROJEKT/target
+                    nebo pomocí v IntelliJ IDEA -&gt; Maven Projects -&gt; ukol -&gt; Lifecycle -&gt; <code>clean</code>.
+                    Poté projekty zabalte pomocí 7-Zipu pod jménem
+                    <code>Ukol11-Vase_Jmeno.7z</code>.
+                    Lze použít i jen prostý zip (například na Macu).</p>
+                <p>Takto vytvořený archív nahrajte na
+                    Google Drive
+                    do složky <code>Ukol11</code>.</p>
+                <p>Vytvořte archív .war v IntelliJ IDEA -&gt; Maven Projects -&gt; ukol -&gt; Lifecycle -&gt; <code>clean</code>
+                    a následně IntelliJ IDEA -&gt; Maven Projects -&gt; ukol -&gt; Lifecycle -&gt; <code>package</code>.
+                    Goal <code>package</code> vytvoří archív .war <code>PROJEKT/target/ukol11.war</code>.
+                    Nasaďte jej do vašeho lokálního Tomcatu (<code>JAVATRAINING/Tomcat/webapps</code>)
+                    a vyzkoušejte, že funguje (<code>https://localhost:8080/ukol11/</code>).</p>
+                <p>Po odladění nasaďte tento archív ještě přes FTP na server Tomcat.cloud
+                    (<code>https://sladkost.tomcat.cloud/ukol11/</code>).</p>
+                <p>Vytvořte snímek obrazovky spuštěného programu
+                    a pochlubte se s ním ve fotoalbu <strong>Úkol11</strong> na
+                    <a href="https://www.facebook.com/groups/2065013227074688/photos/?filter=albums">Facebooku</a>.</p>
+                <p>Pokud byste chtěli odevzdat revizi úkolu (např. po opravě),
+                    zabalte ji a nahrajte ji na stejný Google Drive znovu,
+                    jen tentokrát se jménem <code>Ukol11-Vase_Jmeno-verze2.7z</code></p>
+                <p>Termín odevzdání je do středy 16. 5. 2018 23:59.
+                    Pokud úkol nebo revizi odevzdáte později,
+                    prosím pošlete svému opravujícímu kouči/lektorovi email nebo zprávu přes FB.</p>
+            </div>
+
+
+        </div>
+        <!-- #content -->
+    </div>
+    <!-- #page -->
+</body>
+</html>

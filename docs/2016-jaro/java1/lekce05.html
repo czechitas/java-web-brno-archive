@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="cs" lang="cs">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="Content-Language" content="cs"/>
+
+    <meta name="robots" content="index,follow"/>
+    <meta name="googlebot" content="index,follow,snippet,archive"/>
+
+    <link rel="stylesheet" type="text/css" media="screen" href="../../css/styles.css"/>
+    <link rel="stylesheet" type="text/css" media="screen" href="../../css/menu.css"/>
+    <link href='https://fonts.googleapis.com/css?family=Comfortaa:400,300' rel='stylesheet' type='text/css'/>
+    <script src="../../js/jquery.1.12.4.min.js"></script>
+    <title>Java | Czechitas | Jaro 2016</title>
+</head>
+
+<body>
+    <div id="page">
+        <div class="header">
+            <a href="https://www.czechitas.cz/"><img src="img/logo.png" alt="Logo Czechitas"/></a>
+        </div>
+        <!-- #header -->
+
+        <div id="title">
+            <p class="home">Domovská stránka</p>
+
+            <h1>Intenzivní kurz Programuju: Java</h1>
+
+            <h2>10 týdenní kurz Javy pro začátečnice</h2>
+        </div>
+        <!-- #title -->
+
+        <!-- #menu -->
+        <div id="menu-placeholder"></div>
+        <script>
+            jQuery("#menu-placeholder").load("menu.html");
+        </script>
+        <!-- #menu -->
+
+        <div class="content">
+            <span class="published-timestamp">Vloženo: 5. 4. 2016</span>
+
+            <h3>
+                Lekce 05
+            </h3>
+
+            <p>
+                Nejprve jsme se naučili novou událost -
+                <code>mousePressed</code> a <code>mouseClicked</code> z <code>MouseListener</code>.
+            </p>
+            <p>
+                Potom jsme si naprogramovali program "5 barevných čtverečků".
+                Když se na některý barevný čtvereček klikne,
+                obarví se středový JTextField na zvolenou barvu.
+                Různě jsme s tím pokusovali a zkoušeli i vypsat složky RGB dané barvy.
+            </p>
+
+            <img src="img/lekce05/barevne-ctverecky.png" alt="Screenshot Barevná tlačítka"
+                 width="590" height="295"
+                 class="screenshot"/>
+
+            <h4>
+                Metody
+            </h4>
+
+            <p>
+                Vzhledem k tomu, že všech 5 barevných čtverečků má podobné chování,
+                je poměrně pracné psát reakci na kliknutí na každý čtvereček samostatně.
+                <br/>
+                Ale přesně od toho tu jsou <b>metody</b>!
+                Metody nám umožní extrahovat opakující se příkazy
+                na jedno místo a pak je prostě odevšad zavolat.
+            </p>
+            <p>
+                Takhle by vypadalo pětinásobné opakování příkazů:
+            </p>
+<pre class="java-source">
+    private void priStiskuBarvy1(MouseEvent e) {
+        barva = btnBarva1.getBackground();
+        txtRGB.setBackground(barva);
+
+        Integer cervena = barva.getRed();
+        Integer zelena = barva.getGreen();
+        Integer modra = barva.getBlue();
+        String text = "Slozky barvy: " + cervena.toString() + ", "
+                + zelena.toString() + ", " + modra.toString();
+        txtRGB.setText(text);
+    }
+
+    private void priStiskuBarvy2(MouseEvent e) {
+        barva = btnBarva2.getBackground();
+        txtRGB.setBackground(barva);
+
+        Integer cervena = barva.getRed();
+        Integer zelena = barva.getGreen();
+        Integer modra = barva.getBlue();
+        String text = "Slozky barvy: " + cervena.toString() + ", "
+                + zelena.toString() + ", " + modra.toString();
+        txtRGB.setText(text);
+    }
+
+    private void priStiskuBarvy3(MouseEvent e) {
+        barva = btnBarva3.getBackground();
+        txtRGB.setBackground(barva);
+
+        Integer cervena = barva.getRed();
+        Integer zelena = barva.getGreen();
+        Integer modra = barva.getBlue();
+        String text = "Slozky barvy: " + cervena.toString() + ", "
+                + zelena.toString() + ", " + modra.toString();
+        txtRGB.setText(text);
+    }
+
+    private void priStiskuBarvy4(MouseEvent e) {
+        barva = btnBarva4.getBackground();
+        txtRGB.setBackground(barva);
+
+        Integer cervena = barva.getRed();
+        Integer zelena = barva.getGreen();
+        Integer modra = barva.getBlue();
+        String text = "Slozky barvy: " + cervena.toString() + ", "
+                + zelena.toString() + ", " + modra.toString();
+        txtRGB.setText(text);
+    }
+
+    private void priStiskuBarvy5(MouseEvent e) {
+        barva = btnBarva5.getBackground();
+        txtRGB.setBackground(barva);
+
+        Integer cervena = barva.getRed();
+        Integer zelena = barva.getGreen();
+        Integer modra = barva.getBlue();
+        String text = "Slozky barvy: " + cervena.toString() + ", "
+                + zelena.toString() + ", " + modra.toString();
+        txtRGB.setText(text);
+    }
+</pre>
+            <p>
+                Ale lze to zjednodušit takto:
+            </p>
+<pre class="java-source">
+    private void priStiskuBarvy1(MouseEvent e) {
+        zobrazSlozkyBarvy(btnBarva1);
+    }
+
+    private void priStiskuBarvy2(MouseEvent e) {
+        zobrazSlozkyBarvy(btnBarva2);
+    }
+
+    private void priStiskuBarvy3(MouseEvent e) {
+        zobrazSlozkyBarvy(btnBarva3);
+    }
+
+    private void priStiskuBarvy4(MouseEvent e) {
+        zobrazSlozkyBarvy(btnBarva4);
+    }
+
+    private void priStiskuBarvy5(MouseEvent e) {
+        zobrazSlozkyBarvy(btnBarva5);
+    }
+
+    private void zobrazSlozkyBarvy(JLabel tlacitko) {
+        barva = tlacitko.getBackground();
+        txtRGB.setBackground(barva);
+
+        Integer cervena = barva.getRed();
+        Integer zelena = barva.getGreen();
+        Integer modra = barva.getBlue();
+        String text = "Slozky barvy: " + cervena.toString() + ", "
+                + zelena.toString() + ", " + modra.toString();
+        txtRGB.setText(text);
+    }
+</pre>
+            <p>
+                Nakonec jsem předvedl, jak daný program jen mírně modifikovat,
+                abychom dostali program na vymalovávání mandal.
+            </p>
+
+            <img src="img/lekce05/mandaly.png" alt="Screenshot Mandaly"
+                 width="715" height="675"
+                 class="screenshot"/>
+
+            <p>
+                Mandaly jsem ukazoval ve spěchu, proto je dokončíme přístě.
+            </p>
+
+            <p>
+                Pozn: Vyplnění obrázku mandaly je poněkud složitější problém,
+                který ale v Javě není předprogramován.
+                Proto jsem dodal následující metody,
+                které je možné vložit do vašeho programu a metodu <code>vyplnObrazekVLabelu(  )</code>
+                zavolat s předáním vhodných hodnot.
+            </p>
+<pre class="java-source">
+    public void <b>vyplnObrazekVLabelu</b>(Integer x, Integer y, Color barvaVyplne, JLabel label) {
+        if (barvaVyplne == null) {
+            barvaVyplne = new Color(255, 255, 0);
+        }
+
+        BufferedImage obrazek;
+        ImageIcon icon = (ImageIcon) label.getIcon();
+        Image puvodniImage = icon.getImage();
+        if (puvodniImage instanceof BufferedImage) {
+            obrazek = (BufferedImage) puvodniImage;
+        } else if (puvodniImage instanceof ToolkitImage) {
+            obrazek = ((ToolkitImage) puvodniImage).getBufferedImage();
+        } else {
+            obrazek = new BufferedImage(puvodniImage.getWidth(null),
+                    puvodniImage.getHeight(null),
+                    BufferedImage.TYPE_3BYTE_BGR);
+            obrazek.getGraphics().drawImage(puvodniImage, 0, 0, null);
+        }
+
+        if (x &lt; 0 || x &gt;= obrazek.getWidth() || y &lt; 0 || y &gt;= obrazek.getHeight()) {
+            return;
+        }
+
+        WritableRaster pixely = obrazek.getRaster();
+        int[] novyPixel = new int[] {barvaVyplne.getRed(), barvaVyplne.getGreen(),
+                barvaVyplne.getBlue(), barvaVyplne.getAlpha()};
+        int[] staryPixel = new int[] {255, 255, 255, 255};
+        staryPixel = pixely.getPixel(x, y, staryPixel);
+
+        // Pokud uz je pocatecni pixel obarven na cilovou barvu, nic nemen
+        if (isEqualRgb(novyPixel, staryPixel)) {
+            return;
+        }
+
+        // Zamez prebarveni cerne cary
+        int[] cernyPixel = new int[] {0, 0, 0, staryPixel[3]};
+        if (isEqualRgb(cernyPixel, staryPixel)) {
+            return;
+        }
+
+        floodLoop(pixely, x, y, novyPixel, staryPixel);
+
+        ImageIcon obrazekJakoIkonka = new ImageIcon(obrazek);
+        label.setIcon(obrazekJakoIkonka);
+    }
+
+    // Recursively fills surrounding pixels of the old color
+    private void floodLoop(WritableRaster raster, int x, int y, int[] newColor, int[] originalColor) {
+        Rectangle bounds = raster.getBounds();
+        int[] currentColor = new int[] {255, 255, 255, 255};
+
+        Deque&lt;Point&gt; stack = new ArrayDeque&lt;&gt;();
+        stack.push(new Point(x, y));
+        while (stack.size() &gt; 0) {
+            Point point = stack.pop();
+            x = point.x;
+            y = point.y;
+
+            // finds the left side, filling along the way
+            int fillL = x;
+            do {
+                raster.setPixel(fillL, y, newColor);
+                fillL--;
+            } while (fillL &gt;= 0 && isEqualRgb(
+                    raster.getPixel(fillL, y, currentColor), originalColor));
+            fillL++;
+
+            // find the right right side, filling along the way
+            int fillR = x;
+            do {
+                raster.setPixel(fillR, y, newColor);
+                fillR++;
+            }
+            while (fillR &lt; bounds.width - 1 && isEqualRgb(
+                    raster.getPixel(fillR, y, currentColor), originalColor));
+            fillR--;
+
+            // checks if applicable up or down
+            for (int i = fillL; i &lt;= fillR; i++) {
+                if (y &gt; 0 && isEqualRgb(raster.getPixel(i, y - 1, currentColor), originalColor)) {
+                    stack.add(new Point(i, y - 1));
+                }
+                if (y &lt; bounds.height - 1 && isEqualRgb(
+                        raster.getPixel(i, y + 1, currentColor), originalColor)) {
+                    stack.add(new Point(i, y + 1));
+                }
+            }
+        }
+    }
+
+    // Returns true if RGB arrays are equivalent, false otherwise
+    private boolean isEqualRgb(int[] color1, int[] color2) {
+        // Could use Arrays.equals(int[], int[]), but this is probably a little faster...
+        return color1[0] == color2[0] && color1[1] == color2[1]
+                && color1[2] == color2[2] && color1[3] == color2[3];
+    }
+</pre>
+
+            <h4>Materiály z lekce</h4>
+            <p>
+                Materiály jsou ke stažení zde: <a
+                    href="../../data/2016-jaro/java1/lekce05.7z">lekce05.7z</a>
+                <br/>
+                Archív si stáhněte, například na plochu. Celý jej rozbalte přímo do <code>C:\</code>
+                <br/>
+                Archív totiž už obsahuje složku
+                <code>Java-Training</code> a materiály se tím pádem vloží na to správné místo do
+                <code>C:\Java-Training\Projects\Lekce05</code>.
+            </p>
+        </div>
+        <!-- #content -->
+    </div>
+    <!-- #page -->
+</body>
+</html>

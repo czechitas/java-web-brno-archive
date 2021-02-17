@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="cs" lang="cs">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="Content-Language" content="cs"/>
+
+    <meta name="robots" content="index,follow"/>
+    <meta name="googlebot" content="index,follow,snippet,archive"/>
+
+    <link rel="stylesheet" type="text/css" media="screen" href="../../css/styles.css"/>
+    <link rel="stylesheet" type="text/css" media="screen" href="../../css/menu.css"/>
+    <script src="../../js/jquery.1.12.4.min.js"></script>
+    <title>Java 1 | Czechitas | Podzim 2016</title>
+</head>
+
+<body>
+    <div id="page">
+        <div class="header">
+            <a href="https://www.czechitas.cz/"><img src="../../img/logo.png" alt="Logo Czechitas"/></a>
+        </div>
+        <!-- #header -->
+
+        <div id="title"></div>
+        <script>
+            jQuery("#title").load("title.html");
+        </script>
+        <!-- #title -->
+
+        <!-- #menu -->
+        <div id="menu-wrap"></div>
+        <script>
+            jQuery("#menu-wrap").load("menu.html");
+        </script>
+        <!-- #menu -->
+
+        <div class="content">
+            <span class="published-timestamp">Vloženo: 22. 10. 2016</span>
+
+            <h3>Domácí úkol - Šibenice</h3>
+
+            <p>
+                Spusťte demo, zahrajte si jej a vytvořte totéž.</p>
+                <img src="img/lekce05/sibenice.png" alt="Screenshot domácího úkolu - Šibenice" height="236"
+                     width="484" class="screenshot"/>
+
+            <p>
+                Stahujte a zkoušejte odtud: <a href="../../data/2016-podzim/java1/Sibenice-demo.zip">Sibenice-demo.zip</a>.
+                <br/>
+                Demo lze buď přímo spustit na Windows nebo Macu,
+                nebo je možné složku otevřít jako projekt v IntelliJ IDEA.
+            </p>
+
+
+            <h4>Tohle by se vám mohlo hodit ;-)</h4>
+
+            <p>Program využívá událost keyPressed nastavenou na hlavním okně.
+                V designeru to zařídíte snadno -
+                kliknete pravým tlačítkem na titulek okna
+                (ideálně v místě horního okraje, vedle tlačítek pro zavření a minimalizaci)
+                a v nabídce Add Event Handler vyberete KeyListener a keyPressed.</p>
+
+            <p>Pokud se stane, že vám událost nebude fungovat, je pravděpodobné, že jste neklikly na okno (v jeho okraji), ale na contentPane či jinou komponentu v okně.</p>
+
+            <p>V obsluze události se vám může hodit možná tato podmínka: </p>
+
+            <div class="java-source">
+                <code>
+                    e.getKeyCode() == KeyEvent.VK_<i>KLAVESA</i>
+                </code>
+            </div>
+
+            <p>
+                Pokud budete mít s úkolem jakýkoliv problém, využjte naši
+                <a href="https://www.facebook.com/groups/1737519906516542/">facebookovou skupinu</a>,
+                kde vám rádi poradíme.<br/>
+                Raději se 10x zeptejte, než abyste to vzdaly!
+            </p>
+        </div>
+        <!-- #content -->
+    </div>
+    <!-- #page -->
+</body>
+</html>

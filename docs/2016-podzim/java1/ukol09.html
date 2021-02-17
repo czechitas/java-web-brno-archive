@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="cs" lang="cs">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="Content-Language" content="cs"/>
+
+    <meta name="robots" content="index,follow"/>
+    <meta name="googlebot" content="index,follow,snippet,archive"/>
+
+    <link rel="stylesheet" type="text/css" media="screen" href="../../css/styles.css"/>
+    <link rel="stylesheet" type="text/css" media="screen" href="../../css/menu.css"/>
+    <script src="../../js/jquery.1.12.4.min.js"></script>
+    <title>Java 1 | Czechitas | Podzim 2016</title>
+</head>
+
+<body>
+    <div id="page">
+        <div class="header">
+            <a href="https://www.czechitas.cz/"><img src="../../img/logo.png" alt="Logo Czechitas"/></a>
+        </div>
+        <!-- #header -->
+
+        <div id="title"></div>
+        <script>
+            jQuery("#title").load("title.html");
+        </script>
+        <!-- #title -->
+
+        <!-- #menu -->
+        <div id="menu-wrap"></div>
+        <script>
+            jQuery("#menu-wrap").load("menu.html");
+        </script>
+        <!-- #menu -->
+
+        <div class="content">
+            <span class="published-timestamp">Vloženo: 26. 11. 2016</span>
+
+            <h3>Domácí úkol - Pong</h3>
+            <p>
+                První počítačovou hrou na světě byl Pong firmy Atari (viz <a href="https://en.wikipedia.org/wiki/Pong">Wikipedia</a>).
+                Video můžete vidět třeba na <a href="https://www.youtube.com/watch?v=fiShX2pTz9A">Youtube</a>.
+            </p>
+            <p>
+                Úkolem je tuto hru naprogramovat v Javě.
+            </p>
+            <img src="img/ukol09/pong.png" alt="Screenshot domácího úkolu - Pong" height="475"
+                 class="screenshot"/>
+            <p>
+                Není to o moc složitější než minulý Nemo.
+                Podmínkou je mít program strukturovaný do metod a
+                použít univerzální metodu na detekci kolize dvou labelů
+                (viz <a href="lekce09.html">lekce 09</a>).
+                Obecně platí, že každá metoda by měla mít jednu zodpovědnost
+                a ta by měla být vyjádřena jejím jménem.
+                Inspiraci o struktuře a pojmenování metod můžete čerpat níže:
+            </p>
+            <div class="java-source">
+                <pre>
+    private void priTiknutiCasovace(ActionEvent e) {
+        pohybujLevymHracem();
+        pohybujPravymHracem();
+        pohybujMickem();
+        if (detekujKolizi(labLevyHrac, labMicek)) {
+            odrazMicekOdLevehoHrace();
+        }
+        if (detekujKolizi(labPravyHrac, labMicek)) {
+            odrazMicekOdPravehoHrace();
+        }
+        if (micekJeVlevoMimoHraciPlan()) {
+            pridejBodyPravemuHraci();
+        }
+        if (micekJeVpravoMimoHraciPlan()) {
+            pridejBodyLevemuHraci();
+        }
+    }
+
+    private boolean detekujKolizi(JLabel label1, JLabel label2) {
+        // Vase implementace detekce kolizi
+    }</pre>
+            </div>
+
+            <p>
+                Nemusíte samozřejmě použít přesně tyto metody. Jde pouze o doporučení.
+            </p>
+            <p>
+                Můžete použít tuto grafiku:
+            </p>
+            <table>
+                <tr>
+                    <td>
+                        Míček
+                    </td>
+                    <td>
+                        <img src="img/ukol09/micek.png" alt="Sprite míčku" height="42"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Levý hráč
+                    </td>
+                    <td>
+                        <img src="img/ukol09/levy-hrac.png" alt="Sprite levého hráče" height="128"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Pravý hráč
+                    </td>
+                    <td>
+                        <img src="img/ukol09/pravy-hrac.png" alt="Sprite pravého hráče" height="128"/>
+                    </td>
+                </tr>
+            </table>
+
+            <p>
+                Pokud budete mít s úkolem jakýkoliv problém, využjte naši
+                <a href="https://www.facebook.com/groups/1737519906516542/">facebookovou skupinu</a>,
+                kde vám rádi poradíme.
+            </p>
+            <p>
+                Hotový úkol zabalte 7-Zipem s heslem <strong>czechitas</strong>
+                včetně šifrování jmen souborů a zašlete ho Kamčovi (mně) a Hance emailem.
+            </p>
+        </div>
+    </div>
+    <!-- #page -->
+</body>
+</html>

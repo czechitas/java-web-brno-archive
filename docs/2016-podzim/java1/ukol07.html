@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="cs" lang="cs">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="Content-Language" content="cs"/>
+
+    <meta name="robots" content="index,follow"/>
+    <meta name="googlebot" content="index,follow,snippet,archive"/>
+
+    <link rel="stylesheet" type="text/css" media="screen" href="../../css/styles.css"/>
+    <link rel="stylesheet" type="text/css" media="screen" href="../../css/menu.css"/>
+    <script src="../../js/jquery.1.12.4.min.js"></script>
+    <title>Java 1 | Czechitas | Podzim 2016</title>
+</head>
+
+<body>
+    <div id="page">
+        <div class="header">
+            <a href="https://www.czechitas.cz/"><img src="../../img/logo.png" alt="Logo Czechitas"/></a>
+        </div>
+        <!-- #header -->
+
+        <div id="title"></div>
+        <script>
+            jQuery("#title").load("title.html");
+        </script>
+        <!-- #title -->
+
+        <!-- #menu -->
+        <div id="menu-wrap"></div>
+        <script>
+            jQuery("#menu-wrap").load("menu.html");
+        </script>
+        <!-- #menu -->
+
+        <div class="content">
+            <span class="published-timestamp">Vloženo: 5. 11. 2016</span>
+
+            <h3>Domácí úkol - Nemo 2</h3>
+            <p>V hodině jsme programovali Hledá se Nemo.
+                Pohyb rybičkou v okně. Ovšem herně orientovaný, s použitím JKeyboard.
+            </p>
+            <p>
+                Úkolem je rozšířit tuto aplikaci o žraloka, který se bude samočinně hýbat.
+                Způsob pohybu může být podobný jako v přiloženém demu
+                nebo třeba podobně jako kulička ve hře hrou Ping Pong,
+                kterou jsme také probírali v hodině.<br/>
+                (Ano, toto je v podstatě podobné zadání jako úkol 6, jen tentokrát je to rozšíření aplikace z hodiny).
+            </p>
+            <p>
+                Nyní ale něco nového: Úkolem je zapracovat do aplikace test,
+                zda se žralok nedotkl Nema.
+                Anglicky se to nazývá <strong>collision detection</strong>.
+                Pokud se tedy žralok dotkne Nema, rybička virtuálně umře.
+                V demu prostě zmizí a objeví se na výchozím místě (např. v prostředku obrazovky).
+                Jako bonus můžete například informovat uživatele, že přišel o 1 život.
+            </p>
+
+            <img src="img/lekce07/nemo2.png" alt="Screenshot domácího úkolu - Nemo2" height="475"
+                 class="screenshot"/>
+            <p>Demo stahujte a zkoušejte odtud:
+                <a href="../../data/2016-podzim/java1/Nemo2-Demo-heslo_czechitas.7z">Nemo2-Demo-heslo_czechitas.7z</a>
+            </p>
+
+            <p>
+                Detekování kolize dvou JLabelů není nic složitého.
+                Pozor ale, abyste se v tom nezamotaly.
+                Nejde o matematiku, procvičíte si tím analytické myšlení.
+                Zamyslete se, jak je nutné sestavit podmínky pro tyto tři diagramy:
+            </p>
+
+            <img src="img/lekce07/diagram1.svg" alt="Screenshot domácího úkolu - Nemo1" height="500"
+                 class="screenshot"/>
+            <img src="img/lekce07/diagram2.svg" alt="Screenshot domácího úkolu - Nemo1" height="500"
+                 class="screenshot"/>
+            <img src="img/lekce07/diagram3.svg" alt="Screenshot domácího úkolu - Nemo1" height="500"
+                 class="screenshot"/>
+
+            <p>
+                Tip: Doporučuji nadefinovat lokální proměnné pro každý bod na obrázku
+                a naplnit do nich správné hodnoty.
+                Pak už bude sestavení podmínky celkem snadné.
+            </p>
+            <div class="java-source">
+                <pre>
+    private void priTiknutiCasovace(ActionEvent e) {
+        Integer nemoX;
+        Integer nemoY;
+        Integer nemoSirka;
+        Integer nemoVyska;
+        Integer zralokX;
+        Integer zralokY;
+        Integer zralokSirka;
+        Integer zralokVyska;
+        // Naplnte do promennych spravne hodnoty
+
+        // ... Vas kod pro pohyb Nema a zraloka ...
+
+        Integer bodAX;
+        Integer bodAY;
+        Integer bodBX;
+        Integer bodBY;
+        Integer bodCX;
+        Integer bodCY;
+        Integer bodDX;
+        Integer bodDY;
+        // Naplnte do promennych spravne hodnoty
+
+        // A nyni uz jen spravne sestavit podminku,
+        // ktera plati prave tehdy kdyz
+        // se JLabely prekryvaly
+        if (<i>neco</i>X &lt; <i>neco</i>X &amp;&amp; <i>neco</i>Y &lt; <i>neco</i>Y
+            &amp;&amp; <i>neco</i>X &gt; <i>neco</i>X &amp;&amp; <i>neco</i>Y &gt; <i>neco</i>Y) {
+            // Nastala kolize
+        }
+    }
+
+}</pre>
+            </div>
+            <p>
+                Pokud budete mít s úkolem jakýkoliv problém, využjte naši
+                <a href="https://www.facebook.com/groups/1737519906516542/">facebookovou skupinu</a>,
+                kde vám rádi poradíme.
+            </p>
+            <p>
+                Hotový úkol zabalte 7-Zipem s heslem <strong>czechitas</strong>
+                včetně šifrování jmen souborů a zašlete ho Kamčovi (mně) a Hance emailem.
+            </p>
+        </div>
+    </div>
+    <!-- #page -->
+</body>
+</html>

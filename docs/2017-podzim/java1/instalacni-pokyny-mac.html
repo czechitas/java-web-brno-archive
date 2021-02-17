@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="cs" lang="cs">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="Content-Language" content="cs"/>
+
+    <meta name="robots" content="index,follow"/>
+    <meta name="googlebot" content="index,follow,snippet,archive"/>
+
+    <link rel="stylesheet" type="text/css" media="screen" href="../../css/styles.css"/>
+    <link rel="stylesheet" type="text/css" media="screen" href="../../css/menu.css"/>
+    <script src="../../js/jquery.1.12.4.min.js"></script>
+    <title>Java | Czechitas</title>
+</head>
+
+<body>
+    <div id="page">
+        <div class="header">
+            <a href="https://www.czechitas.cz/"><img src="../../img/logo.png" alt="Logo Czechitas"/></a>
+        </div>
+        <!-- #header -->
+
+        <div id="title"></div>
+        <script>
+            jQuery("#title").load("title.html");
+        </script>
+        <!-- #title -->
+
+        <!-- #menu -->
+        <div id="menu-wrap"></div>
+        <script>
+            jQuery("#menu-wrap").load("menu.html");
+        </script>
+        <!-- #menu -->
+
+        <!-- NOVÝ OBSAH AŽ ZA TOHLE -->
+
+
+        <div class="content">
+            <span class="published-timestamp">Vloženo: 30. 8. 2017</span>
+
+            <h3>
+                Instalační pokyny pro macOS
+            </h3>
+
+            <p>
+                Tyto pokyny jsou <strong>výhradně pro Mac</strong>.
+                Instalaci pro Windows lze najít najdete
+                <a href="instalacni-pokyny-windows.html">ZDE</a>.
+                Linux není podporován. Pokud máš Linux, prosím, ozvi se hlavnímu lektorovi (kamil.sevecek@czechitas.cz).
+            </p>
+
+            <p>
+                Na kurzu budete potřebovat Javu (JDK)
+                a programátorský editor IntelliJ IDEA (Community Edition).
+            </p>
+
+            <p>
+                Následujte tento postup:
+            </p>
+            <ol>
+                <li>
+                    Kompletní přednastavený archív si můžete stáhnout z tohoto odkazu:
+                    <a href="https://github.com/czechitas/java-install/releases/download/2017-podzim/community/mac/Java-Training.zip">Java-Training.zip</a>
+                    <br/>
+                    Soubor se začne stahovat. Průběh lze sledovat například
+                    v horním tlačítku Stahování (Downloads).
+                    <br/><br/>
+                    <img src="img/install-mac-2017/00_web.png" width="100%" height="100%" alt="Stažení Java-Training.zip"/><br/><br/>
+                </li>
+                <li>
+                    Až bude soubor stažený, automaticky se rozbalí.
+                    Podívejte se do složky <b>Stažené soubory (Downloads)</b>.
+                    Pokud byste ve složce Stažené soubory (Downloads) viděli
+                    pouze archív <code>Java-Training.zip</code>,
+                    dvojím kliknutím jej rozbalte.
+                    <br/><br/>
+                    <img src="img/install-mac-2017/01_downloads.png" alt="Screenshot uložení  Java-Training.7z"/><br/><br/>
+                </li>
+                <li>
+                    Přesuňte <strong>složku</strong> <code>Java-Training</code>
+                    do své domovské složky.
+                    Domovská složka je <code>/Users/<i>VAŠE_UŽIVATELSKÉ_JMÉNO</i></code>.
+                    Tedy například <code>/Users/student</code>.
+
+                    <br/><br/>
+                    <img src="img/install-mac-2017/02_unzip.png" width="100%" height="100%" alt="Složka Downloads"/><br/><br/>
+                </li>
+                <li>
+                    Ve složce <code>Java-Training</code> uvnitř svého domovského adresáře poklepáním spuťte
+                    instalační soubor <code>ideaIC-2016.3.7.dmg</code> a přetažením nainstalujte IntelliJ IDEA do složky
+                    Aplikace (Applications).
+
+                    <br/><br/>
+                    <img src="img/install-mac-2017/03_idea_install.png" width="100%" height="100%" alt ="Instalace IntelliJ IDEA"/>
+                    <br/><br/>
+                </li>
+            </ol>
+
+            <h4 id="konfigurace">Konfigurace IntelliJ IDEA</h4>
+
+            <ol>
+                <li>
+                    Ze složky Aplikace (Applications) poklepáním spusťte editor IntelliJ IDEA.
+
+                    <br/><br/>
+                    <img src="img/install-mac-2017/04_idea_open.png" width=" 100%" height="100%" alt="Spuštění IntelliJ IDEA"/><br/><br/>
+                </li>
+                <li>
+                    Potvrďte, že si tuto aplikaci skutečně přejete spustit.
+
+                    <br/><br/>
+                    <img src="img/install-mac-2017/05_idea_open.png" width="60%" height="60%" alt="Screenshot Instalace IntelliJ IDEA"/>
+                    <br/><br/>
+                </li>
+                <li>
+                    Všechna další okna a dialogy zavřete červeným tlačítkem v levém horním rohu.
+
+                    <br/><br/>
+                    <img src="img/install-mac-2017/06_idea_close_import.png" width="60%" height="60%" alt="Zavřete konfiguraci (1)"/>
+                    <br/><br/>
+                    <img src="img/install-mac-2017/07_idea_close_theme.png" width="80%" height="80%" alt="Zavřete konfiguraci (2)"/>
+                    <br/><br/>
+                    <img src="img/install-mac-2017/08_idea_close.png" width="80%" height="80%" alt="Zavřete konfiguraci IntelliJ idea"/>
+                    <br/><br/>
+                </li>
+                <li>
+                    Ve složce Aplikace (Applications) <strong>pravým tlačítkem</strong> klikněte na IntelliJ IDEA a vyberte
+                    Zobrazit obsah (Show Package Contents).
+
+                    <br/><br/>
+                    <img src="img/install-mac-2017/09_idea_folder_open.png" width="100%" height="100%" alt="Spuštění IntelliJ IDEA"/><br/><br/>
+                </li>
+                <li>
+                    Nyní se proklikejte do složky <code>Contents/bin</code>, poklepáním otevřete konfigurační soubor
+                    <code>idea.properties</code> a na konec přidejte následující dva řádky:
+                    <br/>
+                    <br/>
+                    <code>
+                    idea.config.path=~/Java-Training/IntelliJ-Community-Profile/config<br/>
+                    idea.plugins.path=~/Java-Training/IntelliJ-Community-Profile/config/plugins<br/>
+                    idea.system.path=~/Java-Training/IntelliJ-Community-Profile/system<br/>
+                    idea.log.path=~/Java-Training/IntelliJ-Community-Profile/system/log<br/>
+                    </code>
+                    <br/>
+                    <strong>Pozor!</strong> v závislosti na nastavení vašeho systému se soubor může otevřít v jiném textovém editoru.
+                    V případě, že se soubor nebude chtít otevřít v žádné aplikaci, vyberte TextEdit.
+
+                    <br/><br/>
+                    <img src="img/install-mac-2017/10_idea_community_config_change.png" width="100%" height="100%" alt="Spuštění IntelliJ IDEA"/><br/><br/>
+                </li>
+                <li>
+                    Uložte změny v konfiguračním souboru.
+
+                    <br/><br/>
+                    <img src="img/install-mac-2017/11_idea_community_config_save.png" width="100%" height="100%" alt="Spuštění IntelliJ IDEA"/><br/><br/>
+                </li>
+                <li>
+                    A to je vše.
+                </li>
+            </ol>
+
+            <h4>Ukázková aplikace</h4>
+
+            <p>
+                Zkuste si ještě pustit ukázkovou aplikaci, ať ověříte, že máte správně nainstalovanáno.
+            </p>
+
+            <ol>
+                <li>
+                    Ze složky Aplikace (Applications) poklepáním spusťte editor IntelliJ IDEA.
+                    <br/><br/>
+                    <img src="img/install-mac-2017/12_idea_open.png" width="80%" height="80%" alt="Spuštění IntelliJ IDEA"/><br/><br/>
+                </li>
+                <li>
+                    Zvolte Otevřít (Open)
+                    <br/><br/>
+                    <img src="img/install-mac-2017/13_idea_open_project.png" alt="Otevření ukázkového projektu"/><br/><br/>
+                </li>
+                <li>
+                    Ukázkovou aplikaci najdete v domovském adresáři ve složce <code>Java-Training/Projects/DemoApplication</code>.
+                    <br/>
+                    <strong>Pozor!</strong> v závislosti na nastavení vašeho systému může okno výběru složky vypadat jinak.
+                    <br/>
+                    Až najdete složku <code>DemoApplication</code>, potvrďte tlačítkem Open (Otevřít).
+                    <br/><br/>
+                    <img src="img/install-mac-2017/14_idea_open_project_2.png" width="100%" height="100%" alt="Určení cesty k ukazkovému projektu"/><br/><br/>
+                </li>
+                <li>
+                    Otevřením prvního projektu začne IntelliJ IDEA indexovat celou Javu,
+                    kterou máte nainstalovanou na počítači.
+                    Vydržte, dokud nezmizí ukazatel průběhu (může trvat i pár minut).
+                    Následně se obarví spouštecí šipka do zelena.
+                    <br/><br/>
+                    <img src="img/install-mac-2017/15_idea_wait_for_indexing.png" width="100%" height="100%" alt="Spuštění ukazkového projektu"/><br/><br/>
+                </li>
+                <li>
+                    Zvolte vpravo nahoře zelenou šipku Run
+                    <br/><br/>
+                    <img src="img/install-mac-2017/16_idea_run_project.png" width="100%" height="100%" alt="Spuštění ukazkového projektu"/><br/><br/>
+                </li>
+                <li>
+                    Měli byste vidět tuto malinkou aplikaci
+                    <br/><br/>
+                    <img src="img/install-mac-2017/17_first_application.png" alt="Screenshot ukazkového projektu"/><br/><br/>
+                </li>
+            </ol>
+
+            <p>
+                Pokud se někde něco nepovede, nezoufejte.
+                Na kurzu vám pomůžeme.
+            </p>
+        </div>
+        <!-- #content -->
+
+    </div>
+    <!-- #page -->
+</body>
+</html>

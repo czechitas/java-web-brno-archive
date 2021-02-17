@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="cs" lang="cs">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="Content-Language" content="cs"/>
+
+    <meta name="robots" content="index,follow"/>
+    <meta name="googlebot" content="index,follow,snippet,archive"/>
+
+    <link rel="stylesheet" type="text/css" media="screen" href="../../css/styles.css"/>
+    <link rel="stylesheet" type="text/css" media="screen" href="../../css/menu.css"/>
+    <link href='https://fonts.googleapis.com/css?family=Comfortaa:400,300' rel='stylesheet' type='text/css'/>
+    <script src="../../js/jquery.1.12.4.min.js"></script>
+    <title>Java | Czechitas | Jaro 2016</title>
+</head>
+
+<body>
+    <div id="page">
+        <div class="header">
+            <a href="https://www.czechitas.cz/"><img src="img/logo.png" alt="Logo Czechitas"/></a>
+        </div>
+        <!-- #header -->
+
+        <div id="title">
+            <p class="home">Domovská stránka</p>
+
+            <h1>Intenzivní kurz Programuju: Java</h1>
+
+            <h2>10 týdenní kurz Javy pro začátečnice</h2>
+        </div>
+        <!-- #title -->
+
+        <!-- #menu -->
+        <div id="menu-placeholder"></div>
+        <script>
+            jQuery("#menu-placeholder").load("menu.html");
+        </script>
+        <!-- #menu -->
+
+        <div class="content">
+            <span class="published-timestamp">Vloženo: 14. 7. 2016</span>
+            <h3>Úkoly na léto</h3>
+
+				<h4>Pexeso</h4>
+
+					<p> Jsme tu s úkolem na léto. Cílem je dokončit pexeso, které jsme začali na posledních dvou lekcích Javy.
+						Pexeso je trošku složitější aplikace, budeme ji tedy vyvíjet v několika krocích.</p>
+
+					<ol class="nadpisy">
+						<li><span>Oživení toho, co jsme už udělali</span>
+							<ol class="pismena">
+								<li><span>Naprogramovali jsme rozdání 8x8 kartiček na hlavní okno aplikace.</span></li>
+								<li><span>Naprogramovali jsme zamíchání kartiček.</span></li>
+								<li><span>Vytvořili jsme třídu <code>Karticka</code>, která sdružuje všechny údaje o jedné kartičce.</span></li>
+							</ol>
+						</li>
+						<li><span>Další postup</span>
+							<p>Nejprve uděláme menší úklid v kódu (odborně se mluví o refactoringu).</p>
+
+							<ol class="pismena">
+								<li><span>Funkcionalitu rozdání kartiček, kterou pravděpodobně máte jako obsluhu události <code>priOtevreniOkna(...)</code>,
+							  	     přesuneme do samostatné metody a z obsluhy ji zavoláme:</span>
+									<p><b><i>Původně:</i></b></p>
+<pre class="java-source">
+private void priOtevreniOkna(WindowEvent e) {
+    // prikazy
+}
+</pre>
+									<p><b><i>Změníme na:</i></b></p>
+<pre class="java-source">
+public void rozdejKarticky() {
+    // prikazy
+}
+
+private void priOtevreniOkna(WindowEvent e) {
+    rozdejKarticky();
+}
+</pre>
+								</li>
+								<li><span>Podobně funcionalitu zamíchání kartiček máte v programu pravděpodobně jako obsluhu události <code>priStiskuBtnZamichat(...)</code>. I tu separujeme do
+								samostatné metody a tuto metodu zavoláme z obsluhy události.</span>
+									<p><b><i>Původně:</i></b></p>
+<pre class="java-source">
+private void priStiskuBtnZamichat(ActionEvent e) {
+    // prikazy
+}
+</pre>
+									<p><b><i>Změníme na:</i></b></p>
+<pre class="java-source">
+public void zamichejKarticky() {
+    // puvodni prikazy
+}
+
+private void priStiskuBtnZamichat(ActionEvent e) {
+    zamichejKarticky();
+}
+</pre>
+								</li>
+								<li><span>Podíváme se na třídu Karticka. Trošku ji zjednodušíme.</span>
+                                    <p><b><i>Původně:</i></b></p>
+<pre class="java-source">
+public class Karticka {
+
+    Integer cisloKarty;     // 0..63
+    Integer cisloObrazku;   // 0..31
+    Integer poziceX;        // 0..7
+    Integer poziceY;        // 0..7
+    Boolean jeLicemNahoru;
+    ImageIcon obrazekLice;
+    ImageIcon obrazekRubu;
+    JButton btnKarticka;
+
+}
+</pre>
+                                    <p><b><i>Změníme na:</i></b></p>
+<pre class="java-source">
+public class Karticka {
+
+    Integer cisloObrazku; // 0..31
+    Boolean jeLicemNahoru;
+    ImageIcon obrazekLice;
+    ImageIcon obrazekRubu;
+    <a id="visualComponent">JButton vizualniKomponenta;</a>
+
+}
+</pre>
+								</li>
+							</ol>
+
+							<p>
+                                Základní pravidlo úklidu v kódu (refactoringu) je,
+                                že po změnách funguje program pořád stejně.
+                                Nepřidáváme ani neodebíráme žádnou funkcionalitu.
+							    Zkuste tedy aplikaci spustit a všechno musí pořád fungovat.
+                                Každá z vás má trochu jiný program,
+                                proto se mohou objevit drobné odchylky a z nich pramenící chyby.
+                                Je nutné je opravit, než budete pokračovat dál.
+                            </p>
+                            <p id="castecne">
+                                Pokud by to byl i přesto nepřekonatelný problém
+                                (a nešlo by to vyřešit naší radou například přes Facebook),
+                                můžete vyjít z mého projektu <code>30-Trida_Karticka</code>.
+                                <br/>
+                                Najdete ho zde:
+                                <a href="../../data/2016-jaro/java1/Ukol_na_leto-Pexeso-zadani-heslo_czechitas.7z">Ukol_na_leto-Pexeso-zadani-heslo_czechitas.7z</a>
+                            </p>
+						</li>
+						<li><span>Přidáme funkcionalitu při kliknutí na kartičku</span>
+                            <p>
+                                Budeme chtít, aby se kartička otočila, když se na ni klikne.
+                                Jednou rubem nahoru, podruhé lícem nahoru.
+								Pro začátek není důležité, že to není podle pravidel pexesa.
+                            </p>
+							<ol class="pismena">
+								<li>Připravme si tedy následující metody (a naprogramujme jejich těla):
+<pre class="java-source">
+public void otocKartickuLicemNahoru(Karticka karta) {
+    // prikazy
+}
+
+public void otocKartickuRubemNahoru(Karticka karta) {
+    // prikazy
+}
+</pre>
+								</li>
+								<li><span>Předchozí metody jsou ale zatím mrtvé. Nikdo je nevolá.<br/>
+                                    Potřebujeme, aby se tyto metody volaly při kliknutí na kartičku.
+                                    Součástí objektu typu <code>Karticka</code> je vizuální komponenta.
+                                    Je typu <code>JButton</code>. [Najděte si <a href="#visualComponent">její deklaraci ve tříde Kartička</a>]
+                                    Tato vizuální komponenta má událost "při kliknutí".
+                                    My této události zaregistrujeme obsluhu (<code>addActionListener(...)</code>).
+                                    Provedeme to na stejném místě, kde nastavujeme
+                                    ostatní vlastnosti vizuální komponenty
+								    v metodě <code>rozdejKarticky()</code>:
+                                </span>
+<pre class="java-source">
+public void rozdejKarticky() {
+    // ... prikazy ...
+
+    for (Integer y = 0; y < 8; y++) {
+        for (Integer x = 0; x < 8; x++) {
+            Karticka novaKarta = new Karticka();
+            // ... prikazy ...
+
+            <b>novaKarta.vizualniKomponenta.addActionListener(
+                    evt -> priKliknutiNaKarticku(novaKarta));</b>
+            // ... prikazy ...
+        }
+    }
+}
+
+private void priKliknutiNaKarticku(Karticka karta) {
+    if (karta.jeLicemNahoru) {
+        otocKartickuRubemNahoru(karta);
+    } else {
+        otocKartickuLicemNahoru(karta);
+    }
+}
+</pre>
+								</li>
+							</ol>	
+							<p>Nyní by se měla každá kartička při kliknutí otáčet rubem nebo lícem nahoru.</p>
+						</li>
+						<li><span>Úplné zmizení kartičky</span>
+							<p>Bude se nám hodit i metoda na úplné zmizení kartičky z okna aplikace.</p>
+<pre class="java-source">
+public void nechejZmizetKarticku(Karticka karta) {
+    karta.vizualniKomponenta.setVisible(false);
+    contentPane.remove(karta.vizualniKomponenta);
+}
+</pre>
+							<p>
+                                Je tam použita technika <code>contentPane.remove(...)</code>, což jsme neprobírali.
+                                Proto jsem zde uvedl celý výpis metody včetně těla.
+							    Metodu samozřejmě vyzkoušejte. Například tak, že změníte
+                                <code>priKliknutiNaKarticku(...)</code> tak, aby místo otáčení karty lícem nahoru,
+                                se karta úplně odstranila.
+                            </p>
+						</li>
+
+						<li><span>Hromadné metody</span>
+							<p>
+                                Dále budeme potřebovat hromadnou metodu,
+                                která otáčí všechny kartičky,
+                                a druhou metodu, která nechá všechny kartičky zmizet.
+                            </p>
+
+<pre class="java-source">
+public void otocVsechnyKartickyRubemNahoru() {
+    // prikazy
+}
+
+public void nechejZmizetVsechnyKarticky() {
+    // prikazy
+}
+</pre>
+							<p>
+                                Po naprogramování je opět vyzkoušejte.
+                                Například zavoláním z metody <code>priStiskuBtnZamichat(...)</code>.
+                            </p>
+						</li>
+						<li><span>Test na zbývající kartičky</span>
+							<p>Budeme potřebovat metodu, která vyhodnotí, zda je ještě vidět alespoň jedna kartička.</p>
+<pre class="java-source">
+public Boolean zbyvajiNejakeKarticky() {
+    // prikazy
+}
+</pre>
+							<p>
+                                Metoda vrací <code>true</code>, pokud je alespoň jedna kartička vidět.
+                                Jinak řečeno, <code>vizualniKomponenta</code> z alespoň jedné kartičky má vlastnost
+                                <code>visible</code> nastavenu na <code>true</code>.
+                                Pokud žádná kartička není vidět (všechny byly nechány zmizet),
+                                vrací <code>false</code>.</p>
+						</li>
+
+
+						<li><span>Vyhodnocení dvou kartiček</span>
+							<p>
+                                Poslední přípravná metoda, kterou budeme potřebovat,
+                                je vyhodnocení, zda dvě kartičky patří k sobě (zda jde o dvojici se stejným obrázkem).
+                                <br/>
+							    Pokud ne, obě kartičky se pouze otočí rubem nahoru.
+                                <br/>
+							    Pokud ano, obě kartičky zmizí, a pokud už nezbývá žádná kartička,
+                                pogratulujeme hráči k vítězství.
+                            </p>
+
+<pre class="java-source">
+public void vyhodnotUhodnotiDvojice(Karticka karta1, Karticka karta2) {
+    // prikazy
+}
+</pre>
+							<p>Gratulaci lze napsat například vyvoláním dialogového okna:</p>
+<pre class="java-source">
+JOptionPane.showMessageDialog(
+        this,
+        "Gratulujeme! Vyhráli jste!",
+        "Výhra",
+        JOptionPane.INFORMATION_MESSAGE);
+</pre>
+						</li>
+
+
+						<li><span>Dokončení pexesa</span>
+							<p>
+                                Poslední krok je opravdové dokončení pexesa.
+                                Budeme potřebovat zabudovat pravidla ohledně
+                                postupného otáčení kartiček a vyhodnocování dvojic.
+                            </p>
+
+							<ol class="pismena">
+								<li>
+                                    <span>
+                                        Protože bude nutno nejprve kliknout na
+                                        jednu kartičku a teprve pak na druhou,
+                                        budeme si potřebovat uchovávat v proměnných obě zvolené kartičky.
+                                    </span>
+
+<pre class="java-source">
+public class HlavniOkno extends JFrame {
+    // ostatni promenne
+
+    Karticka zvolenaKarta1;
+    Karticka zvolenaKarta2;
+
+    // metody
+}
+</pre>
+								</li>
+								<li><span>Nyní už jen změníme chování obsluhy události
+                                    <code>priKliknutiNaKarticku(...)</code></span>
+									<p>Metoda musí:</p>
+									<ol class="icka">
+										<li>
+                                            Pokud je stisknutá kartička rubem nahoru,
+                                            otočit kartičku lícem nahoru.
+                                            Dále uložit otočenou kartičku buď do proměnné
+										    <code>zvolenaKarta1</code> nebo <code>zvolenaKarta2</code>,
+                                            podle toho, která z těchto proměnných je ještě <code>null</code>.
+                                            Na začátku jsou obě proměnné <code>null</code>.
+										    Po prvním stisknutím bude <code>zvolenaKarta1</code> nastavena
+                                            a <code>zvolenaKarta2</code> zůstane <code>null</code>.
+                                            Po druhém stisknutí bude nastavena i <code>zvolenaKarta2</code>.</li>
+										<li>
+                                            Pokud jsou již obě kartičky otočeny, je třeba vyhodnotit,
+                                            zda jde o dvojici a buď je nechat zmizet nebo jen otočit rubem nahoru
+										    (tuto funkcionalitu už máme hotovou z minula v metodě
+                                            <code>vyhodnotUhodnotiDvojice(...)</code>).
+
+<pre class="java-source">
+private void priKliknutiNaKarticku(Karticka karta) {
+    // prikazy
+}
+</pre>
+										</li>
+									</ol>
+								</li>
+							</ol>
+						</li>
+
+						<li><span>Vylepšení</span>
+							<p>
+                                Asi jste si všimly, že po vybrání druhé kartičky se obě karty
+                                buď ihned zase otočí rubem nahoru nebo zmizí.
+                                Je to způsobeno tím, že se druhá
+							    kartička sice otočí,
+                                ale ihned se vyhodnotí výsledek a rovnou se otočí zpět.
+                            </p>
+							<ol class="pismena">
+								<li><span>Můžeme zkusit proces zpomalit čekáním:</span></li>
+
+<pre class="java-source">
+private void priKliknutiNaKarticku(Karticka karta) {
+    // ... prikazy ...
+
+    ((JComponent)contentPane).paintImmediately(
+        0, 0, contentPane.getWidth(), contentPane.getHeight());
+    ThreadUtils.sleep(1000);
+
+    // Vyhodnot karticky
+}
+</pre>
+								<li>
+                                    <span>
+                                        Já ale navrhuji, abychom místo pevného čekání vyhodnotili
+                                        kartičky až při třetím kliknutí na libovolnou kartičku.
+                                    </span>
+									<p>
+                                        Zařídíme to snadno: Prohodíme podúkol i) a ii) z minulého bodu.
+                                        Tím se dosáhne toho, že se budou vyhodnocovat kartičky až
+									    při kliknutí na třetí kartičku. Mně to přijde přirozenější.
+                                        Můžete zkusit obě varianty a rozhodnout se samy.
+                                    </p>
+								</li>
+							</ol>
+						</li>
+					</ol>
+
+            <br/>
+            <br/>
+            <br/>
+
+            <p id="reseni">
+                Celé řešení je po jednotlivých krocích k dispozici zde:
+                <br/>
+                <a href="../../data/2016-jaro/java1/Ukol_na_leto-Pexeso-heslo_czechitas.7z">Ukol_na_leto-Pexeso-heslo_czechitas.7z</a>
+                <br/>
+                Snažte se ho ale nepoužít.
+            </p>
+        </div>
+        <!-- #content -->
+    </div>
+    <!-- #page -->
+</body>
+</html>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="cs" lang="cs">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="Content-Language" content="cs"/>
+
+    <meta name="robots" content="index,follow"/>
+    <meta name="googlebot" content="index,follow,snippet,archive"/>
+
+    <link rel="stylesheet" type="text/css" media="screen" href="../../css/styles.css"/>
+    <link rel="stylesheet" type="text/css" media="screen" href="../../css/menu.css"/>
+    <script src="../../js/jquery.1.12.4.min.js"></script>
+    <title>Java 1 | Czechitas | Podzim 2016</title>
+</head>
+
+<body>
+    <div id="page">
+        <div class="header">
+            <a href="https://www.czechitas.cz/"><img src="../../img/logo.png" alt="Logo Czechitas"/></a>
+        </div>
+        <!-- #header -->
+
+        <div id="title"></div>
+        <script>
+            jQuery("#title").load("title.html");
+        </script>
+        <!-- #title -->
+
+        <!-- #menu -->
+        <div id="menu-wrap"></div>
+        <script>
+            jQuery("#menu-wrap").load("menu.html");
+        </script>
+        <!-- #menu -->
+
+        <div class="content">
+            <span class="published-timestamp">Vloženo: 31. 10. 2016</span>
+
+            <h3>Domácí úkol - Nemo 1</h3>
+            <p>Spusťte demo, zahrajte si jej a vytvořte totéž.</p>
+			<img src="img/lekce06/nemo1.png" alt="Screenshot domácího úkolu - Nemo1" height="469" width="636" class="screenshot"/>
+			<p>Demo stahujte a zkoušejte odtud: <a href="../../data/2016-podzim/java1/nemo1-demo.7z">Nemo 1</a></p>
+			<h4>Tohle by se vám mohlo hodit ;-)</h4>
+			<p>Jak už jsem říkala na hodině, budete potřebovat spojit věci, které jsme dělali v minulém úkolu (v šibenici), a věci, které
+			   jsme dělali na poslední hodině v pinecu.</p>
+			<p>Budete opět potřebovat událost <code>keyPressed</code> - pomocí šipek budete ovládat pohyb Nema.</p>
+			<p>Využijeme také <code>Timer</code>. Spustíme jej v události <code>windowOpened</code> a zastavíme v události <code>windowClosed</code> (podobně jako v Pinecu).
+            Tady je kód, který budete potřebovat:</p>
+            <div class="java-source">
+                <pre>
+<span style="color: #A0A0A0;">public class HlavniOkno {
+    // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables
+    // Generated using JFormDesigner Evaluation license - Kurz Czechitas
+    JLabel ruzneKomponenty;
+    JLabel jesteDalsiKomponenty;
+    // JFormDesigner - End of variables declaration  //GEN-END:variables</span>
+
+    Timer casovac;
+
+    private void priOtevreniOkna(WindowEvent e) {
+        casovac = new Timer(25, this :: priTiknutiCasovace);
+        casovac.start();
+    }
+
+    private void priZavreniOkna(WindowEvent e) {
+        casovac.stop();
+    }
+
+<span style="color: #A0A0A0;">    // Dalsi kod
+
+}</span>
+</pre>
+            </div>
+			<p>Metodu <code>priTiknutiCasovace(...)</code> budete potřebovat pro nastavení automatického pohybu žraloka (to je obdobné jako u míčku v Pinecu):</p>
+			<div class="java-source">
+                <code>
+					private void priTiknutiCasovace(ActionEvent e) {<br/>
+					&nbsp;&nbsp;&nbsp;&nbsp;/* Tady bude vas kod */<br/>
+					}<br/>
+                </code>
+            </div>
+            <p>
+                Pokud budete mít s úkolem jakýkoliv problém, využjte naši
+                <a href="https://www.facebook.com/groups/1737519906516542/">facebookovou skupinu</a>,
+                kde vám rádi poradíme.<br />
+                Raději se 10x zeptejte, než abyste to vzdaly!
+            </p>
+        </div>
+        <!-- #content -->
+    </div>
+    <!-- #page -->
+</body>
+</html>

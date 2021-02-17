@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="cs" lang="cs">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="Content-Language" content="cs"/>
+
+    <meta name="robots" content="index,follow"/>
+    <meta name="googlebot" content="index,follow,snippet,archive"/>
+
+    <link rel="stylesheet" type="text/css" media="screen" href="../../css/styles.css"/>
+    <link rel="stylesheet" type="text/css" media="screen" href="../../css/menu.css"/>
+    <script src="../../js/jquery.1.12.4.min.js"></script>
+    <title>Java | Czechitas</title>
+</head>
+
+<body>
+    <div id="page">
+        <div class="header">
+            <a href="https://www.czechitas.cz/"><img src="../../img/logo.png" alt="Logo Czechitas"/></a>
+        </div>
+        <!-- #header -->
+
+        <div id="title"></div>
+        <script>
+            jQuery("#title").load("title.html");
+        </script>
+        <!-- #title -->
+
+        <!-- #menu -->
+        <div id="menu-wrap"></div>
+        <script>
+            jQuery("#menu-wrap").load("menu.html");
+        </script>
+        <!-- #menu -->
+
+        <div class="content">
+            <span class="published-timestamp">Upraveno: 9. 4. 2018</span>
+
+            <h3>
+                Lekce 06 - Ještě více formulářů
+            </h3>
+
+            <h4>Seznamy a pole v Javě</h4>
+
+            <p>
+                V Javě existuje pole, které je nutno před použitím naalokovat na požadovanou velikost.
+                Nelze do něj prvky přidávat. Má prostě pevnou kapacitu.
+            </p>
+            <p>
+                Proto v Javě používáme <code>List</code> (přesněji <code>java.util.List</code>),
+                který je podobný, ale dokáže si do sebe prvky přidávat, měnit a odebírat.
+                <code>List</code> v Javě má ve skutečnosti několik variant.
+                Je to implementováno jako dědičnost.
+            </p>
+            <p>
+                Základní typ je List, od něj jsou odvozeny potomky <code>LinkedList</code>
+                (přesněji <code>java.util.LinkedList</code>), <code>ArrayList</code>
+                (přesněji <code>java.util.ArrayList</code>),
+                <code>CopyOnWriteArrayList</code> (přesněji <code>java.util.concurrent.CopyOnWriteArrayList</code>)
+                a jedna skytá třída, jejíž instance se alokuje v <code>Arrays.asList()</code>.
+            </p>
+
+            <p>
+                Když tedy deklarujeme:
+            </p>
+                <pre class="java-source-code">
+List&lt;Uzivatel&gt; seznamUzivatelu;
+</pre>
+            <p>
+                Můžeme do této proměnné vložit jakýkoliv z výše uvedených potomků <code>List</code>u.
+            </p>
+
+            <p>
+                <code>Arrays.asList()</code> je statická (globální) metoda
+                v pomocné třídě <code>Arrays</code>
+                (přesněji <code>java.util.Arrays</code>),
+                které lze předat prvky oddělené čárkou a ona je naskládá do <code>List</code>u.
+                Zvláštní je v tom, že daný <code>List</code> nelze zvětšovat ani zmenšovat.
+                Je to obalené klasické pole v Javě, ale tváří se to jako <code>List</code>.
+            </p>
+            <pre class="java-source-code">
+private List&lt;Uzivatel&gt; nemenitelnySeznamUzivatelu = Arrays.asList(
+    new Uzivatel("pokus@pokus.com", "password"),
+    new Uzivatel("admin@tomcat.cloud", "password")
+);
+</pre>
+
+            <p>
+                <code>LinkedList</code>, <code>ArrayList</code> a <code>CopyOnWriteArrayList</code>
+                jsou plnotučné varianty <code>List</code>u.
+                Lišší se v tom, že:
+            </p>
+            <ul>
+                <li><code>LinkedList</code> je tzv. lineární spojový seznam (viz wikipedia).</li>
+                <li><code>ArrayList</code> si interně pamatuje prvky taky v poli,
+                    ale při přidávání (a odebírání) prvků
+                    si obsah svého interního pole dokáže
+                    okopírovat do druhého pole, které je větší.
+                    Takže se dokáže zvětšovat bez problémů..</li>
+                <li><code>CopyOnWriteArrayList</code> je velice podobný <code>ArrayList</code>u,
+                    ale je vláknově bezpečný,
+                    tzn. že do něj lze přidávat více prvků současně
+                    a on se v takové situaci nerozsype.
+                    To je na webovém serveru důležité,
+                    protože na něj chodí požadavky současně z mnoha prohlížečů.</li>
+            </ul>
+
+
+            <pre class="java-source-code">
+private List&lt;Uzivatel&gt; menitelnySeznamUzivatelu = new CopyOnWriteArraysList<>();
+
+// nekdy pozdeji, napr. v konstruktoru:
+menitelnySeznamUzivatelu.add(new Uzivatel("pokus@pokus.com", "password"));
+menitelnySeznamUzivatelu.add(new Uzivatel("admin@tomcat.cloud", "password"));
+</pre>
+
+            <p>
+                A třetí věc: Všechny <code>List</code>y dodržují to,
+                že mají konstruktor, který akceptuje jako parametr jiný <code>List</code>,
+                ze kterého se vykopírují do tohoto nového <code>List</code>u všechny prvky.
+            </p>
+            <p>Takže já používám konstrukci:</p>
+            <pre class="java-source-code">
+private List&lt;Uzivatel&gt; seznamUzivatelu = new CopyOnWriteArrayList<>(
+    Arrays.asList(
+        new Uzivatel("pokus@pokus.com", "password"),
+        new Uzivatel("admin@tomcat.cloud", "password")
+    )
+);
+</pre>
+
+
+            <h4 id="soubory" class="odsazeniTop">Soubory</h4>
+
+            <p class="odsazeniTopSmall">
+                Archív najdete zde: <a
+                    href="../../data/2018-jaro/java2/WebLekce06.zip">WebLekce06.zip</a>
+            </p>
+
+            <h4>Videozáznam</h4>
+
+            <p>
+                Na Youtube je záznam z lekce:
+            </p>
+
+            <iframe width="560" height="315"
+                    src="https://www.youtube.com/embed/ekrr4AZMhMM"
+                    frameborder="0"
+                    allowfullscreen></iframe>
+
+            <p class="odsazeniTop">
+                Celý playlist na Youtube najdete zde:
+                <a href="https://www.youtube.com/playlist?list=PLTCx5oiCrIJ6mcuJ1VaY8s0mzFsaMUzp-">Java 2 - Brno (jaro 2018) - Youtube playlist</a>.
+            </p>
+            
+        </div>
+        <!-- #content -->
+    </div>
+    <!-- #page -->
+</body>
+</html>

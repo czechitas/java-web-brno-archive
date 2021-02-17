@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="cs" lang="cs">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="Content-Language" content="cs"/>
+
+    <meta name="robots" content="index,follow"/>
+    <meta name="googlebot" content="index,follow,snippet,archive"/>
+
+    <link rel="stylesheet" type="text/css" media="screen" href="../../css/styles.css"/>
+    <link rel="stylesheet" type="text/css" media="screen" href="../../css/menu.css"/>
+    <script src="../../js/jquery.1.12.4.min.js"></script>
+    <title>Java | Czechitas</title>
+</head>
+
+<body>
+    <div id="page">
+        <div class="header">
+            <a href="https://www.czechitas.cz/"><img src="../../img/logo.png" alt="Logo Czechitas"/></a>
+        </div>
+        <!-- #header -->
+
+        <div id="title"></div>
+        <script>
+            jQuery("#title").load("title.html");
+        </script>
+        <!-- #title -->
+
+        <!-- #menu -->
+        <div id="menu-wrap"></div>
+        <script>
+            jQuery("#menu-wrap").load("menu.html");
+        </script>
+        <!-- #menu -->
+
+        <!-- NOVÝ OBSAH AŽ ZA TOHLE -->
+
+
+        <div class="content">
+            <span class="published-timestamp">Vloženo: 19. 9. 2016</span>
+
+            <h3>
+                Instalační pokyny pro Windows
+            </h3>
+
+            <p>
+                Tyto pokyny jsou <strong>výhradně pro Windows</strong>.
+                Instalaci pro uživatele Macu nebo Linuxu vyřešíme individuálně v hodině.
+            </p>
+
+            <p>
+                Pokud již máte instalaci z minulého semestru, proveďte pokyny i přes tuto skutečnost.
+                Při rozbalování archívu se vás v tomto případě bude 7 Zip ptát,
+                zda chcete staré soubory z minulého semestru přepsat.
+                Potvrďte, že ano. Žádný strach, jde jen o update editoru a Javy,
+                o svoje aplikace, které jste vyvíjely, rozhodně nepřijdete.
+            </p>
+
+            <p>
+                Na kurzu budeme potřebovat Javu a programátorský textový editor IntelliJ IDEA.
+                Dobrá zpráva je, že obojí je zdarma.
+                Kompletní instalaci si můžete stáhnout z tohoto
+                <a href="https://github.com/czechitas/java-install/releases/download/2016-podzim/community/win/Java-Training.7z">ODKAZU</a>
+                a jednoduše rozbalit do složky <code>C:\Java-Training</code>.
+            </p>
+
+            <p>
+                Je nezbytně <strong>nutné</strong> rozbalit vše právě do <code>C:\Java-Training</code>.
+                V jiné složce (například na ploše nebo v uživatelském profilu) tyto aplikace fungovat
+                <strong>nebudou</strong>.
+            </p>
+
+            <p>
+                Pro jistotu následuje obrázkový postup:
+            </p>
+            <ol>
+                <li>
+                    Klikněte pravým tlačítkem na odkaz
+                    <a href="https://github.com/czechitas/java-install/releases/download/2016-podzim/community/win/Java-Training.7z">Java-Training.7z</a>
+                    a zvolte Uložit odkaz jako...
+                    <br/><br/>
+                    <img src="img/install/install1.png" width="265" height="192" alt="Screenshot stažení Java-Training.7z"/><br/><br/>
+                </li>
+                <li>
+                    Uložte soubor na plochu.
+                    <br/><br/>
+                    <img src="img/install/install2.png" width="654" height="589" alt="Screenshot uložení  Java-Training.7z"/><br/><br/>
+                </li>
+                <li>
+                    Dvakrát klikněte na tento soubor na ploše.
+                    <br/><br/>
+                    <img src="img/install/install3.png" width="334" height="242" alt="Screenshot dvojklik Java-Training.7z"/><br/><br/>
+                </li>
+                <li>
+                    Pokud se archív úspěšně otevře jako na obrázku, přeskočte až k <a href="#bod11">bodu 11</a>.
+                    <br/><br/>
+                    <img src="img/install/install4.png" width="768" height="520" alt="Screenshot otevření Java-Training.7z"/><br/><br/>
+                </li>
+                <li>
+                    Pokud se nic nestane, nemáte nainstalovaný archivační software 7zip. Musíte si jej stáhnout z adresy
+                    <a href="https://www.7-zip.org/">www.7-zip.org</a>
+                    <br/><br/>
+                    <img src="img/install/install5.png" width="613" height="480" alt="Screenshot stažení 7-zip"/><br/><br/>
+                </li>
+                <li>
+                    I tento soubor (7z1514-x64.exe) si nejprve uložte na plochu.
+                    <br/><br/>
+                    <img src="img/install/install6.png" width="623" height="451" alt="Screenshot uložení 7-zip"/><br/><br/>
+                </li>
+                <li>
+                    Dvojklikněte na 7z1514-x64.exe na ploše a spusťte instalaci.
+                    <br/><br/>
+                    <img src="img/install/install7.png" width="352" height="222" alt="Screenshot spuštění instalace 7-zip"/><br/><br/>
+                </li>
+                <li>
+                    Potvrďte bezpečnostní varování.
+                    <br/><br/>
+                    <img src="img/install/install8.png" width="412" height="308" alt="Screenshot potvrzení varování"/><br/><br/>
+                </li>
+                <li>
+                    Potvrďte cílovou instalační složku.
+                    <br/><br/>
+                    <img src="img/install/install9.png" width="314" height="218" alt="Screenshot potvrzení cílové složky"/><br/><br/>
+                </li>
+                <li>
+                    Nyní když znovu kliknete na archív Java-Training.7z na ploše,
+                    <br/><br/>
+                    <img src="img/install/install3.png" width="334" height="242" alt="Screenshot dvojkliku na Java-Training.7z"/><br/><br/>
+                    uvidíte okno jako v bodu 4.
+                    <br/><br/>
+                    <img src="img/install/install4.png" width="768" height="520" alt="Screenshot otevření Java-Training.7z"/><br/><br/>
+                </li>
+                <li id="bod11">
+                    Zvolte v záhlaví okna volbu Extract/Rozbalit
+                    <br/><br/>
+                    <img src="img/install/install10.png" width="409" height="460" alt="Screenshot zvolení Rozbalit"/><br/><br/>
+                </li>
+                <li>
+                    Aplikace 7 Zip se vás zeptá, kam chcete archív rozbalit. Zadejte <code>C:\Java-Training</code>.
+                    <br/><br/>
+                    <img src="img/install/install11.png" width="615" height="509" alt="Screenshot určení cesty rozbalení"/><br/><br/>
+                </li>
+            </ol>
+
+            <p>
+                Pokud jste vše udělali správně, můžete zkusit otevřít ukázkovou aplikaci a spustit ji.
+            </p>
+
+            <ol>
+                <li>
+                    Otevřete ve správci souborů (ikona Tento počítač) složku <code>C:\Java-Training\IntelliJ-Community</code> a spusťte <code>startup.bat</code>.
+                    <br/><br/>
+                    <img src="img/install/install12.png" width="967" height="672" alt="Screenshot spuštění IntelliJ IDEA"/><br/><br/>
+                </li>
+                <li>
+                    Tím spustíte programátorský editor IntelliJ IDEA.
+                    <br/><br/>
+                    <img src="img/install/install13.png" width="813" height="624" alt="Screenshot startu  IntelliJ IDEA"/><br/><br/>
+                </li>
+                <li>
+                    Otevřete ukázkový projekt
+                    <br/><br/>
+                    <img src="img/install/install14.png" width="814" height="557" alt="Screenshot otevření ukázkového projektu"/><br/><br/>
+                </li>
+                <li>
+                    Najdete ho v C:\Java-Training\Projects\PrvniProjekt
+                    <br/><br/>
+                    <img src="img/install/install15.png" width="676" height="556" alt="Screenshot určení cesty k ukazkovému projektu"/><br/><br/>
+                </li>
+                <li>
+                    Zvolte v pravo nahoře zelenou šipku Run
+                    <br/><br/>
+                    <img src="img/install/install16.png" width="929" height="684" alt="Screenshot spuštění ukazkového projektu"/><br/><br/>
+                </li>
+                <li>
+                    Měli byste vidět tuto malinkou aplikaci
+                    <br/><br/>
+                    <img src="img/install/install17.png" width="444" height="331" alt="Screenshot ukazkového projektu"/><br/><br/>
+                </li>
+            </ol>
+
+            <p>
+                Pokud se někde něco nepovede, nezoufejte.
+                Na kurzu vám pomůžeme.
+            </p>
+        </div>
+        <!-- #content -->
+
+    </div>
+    <!-- #page -->
+</body>
+</html>

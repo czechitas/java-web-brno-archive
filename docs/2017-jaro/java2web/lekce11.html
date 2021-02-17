@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="cs" lang="cs">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="Content-Language" content="cs"/>
+
+    <meta name="robots" content="index,follow"/>
+    <meta name="googlebot" content="index,follow,snippet,archive"/>
+
+    <link rel="stylesheet" type="text/css" media="screen" href="../../css/styles.css"/>
+    <link rel="stylesheet" type="text/css" media="screen" href="../../css/menu.css"/>
+    <script src="../../js/jquery.1.12.4.min.js"></script>
+    <title>Java | Czechitas</title>
+</head>
+
+<body>
+    <div id="page">
+        <div class="header">
+            <a href="https://www.czechitas.cz/"><img src="../../img/logo.png" alt="Logo Czechitas"/></a>
+        </div>
+        <!-- #header -->
+
+        <div id="title"></div>
+        <script>
+            jQuery("#title").load("title.html");
+        </script>
+        <!-- #title -->
+
+        <!-- #menu -->
+        <div id="menu-wrap"></div>
+        <script>
+            jQuery("#menu-wrap").load("menu.html");
+        </script>
+        <!-- #menu -->
+
+        <div class="content">
+            <span class="published-timestamp">Vloženo: 12. 5. 2017</span>
+
+            <h3>
+                Lekce 11 - Refactoring přístupu do databáze
+            </h3>
+
+            <h4>Soubory</h4>
+
+            <p class="odsazeniTop">
+                Archív najdete zde: <a
+                    href="../../data/2017-jaro/java2web/Java2Web-Lekce11.7z">Java2Web-Lekce11.7z</a>
+            </p>
+
+            <h4>Videozáznam</h4>
+
+            <p>
+                Na Youtube je záznam z lekce:
+            </p>
+
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/0SW63bosqws" frameborder="0"
+                    allowfullscreen></iframe>
+
+            <p class="odsazeniTop">
+                Celý playlist na Youtube najdete zde:
+                <a href="https://www.youtube.com/playlist?list=PLUVJxzuCt9ATwP3dFn5xCHvObtu2EveNZ">Java 2 Web - youtube playlist</a>.
+            </p>
+
+            <h4>Postup pro Microsoft Azure</h4>
+
+            <ol>
+                <li>
+                    Účet u firmy Microsoft
+                    <p>
+                        Budete potřebovat účet u firmy Microsoft. Pokud jej ještě nemáte,
+                        zaregistrujte se na <a href="https://www.outlook.com/">www.outlook.com</a>
+                    </p>
+                </li>
+                <li>
+                    Registrace na Microsoft Azure a volba subscription.
+                    <p>
+                        Budete potřebovat platné mobilní telefonní číslo a platnou platební kartu.
+                        Platební karta slouží jen pro účely ověření totožnosti a
+                        Azure vám nebude automaticky nic účtovat. Po vypršení subscription zdarma
+                        bude nutné si zvolit jiný subscription.
+                    </p>
+                    <ul>
+                        <li>
+                            Běžte na stránku
+                            <a href="https://www.visualstudio.com/cs/dev-essentials/">Visual Studio Dev Essentials</a>
+                            a aktivujte si Azure subscription s bonusem $25 každý měsíc po dobu 1 roku.
+                            <br/>
+                            Pozor! Subscription Dev Essentials lze využít pouze
+                            pokud jste na svůj účet Microsoft zatím s Azure neměli jiný subscription
+                            ani jste už nepoužili danou platební kartu, telefon ani IP adresu.
+                        </li>
+                        <li>
+                            Pokud byste nechtěli nebo nemohli Dev Essentials subscription použít,
+                            lze alternativně zvolit klasický free trial,
+                            který funguje jen 1 měsíc a pak je nutné přejít na subscription Pay As You Go.
+                            Ani to není problém, protože Azure Web Site s Tomcatem a MySQL
+                            lze i s tímto subscription provozovat zdarma, jen v poněkud omezené míře.
+                            <a href="https://azure.microsoft.com/cs-cz/free/">Free Trial for 30 days</a>.
+                        </li>
+                    </ul>
+                <li>
+                    Založení web site s Tomcatem
+                    <p>
+                        Postupujte podle video návodu zde:
+                        <a href="https://www.youtube.com/watch?v=A8QSGRcj3ug">Youtube</a>
+                    </p>
+                </li>
+                <li>
+                    Rozběhnutí MySQL
+                    <p>
+                        V předchozím video návodu je zároveň vidět, jak se nastavuje MySQL.
+                        Po založení databáze <code>dailyplanet</code> vyklikáním v portálu Azure,
+                        bude potřeba zjistit údaje pro připojení do vzdáleného serveru MySQL
+                        (hostname, username, password)
+                        a potom se k němu připojit a vytvořit zde tabulky a v nich data.
+                    </p>
+                    <ol>
+                        <li>
+                            Údaje pro připojení
+                            <p>
+                                Údaje pro připojení zjistíte podle
+                                <a href="https://youtu.be/A8QSGRcj3ug?t=4m02s">videa v čase 4:02</a>.
+                                Tyto údaje si nastavte do IntelliJ IDEA tak,
+                                že založíte nový Data Source v záložce Database.
+                                Potom se připojte ke vzdálenému serveru MySQL.
+                            </p>
+                        </li>
+                        <li>
+                            Založení tabulky a vložení dat
+
+                            <p>
+                                Po připojení IntelliJ IDEA zvolte v záložce Database volbu Open Console a odešlete skript pro založení tabulek a dat:
+                            </p>
+
+                            <pre class="java-source-code">
+ALTER DATABASE DailyPlanet
+CHARACTER SET utf8mb4
+COLLATE utf8mb4_czech_ci;
+
+CREATE TABLE Autor (
+    Autor_ID CHAR(36) PRIMARY KEY NOT NULL,
+    KrestniJmeno VARCHAR(250),
+    Prijmeni VARCHAR(250),
+    Email VARCHAR(250),
+    Telefon VARCHAR(32)
+) ENGINE=INNODB;
+
+CREATE TABLE Clanek (
+    Clanek_ID CHAR(36) PRIMARY KEY NOT NULL,
+    Nazev VARCHAR(250) NOT NULL,
+    Autor_ID CHAR(36) ,
+    Cislo_revize INT DEFAULT 0,
+    FOREIGN KEY (Autor_ID) REFERENCES Autor(Autor_ID) ON DELETE CASCADE
+) ENGINE=INNODB;
+
+
+INSERT INTO Autor (Autor_ID, KrestniJmeno, Prijmeni, Email, Telefon) VALUES ('c705ef4e-5de0-4409-b537-957605df610c', 'Clark', 'Kent', 'clark.kent@dailyplanet.com', '+14155552671');
+INSERT INTO Autor (Autor_ID, KrestniJmeno, Prijmeni, Email, Telefon) VALUES ('258c5ea5-ce1c-4433-99e6-2fd58557ef21', 'Loise', 'Lane', 'loise.lane@dailyplanet.com', '+14154641123');
+INSERT INTO Autor (Autor_ID, KrestniJmeno, Prijmeni, Email, Telefon) VALUES ('7d92828e-5b8a-43d4-a9ce-7fcf02778950', 'Jimmy', 'Olsen', 'jimmy.olsen@dailyplanet.com', '+14153343321');
+INSERT INTO Autor (Autor_ID, KrestniJmeno, Prijmeni, Email, Telefon) VALUES ('5d35d75b-892b-4f14-be3c-f8964369d6a2', 'Perry', 'White', 'perry.white@dailyplanet.com', '+14253442888');
+INSERT INTO Autor (Autor_ID, KrestniJmeno, Prijmeni, Email, Telefon) VALUES ('99ea7420-825e-4973-b697-e8a49267b121', 'Cat', 'Grant', 'cat.grant@dailyplanet.com', '+14259990001');
+
+INSERT INTO Clanek (Clanek_ID, Nazev, Autor_ID, Cislo_revize) VALUES ('8ac75dbb-0f6f-4953-b35d-151f04ce1d09', 'NejstarŇ°?? Ňĺenou na svńotńo je Jamaińćanka', '258c5ea5-ce1c-4433-99e6-2fd58557ef21', 10);
+INSERT INTO Clanek (Clanek_ID, Nazev, Autor_ID, Cislo_revize) VALUES ('15514d7c-12ab-4540-ba6d-f8e155952bb9', 'Ňeidińć naboural do policejn??ho auta', 'c705ef4e-5de0-4409-b537-957605df610c', 5);
+INSERT INTO Clanek (Clanek_ID, Nazev, Autor_ID, Cislo_revize) VALUES ('bca72825-31c8-42e8-b7e6-2d9d9252c1a4', 'V?Ĺpadky elektŇôiny kvŇIli pońćas??', '7d92828e-5b8a-43d4-a9ce-7fcf02778950', 2);
+</pre>
+                        </li>
+                    </ol>
+                </li>
+
+                <li>
+                    Oprava vaší aplikace, aby po nasazení na cloud Azure Web Sites používala jejich databazi
+                    <p>
+                        Je nutné jít do třídy <code>ApplicationConfig</code>
+                        a opravit <code>url</code>,
+                        <code>username</code> a
+                        <code>password</code> v souladu s údaji v záložce Database v IntelliJ IDEA.
+                    </p>
+                </li>
+            </ol>
+
+        </div>
+        <!-- #content -->
+    </div>
+    <!-- #page -->
+</body>
+</html>

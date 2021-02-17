@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="cs" lang="cs">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="Content-Language" content="cs"/>
+
+    <meta name="robots" content="index,follow"/>
+    <meta name="googlebot" content="index,follow,snippet,archive"/>
+
+    <link rel="stylesheet" type="text/css" media="screen" href="../../css/styles.css"/>
+    <link rel="stylesheet" type="text/css" media="screen" href="../../css/menu.css"/>
+    <script src="../../js/jquery.1.12.4.min.js"></script>
+    <title>Java 2 | Czechitas</title>
+</head>
+
+<body>
+    <div id="page">
+        <div class="header">
+            <a href="https://www.czechitas.cz/"><img src="../../img/logo.png" alt="Logo Czechitas"/></a>
+        </div>
+        <!-- #header -->
+
+        <div id="title"></div>
+        <script>
+            jQuery("#title").load("title.html");
+        </script>
+        <!-- #title -->
+
+        <!-- #menu -->
+        <div id="menu-wrap"></div>
+        <script>
+            jQuery("#menu-wrap").load("menu.html");
+        </script>
+        <!-- #menu -->
+
+        <div class="content">
+            <span class="published-timestamp">Vloženo: 6. 4. 2018</span>
+
+            <h3>
+                Úkol 06 - Přihlašovací dialog
+            </h3>
+
+            <p>Vytvořte webovou aplikaci,
+                podle dodaných podkladů webových stránek
+                <a href="../../data/2018-jaro/java2/Telefonni_seznam-Prihlasovani-Podklady.zip">Telefonni_seznam-Prihlasovani-Podklady.zip</a>.
+            </p>
+
+            <p>V podkladech jsou pouze statické webové stránky,
+                jak byste je mohli dostat od tvůrce webu.
+                Vaším úkolem je tento statický web předělat do naší šablony
+                Spring Bootu a rozběhnout základní funkcionalitu.
+            </p>
+
+
+            <h4>Popis stránek</h4>
+
+            <table>
+                <tr>
+                    <td>index.html</td>
+                    <td>Úvodní stránka. Za normálních okolností by z ní šlo na <code>hlavni.html</code>.
+                        Nicméně jsme se rozhodli, že pro přístup na <code>hlavni.html</code>
+                        je nutné se nejprve přihlásit. Musí se tedy nejprve projít
+                        přes stránku <code>prihlaseni.html</code>.
+                    </td>
+                </tr>
+                <tr>
+                    <td>prihlaseni.html</td>
+                    <td>Přihlašovací formulář. Po odeslání formuláře se na serveru zkontroluje
+                        zadaný email a heslo. Stačí, když bude aplikace akceptovat
+                        napevno email "<b>pokus@pokus.com</b>" a heslo "<b>password</b>".
+                        <br/>
+                        Nezapomeňte, že <code>String</code>y se porovnávají pomocí <code>equals()</code>,
+                        nikoliv <code>==</code>.
+                        Tedy například <code>vyplnenyFormular.getPrihlasovaciJmeno().equals("pokus@pokus.com")</code>.
+                        <br/>
+                        V případě platného přihlášení se prohlížeč přesměruje na <code>hlavni.html</code>.
+                        <br/>
+                        V případě neplatného přihlášení se znovu zobrazí
+                        původní stránka <code>prihlaseni.html</code>
+                        a chybová hláška.
+                        Je velmi vhodné, aby zůstal vyplněný email z minulého pokusu.
+                    </td>
+                </tr>
+                <tr>
+                    <td>hlavni.html</td>
+                    <td>Stránka se seznamem. Buď použijte tu, která je ve statickém
+                        web designu, nebo jako bonus použijte aplikaci z hodiny
+                        na evidenci telefonního seznamu.
+                    </td>
+                </tr>
+                <tr>
+                    <td>registrace.html
+                        <br/>
+                        <br/>
+                        zapomenute-heslo.html</td>
+                    <td>Při přihlašování je typicky možné se i alternativně zaregistrovat
+                        a nebo si vyžádat email se zapomenutým heslem.
+                        Rozchoďte tyto formuláře.
+                        Stačí, když budou fungovat "na oko", ale ve skutečnosti žádný email
+                        posílat nebudou (zapomenute-heslo.html),
+                        ani neakceptují registraci nového uživatele (registrace.html)
+                        a ve skutečnosti zůstane jediný možný email a heslo stále jen
+                        "<b>pokus@pokus.com</b>" a "<b>password</b>".
+                        Nepovinně bych ale velmi doporučoval zkusit si evidenci uživatelů
+                        naprogramovat.
+                    </td>
+                </tr>
+            </table>
+
+            <p class="odsazeniTopSmall">Poznámka:
+                Takto naprogramované přihlašování samozřejmě funguje
+                jen při přístupu z <code>index.html</code>.
+                Pokud by uživatel přistoupil přímo k <code>hlavni.html</code>, nemusel by se přihlašovat.
+                Tento problém neřešte a tvařme se, že neexistuje.
+                Řešením je tzv. <code>HttpSession</code> a
+                vložení přihlášeného uživatele do této <code>HttpSession</code>.
+                Stránka <code>prihlaseni.html</code> by se potom zobrazovala automaticky,
+                pokud by nebyl v <code>HttpSession</code> přihlášený uživatel.
+            </p>
+            <p>
+                Jednak by to ale bylo pracné, ale zároveň je mnohem lepší
+                použít existující autentizační framework,
+                například Spring Security.
+                Jeho složitost je ale daleko za rozsahem jednoho domácího úkolu.
+            </p>
+
+
+            <p class="odsazeniTop">Ukázkový web můžete vidět na <a
+                href="https://margot.tomcat.cloud/ukol06/">https://margot.tomcat.cloud/ukol06/</a>
+            </p>
+
+
+            <p class="odsazeniTop">
+                Stránky musejí z prohlížeče fungovat jak při souborovém přístupu,
+                tak při přístupu přes webový server (se Spring Bootem).
+            </p>
+
+
+
+
+            <h5>Pár tipů:</h5>
+
+            <ul>
+                <li>
+                    <p>Vyjděte buď z příkladu z hodiny (Telefonní seznam)
+                        nebo ze šablony projektu (Czechitas Web App Template v4).
+                        Složku si prostě okopírujte a otevřete ji v IntelliJ IDEA.
+                        Po otevření je nutné přejmenovat místa,
+                        kde je jméno a adresa aplikace uvedena v konfiguračních souborech:
+                    </p>
+
+                    <ul>
+                        <li>PROJEKT/src/main/resources/application.properties -> server.context-path = /ukol06</li>
+                        <li>PROJEKT/pom.xml -> /project/groupId = cz.czechitas.java2</li>
+                        <li>PROJEKT/pom.xml -> /project/artifactId = ukol06</li>
+                        <li>PROJEKT/pom.xml -> /project/name = ukol06</li>
+                        <li>PROJEKT/pom.xml -> /project/build/finalName = ukol06</li>
+                    </ul>
+                </li>
+            </ul>
+
+
+            <h4>
+                Odevzdání domácího úkolu
+            </h4>
+
+            <p>
+                Složku s projektem nejprve zbavte přeložených artefaktů,
+                aby byla menší.
+                To zařídíte ručním smazáním složky PROJEKT/target
+                nebo pomocí v IntelliJ IDEA -> Maven Projects -> ukol -> Lifecycle -> clean.
+                Poté složku s projektem zabalte pomocí 7-Zipu pod jménem
+                <code>Ukol06-Vase_Jmeno.7z</code>.
+                Lze použít i jen prostý zip (například na Macu).
+
+                Takto vytvořený archív nahrajte na
+                Google Drive
+                do složky <code>Ukol06</code>.
+            </p>
+
+            <p>
+                Vytvořte archív .war v IntelliJ IDEA -> Maven Projects -> ukol -> Lifecycle -> clean
+                a následně IntelliJ IDEA -> Maven Projects -> ukol -> Lifecycle -> package.
+                Goal "package" vytvoří archív .war v PROJEKT/target/ukol06.war.
+                Nasaďte jej do vašeho lokálního Tomcatu (JAVA-TRAINING/Tomcat/webapps)
+                a vyzkoušejte, že funguje (
+                <code>http://localhost:8080/ukol06/</code>
+                ).
+            </p>
+
+            <p>
+                Po odladění nasaďte tento archív ještě přes FTP na server Tomcat.cloud
+                ( <code>http://sladkost.tomcat.cloud/ukol06/</code> ).
+            </p>
+
+            <p>
+                Vytvořte snímek obrazovky spuštěného programu
+                a pochlubte se s ním ve fotoalbu <strong>Úkol06</strong> na
+                <a href="https://www.facebook.com/groups/2065013227074688/photos/?filter=albums">Facebooku</a>.
+            </p>
+
+            <p>
+                Pokud byste chtěli odevzdat revizi úkolu (např. po opravě),
+                zabalte ji a nahrajte ji na stejný Google Drive znovu,
+                jen tentokrát se jménem <code>Ukol06-Vase_Jmeno-verze2.7z</code>
+            </p>
+
+            <p>
+                Termín odevzdání je do úterý 10. 4. 2018 23:59.
+                Pokud úkol nebo revizi odevzdáte později,
+                prosím pošlete svému opravujícímu kouči/lektorovi email nebo zprávu přes FB.
+            </p>
+        </div>
+        <!-- #content -->
+    </div>
+    <!-- #page -->
+</body>
+</html>

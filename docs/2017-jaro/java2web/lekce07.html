@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="cs" lang="cs">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="Content-Language" content="cs"/>
+
+    <meta name="robots" content="index,follow"/>
+    <meta name="googlebot" content="index,follow,snippet,archive"/>
+
+    <link rel="stylesheet" type="text/css" media="screen" href="../../css/styles.css"/>
+    <link rel="stylesheet" type="text/css" media="screen" href="../../css/menu.css"/>
+    <script src="../../js/jquery.1.12.4.min.js"></script>
+    <title>Java | Czechitas</title>
+</head>
+
+<body>
+    <div id="page">
+        <div class="header">
+            <a href="https://www.czechitas.cz/"><img src="../../img/logo.png" alt="Logo Czechitas"/></a>
+        </div>
+        <!-- #header -->
+
+        <div id="title"></div>
+        <script>
+            jQuery("#title").load("title.html");
+        </script>
+        <!-- #title -->
+
+        <!-- #menu -->
+        <div id="menu-wrap"></div>
+        <script>
+            jQuery("#menu-wrap").load("menu.html");
+        </script>
+        <!-- #menu -->
+
+        <div class="content">
+            <span class="published-timestamp">Vloženo: 16. 4. 2017</span>
+
+            <h3>
+                Lekce 07 - Procvičování validací
+            </h3>
+
+            <h4>
+                Osnova:
+            </h4>
+            <ol>
+                <li>Organizační věci</li>
+                <li>Java násobilka</li>
+                <li>NullPointerException a krokování programu</li>
+                <ol>
+                    <li>
+                        Ve zdrojovém textu lze zapíchnout tzv. breakpoint
+                        <img src="img/breakpoint-screenshot.png" alt="Obrázek breakpointu"/>
+                    </li>
+                    <li>Program lze spustit v ladicím režimu (broučkem <img src="img/sipka-debug.png"
+                                                                            alt="šipka debug"/> místo šipky
+                        <img src="img/sipka-run.png" alt="šipka run"/>)
+                    </li>
+                    <li>Po zastavení v breakpointu lze krokovat pomocí Step over (F8)</li>
+                    <li>Najetím na libovolnou proměnnou se zobrazí její obsah</li>
+                    <li>Pro skončení ladění lze zvolit Resume program (F9)</li>
+                </ol>
+
+                <li>Procvičování (úkoly dle slajdů)</li>
+
+                <li><i>Přestávka</i></li>
+
+                <li>Spring MVC - Validace</li>
+            </ol>
+
+            <h4>Soubory</h4>
+
+            <p class="odsazeniTop">
+                Materiály z lekce najdete zde:
+                <a href="../../data/2017-jaro/java2web/Java2Web-Lekce07.7z">Java2Web-Lekce07.7z</a>
+            </p>
+
+            <h4>Videozáznam</h4>
+
+            <p>
+                Na Youtube je záznam z lekce:
+            </p>
+
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/T3V0m_tBAZM" frameborder="0"
+                    allowfullscreen></iframe>
+
+            <p class="odsazeniTop">
+                Celý playlist na Youtube najdete zde:
+                <a href="https://www.youtube.com/playlist?list=PLUVJxzuCt9ATwP3dFn5xCHvObtu2EveNZ">Java 2 Web - youtube playlist</a>.
+            </p>
+
+            <h3 class="odsazeniTop">Domácí úkol 07</h3>
+
+            <p>
+                Přidejte validace do úkolů <strong>Bezdomovci</strong>,
+                <strong>Velbloudi</strong> a
+                <strong>Obvod a obsah obdelníku</strong> (viz zadání ze slajdů na hodině).
+                <br/>
+                Úkoly znovu publikujte do cloudu na jejich správné adresy
+                (<strong>Bezdomovce</strong> na <code>/ukol05</code>,
+                <strong>Velbloudy</strong> na <code>/ukol06</code>)
+                a nezapomeňte na FTP nahrát i zabalenou verzi celých projektů
+                (7-Zip) do složky <code>/ukoly</code>.
+            </p>
+            <p>
+                Dále přidejte validace ještě do programu pro výpočet
+                <strong>Obvodu a obsahu obdelníka</strong>
+                a vystavte jej jako <code>/ukol07</code>.
+                Screenshot s ukázkou validační chyby vystavte
+                do galerie <strong>Úkol z lekce 07</strong> <a
+                    href="https://www.facebook.com/groups/1252859128115809/photos/?filter=albums">na Facebook</a>.
+            </p>
+
+
+            <h3 id="validace" class="odsazeniTop">Jak přezobrazit stránku s radiobuttony</h3>
+
+            <p>
+                Při validování Bezdomovců (a Velbloudů) pravděpodobně narazíte
+                na následující problém:
+            </p>
+            <p>
+                Při přezobrazení stránky, na které jsou přepínací tlačítka
+                (tzv. radiobuttony), je po zamítnutí validace potřeba
+                obnovit v přepínacích tlačítkách stav (zvoleno / nezvoleno).
+            </p>
+            <p>
+                U klasických políček <code>&lt;input&gt;</code> stačí nechat vyplnit hodnotu
+                <code>value="${vyplnenyFormular.nazevPolicka}"</code>.
+                U radiobuttonů to ale nestačí.
+            </p>
+            <p>
+                Radiobuttony vypadají takto:
+            </p>
+                <label>
+                    <input type="radio" name="clovek1" value="bezdom"/> Bezdomovec
+                </label>
+                <br/>
+                <label>
+                    <input type="radio" name="clovek1" value="prof"/>
+                    Profesor
+                </label>
+
+            <pre class="java-source-code">
+&lt;input type="radio" name="clovek1" value="bezdom"/&gt;
+&lt;input type="radio" name="clovek1" value="prof"/&gt;
+</pre>
+            </p>
+
+            <p>
+                Pokud byste chtěli, aby jedna položka byla zvolená, bude to vypadat takto:
+            </p>
+
+
+            <label>
+                <input type="radio" name="clovek1" value="bezdom" checked="checked"/> Bezdomovec
+            </label>
+            <br/>
+            <label>
+                <input type="radio" name="clovek1" value="prof"/>
+                Profesor
+            </label>
+            <pre class="java-source-code">
+<span class="grey-out">&lt;input type="radio" name="clovek1" value="bezdom"</span> checked="checked"<span class="grey-out">/&gt;
+&lt;input type="radio" name="clovek1" value="prof"/&gt;
+</span></pre>
+
+
+
+
+            <p class="odsazeniTop">
+                Je tedy nutné, aby se podle předchozí hodnoty <code>${vyplnenyFormular.clovek1}</code>
+                buď vygeneroval do webové stránky nápis
+                <code>checked="checked"</code> nebo ne.
+                Zařídit to lze například trojným operátorem:
+                <code> podminkovyVyraz ? vysledekAno : vysledekNe </code>
+                <br/>
+                Např. pokud bychom chtěl porovnávat řetězec <code>barva</code>, jestli obsahuje slovo <code>"červená"</code>:
+            <pre class="java-source-code">
+String barva = "cervena";
+Integer kodBarvy =  barva.equals("cervena") ? 0xFF0000 : 0x0000FF;
+</pre>
+            V JSP se tento trojný operátor zapíše stejně, jen je nutné ho uzavřít do vyhodnocovacích závorek
+            <code>${ }</code> a je nutné pamatovat na to, že porovnání se nepíše <code>==</code> ani
+            <code>equals()</code>, ale slovíčkem <code>eq</code>. Uvozovky nebo apostrofy jsou jedno a totéž.
+            Celý kód tedy může vypadat například takto:
+
+            <pre class="java-source-code">
+<span class="grey-out">&lt;input type="radio" name="clovek1" value="bezdom"</span>
+        <strong>${vyplnenyFormular.clovek1 eq 'bezdom' ? 'checked="checked"' : ''}</strong><span class="grey-out">/&gt;
+&lt;input type="radio" name="clovek1" value="prof"</span>
+        <strong>${vyplnenyFormular.clovek1 eq 'prof' ? 'checked="checked"' : ''}</strong><span class="grey-out">/&gt;
+</span></pre>
+            </p>
+
+
+        </div>
+        <!-- #content -->
+    </div>
+    <!-- #page -->
+</body>
+</html>

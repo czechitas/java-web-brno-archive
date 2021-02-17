@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="cs" lang="cs">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="Content-Language" content="cs"/>
+
+    <meta name="robots" content="index,follow"/>
+    <meta name="googlebot" content="index,follow,snippet,archive"/>
+
+    <link rel="stylesheet" type="text/css" media="screen" href="../../css/styles.css"/>
+    <link rel="stylesheet" type="text/css" media="screen" href="../../css/menu.css"/>
+    <script src="../../js/jquery.1.12.4.min.js"></script>
+    <title>Java 2 | Czechitas</title>
+</head>
+
+<body>
+    <div id="page">
+        <div class="header">
+            <a href="https://www.czechitas.cz/"><img src="../../img/logo.png" alt="Logo Czechitas"/></a>
+        </div>
+        <!-- #header -->
+
+        <div id="title"></div>
+        <script>
+            jQuery("#title").load("title.html");
+        </script>
+        <!-- #title -->
+
+        <!-- #menu -->
+        <div id="menu-wrap"></div>
+        <script>
+            jQuery("#menu-wrap").load("menu.html");
+        </script>
+        <!-- #menu -->
+
+        <div class="content">
+            <span class="published-timestamp">Vloženo: 6. 4. 2018</span>
+
+            <h3>
+                Úkol 07 - Daily Planet
+            </h3>
+
+            <p>Vytvořte webovou aplikaci,
+                podle dodaných podkladů z hodiny
+                <code>JAVATRAINING/Projects/WebLekce07/30-Daily_Planet-Podklady/Java-Pokrocilejsi</code>.
+            </p>
+            <p>
+                Naopak <code>Java-jednodussi</code> prosím ignorujte.
+                Původně to bylo připraveno na hodinu, abychom ten příklad rychle dokončili.
+            </p>
+
+            <p>V podkladech jsou webové stránky.
+                Už s ThymeLeafem, abych vás nezatěžoval převodem.
+                Dále je tam k dispozici pár javových tříd, které můžete použít, pokud budete chtít.
+                Vyjděte z vlastní naklikané šablony projektu,
+                jak jsme si ji stáhli z webu <a href="https://start.spring.io/">start.spring.io</a>.
+                Srovnejte, v čem se lišší moje šablona aplikace oproti vaší naklikané.
+                Přidejte si chybějící featury do vaší appky ručně,
+                ideálně jednu po druhé, abyste si všimly,
+                co a proč jsem do svojí šablony přidal.
+            </p>
+
+
+            <h4>Update 17. 4. 2018</h4>
+
+            <p>
+                Při zakládání šablony na webu start.spring.io se do pom.xml
+                vygenerovala deklarace staré knihovny ThymeLeaf 2.
+                My bychom chtěli používat ThymeLeaf 3. Proto si do pom.xml
+                přideklarujte novější verzi ThymeLeafu do /project/properties:
+            </p>
+
+            <pre class="java-source-code">
+&lt;thymeleaf.version&gt;3.0.2.RELEASE&lt;/thymeleaf.version&gt;
+&lt;thymeleaf-layout-dialect.version&gt;2.1.1&lt;/thymeleaf-layout-dialect.version&gt;
+</pre>
+
+            <p>Dále bychom chtěli v ThymeLeafu používat přídavek pro zpracovávání
+                datumu a času LocalDate a LocalTime.</p>
+            <pre class="java-source-code">
+&lt;dependency&gt;
+    &lt;groupId&gt;org.thymeleaf.extras&lt;/groupId&gt;
+    &lt;artifactId&gt;thymeleaf-extras-java8time&lt;/artifactId&gt;
+    &lt;version&gt;3.0.1.RELEASE&lt;/version&gt;
+    &lt;exclusions&gt;
+        &lt;exclusion&gt;
+            &lt;groupId&gt;ognl&lt;/groupId&gt;
+            &lt;artifactId&gt;ognl&lt;/artifactId&gt;
+        &lt;/exclusion&gt;
+    &lt;/exclusions&gt;
+&lt;/dependency&gt;
+</pre>
+
+
+            <h4>Návrhový vzor Repository</h4>
+
+            <p>
+                Práci s články by bylo dobré převést do samostatné třídy,
+                která bude sama udržovat seznam článků a navenek bude umět
+                všechny články poskytnout (metoda <code>findAll()</code>), a dále
+                jeden článek vyhledat podle ID (metoda <code>findOne(...)</code>),
+                přidat nebo updatovat (metoda <code>save(...)</code>)
+                a smazat (<code>remove(...)</code>).
+            </p>
+
+            <p>
+                Metoda <code>save(...)</code> bude fungovat tak, že se pokusí
+                záznam najít podle ID v seznamu.
+                Pokud ho tam najde, updatuje seznam,
+                pokud ho tam nenajde, přidá záznam na konec seznamu.
+            </p>
+
+            <p>
+                Kostra takové třídy by mohla vypadat takto:
+            </p>
+
+            <pre class="java-source-code">
+public class ClanekRepository {
+
+    private List&lt;Clanek&gt; seznamClanku = new ArrayList<>(Arrays.asList(
+            new Clanek("Boss podsvětí dostal 20 let", "Clark Kent", LocalDate.of(2018, 1, 31)),
+            new Clanek("Lékaři doporučují opatrnost", "Lois Lane", LocalDate.of(2018, 2, 28)),
+            new Clanek("Bezkontaktní karty lákají zloděje", "Perry White", LocalDate.of(2017, 12, 24)),
+            new Clanek("Ministryně navštívila problematické předměstí", "Jimmy Olsen", LocalDate.of(2016, 7, 31)),
+            new Clanek("Soutěž o lístky na fotbal", "Cat Grant", LocalDate.of(2016, 8, 1)),
+            new Clanek("Vrah prodavačky je ve vazbě", "Ron Troupe", LocalDate.of(2017, 10, 28))
+    ));
+
+    public synchronized List&lt;Clanek&gt; findAll() {
+        // nejaky kod
+    }
+
+    public synchronized Clanek findOne(Long id) {
+        // nejaky kod
+    }
+
+    public synchronized Clanek save(Clanek zaznamKUlozeni) {
+        // nejaky kod
+    }
+
+    public synchronized void delete(Long id) {
+        // nejaky kod
+    }
+}
+</pre>
+
+            <p>
+                Poznámka: Slovo <code>synchronized</code>
+                zajišťuje tzv. vláknovou bezpečnost metod.
+                Tedy to, že do metod v <code>ClanekRepository</code>
+                může vstoupit souběžně pouze 1
+                požadavek (a měnit interní <code>List</code>).
+                To je na webovém serveru důležité,
+                protože k aplikaci přistupuje souběžně více prohlížečů / uživatelů.
+            </p>
+
+            <p>
+                V <code>HlavnimController</code>u tuto repository normálně instanciujte
+                a nahraďte tím původní deklaraci <code>List</code>u s články.
+                V budoucnu to vylepšíme, ale teď to stačí takhle.
+            </p>
+
+            <pre class="java-source-code">
+@Controller
+public class HlavniController {
+
+    private ClanekRepository dodavatelDat = new ClanekRepository();
+
+    // Metody s RequestMappingy
+
+}
+</pre>
+
+
+            <p class="odsazeniTop">Ukázkový web můžete vidět na <a
+                href="https://margot.tomcat.cloud/ukol07/">https://margot.tomcat.cloud/ukol07/</a>
+            </p>
+
+
+
+
+            <h5>Pár tipů:</h5>
+
+
+
+            <ul>
+                <li>
+                    Nastavte si PROJEKT/src/main/resources/application.properties -> <code>server.context-path = /ukol07</code>,
+                    aby Spring Boot věděl, že chcete spouštět zabudovaný Tomcat tak,
+                    že appka bude k dispozici
+                    na http://localhost:8080/ukol07.
+                </li>
+                <li>Aby se vám při Maven Projects -> <code>package</code> vytvořil soubor .war se správným jménem,
+                    nastavte si ještě
+                    PROJEKT/pom.xml -> <code>/project/build/finalName</code> na <code>ukol07</code>
+                </li>
+            </ul>
+
+
+            <h4>
+                Odevzdání domácího úkolu
+            </h4>
+
+            <p>
+                Složku s projektem nejprve zbavte přeložených artefaktů,
+                aby byla menší.
+                To zařídíte ručním smazáním složky PROJEKT/target
+                nebo pomocí v IntelliJ IDEA -> Maven Projects -> ukol -> Lifecycle -> clean.
+                Poté složku s projektem zabalte pomocí 7-Zipu pod jménem
+                <code>Ukol07-Vase_Jmeno.7z</code>.
+                Lze použít i jen prostý zip (například na Macu).
+
+                Takto vytvořený archív nahrajte na
+                Google Drive
+                do složky <code>Ukol07</code>.
+            </p>
+
+            <p>
+                Vytvořte archív .war v IntelliJ IDEA -> Maven Projects -> ukol -> Lifecycle -> clean
+                a následně IntelliJ IDEA -> Maven Projects -> ukol -> Lifecycle -> package.
+                Goal "package" vytvoří archív .war v PROJEKT/target/ukol07.war.
+                Nasaďte jej do vašeho lokálního Tomcatu (JAVA-TRAINING/Tomcat/webapps)
+                a vyzkoušejte, že funguje (
+                <code>http://localhost:8080/ukol07/</code>
+                ).
+            </p>
+
+            <p>
+                Po odladění nasaďte tento archív ještě přes FTP na server Tomcat.cloud
+                ( <code>http://sladkost.tomcat.cloud/ukol07/</code> ).
+            </p>
+
+            <p>
+                Vytvořte snímek obrazovky spuštěného programu
+                a pochlubte se s ním ve fotoalbu <strong>Úkol07</strong> na
+                <a href="https://www.facebook.com/groups/2065013227074688/photos/?filter=albums">Facebooku</a>.
+            </p>
+
+            <p>
+                Pokud byste chtěli odevzdat revizi úkolu (např. po opravě),
+                zabalte ji a nahrajte ji na stejný Google Drive znovu,
+                jen tentokrát se jménem <code>Ukol07-Vase_Jmeno-verze2.7z</code>
+            </p>
+
+            <p>
+                Termín odevzdání je do úterý 17. 4. 2018 23:59.
+                Pokud úkol nebo revizi odevzdáte později,
+                prosím pošlete svému opravujícímu kouči/lektorovi email nebo zprávu přes FB.
+            </p>
+        </div>
+        <!-- #content -->
+    </div>
+    <!-- #page -->
+</body>
+</html>

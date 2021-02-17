@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="cs" lang="cs">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="Content-Language" content="cs"/>
+
+    <meta name="robots" content="index,follow"/>
+    <meta name="googlebot" content="index,follow,snippet,archive"/>
+
+    <link rel="stylesheet" type="text/css" media="screen" href="../../css/styles.css"/>
+    <link rel="stylesheet" type="text/css" media="screen" href="../../css/menu.css"/>
+    <script src="../../js/jquery.1.12.4.min.js"></script>
+    <title>Java | Czechitas</title>
+</head>
+
+<body>
+    <div id="page">
+        <div class="header">
+            <a href="https://www.czechitas.cz/"><img src="../../img/logo.png" alt="Logo Czechitas"/></a>
+        </div>
+        <!-- #header -->
+
+        <div id="title"></div>
+        <script>
+            jQuery("#title").load("title.html");
+        </script>
+        <!-- #title -->
+
+        <!-- #menu -->
+        <div id="menu-wrap"></div>
+        <script>
+            jQuery("#menu-wrap").load("menu.html");
+        </script>
+        <!-- #menu -->
+
+        <div class="content">
+            <span class="published-timestamp">Vloženo: 31. 10. 2016</span>
+
+            <h3>
+                Úkol z lekce 06 - Telefonní seznam
+            </h3>
+
+            <p>
+                Dokončete aplikaci z hodiny, která zpracovává telefonní seznam.
+            </p>
+
+            <p>
+                Zadání nechám celkem volné. Zde je nicméně pár požadavků:
+            </p>
+            <p>
+                Do aplikace má být možno zadávat telefonní čísla ve formátu:
+            </p>
+            <ul>
+                <li>604112233 (doplní předvolbu země na +420)</li>
+                <li>00420604112233 (změní 00 na +)</li>
+                <li>+420604112233 (nic nemění)</li>
+            </ul>
+            <p>
+                Výsledný seznam telefonů má být bez duplicit a setříděný vzestupně<br/>
+                Příklady čísel jde najít v souboru z Lekce06: Telefony.txt<br/>
+                Aplikace má být okenní (GUI)<br/>
+                Komponenty mají být pozicované pomocí LayoutManageru, nikoliv po pixelech. Doporučuji zvolit GroupLayout (Free design)<br/>
+                Pro vstupní pole doporučuji JTextArea (nepovinné)<br/>
+                Pro výsledný seznam zkuste použít JList (nepovinné)
+            </p>
+
+            <img src="img/ukol06.png" width="280" height="495" alt="Screenshot základní verze Telefonního seznamu"/>
+
+
+            <h4>Rozšiřující zadání</h4>
+            <p>
+                V <a href="lekce06.html">lekci 06</a> jste dostali ještě jeden soubor: TelefonniSeznam.csv.
+            </p>
+            <p>
+                Zkuste napsat druhou aplikaci (nezničte si původní aplikaci),
+                která vyčistí a zobrazí tento seznam.
+                Narozdíl od prvního příkladu,
+                tento seznam obsahuje osoby a k nim přiřazená telefonní čísla.
+            </p>
+            <p>
+                Zkuste tedy opět normalizovat a odstranit duplicity.
+                Přál bych si ale, aby vše fungovalo tak, že si v komponentě JList
+                vyberu konkrétního člověka a teprve po výběru uvidím jeho telefonní číslo v samostatném JTextFieldu.
+                Jako extra bonus: Chtěl bych, aby uživatelé byli setříděni podle příjmení, ale vypsáni ve tvaru "KrestniJmeno Prijemni".
+            </p>
+
+            <img src="img/ukol06-bonus.png" width="500" height="475" alt="Screenshot telefonního seznamu"/>
+        </div>
+        <!-- #content -->
+    </div>
+    <!-- #page -->
+</body>
+</html>
